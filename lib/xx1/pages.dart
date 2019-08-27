@@ -42,16 +42,20 @@ class _GameXX1State extends State<GameXX1> {
       }
       // Verify if the currentPlayer take a too biggest score
       else if(_badScore(_currentPlayer)) {
+        _generateMessage();
         return;
       }
       // Verify if the user call to back to the previous player
       else if(_backToPreviousPlayer()){
+        _generateMessage();
         return;
       }
       // Go to next player when the current player shooted this 3 darts
       else if(_nextPlayer(_currentPlayer)) {
+        _generateMessage();
         return;
       }
+      _generateMessage();
     });
   }
 
@@ -73,13 +77,16 @@ class _GameXX1State extends State<GameXX1> {
       player.score = player.score + (player.firstDart != null ? player.firstDart : 0) + (player.secondDart != null ? player.secondDart : 0) + (player.thirdDart != null ? player.thirdDart : 0);
       if(widget.players.length - 1 == _counterPlayer) {
         _counterPlayer = 0;
-        player = widget.players[_counterPlayer];
+        _currentPlayer = widget.players[_counterPlayer];
+        _currentPlayer.round++;
+
       }
       else {
         _counterPlayer++;
-        player = widget.players[_counterPlayer];
+        _currentPlayer = widget.players[_counterPlayer];
+        _currentPlayer.round++;
       }
-      _initRound(player);
+      _initRound(_currentPlayer);
       return true;
     }
     return false;
@@ -102,7 +109,6 @@ class _GameXX1State extends State<GameXX1> {
         _currentPlayer = widget.players[_counterPlayer];
       }
       _currentPlayer.round--;
-      _generateMessage(_currentPlayer);
       return true;
     }
     return false;
@@ -144,11 +150,74 @@ class _GameXX1State extends State<GameXX1> {
     player.firstDart = null;
     player.secondDart = null;
     player.thirdDart = null;
-    _generateMessage(player);
   }
 
-  void _generateMessage(Player player) {
-    _message = 'Round ' + (player.round + 1).toString() + ' of ' + player.name;
+  /* method calls to display message after each dart of a player */
+  void _generateMessage() {
+    _message = 'Round ' + (_currentPlayer.round + 1).toString() + ' of ' + _currentPlayer.name + ' ' + _generateHelpMessage();
+  }
+
+  /* method calls to display a help message to a player when it can end game */
+  String _generateHelpMessage() {
+    int nbRemainingDart = _getNumberRemainingDart();
+    int nbNecessaryDart = _getNumberNecessaryDart();
+    if(nbNecessaryDart <= 3 && nbRemainingDart>= nbNecessaryDart) {
+      String lastDart = _getLastDart();
+      if(lastDart != null) {
+        if(nbNecessaryDart == 3) {
+          return '[ 3X20 3X20 ' + lastDart + ' ]';
+        }
+        else if(nbNecessaryDart == 2) {
+          return '[ 3X20 ' + lastDart + ' ]';
+        }
+        else {
+          return '[ ' + lastDart + ' ]';
+        }
+      }
+    }
+    return '';
+  }
+
+  /* method call to return the last dart to finish or null if it doesn't possible */
+  String _getLastDart(){
+    int remaining = _currentPlayer.score % 60 == 0 ? 60 :  _currentPlayer.score % 60;
+    for(int i = 1; i < 4; i++) {
+      for(int j = 1; j < 21; j++) {
+        if(remaining - i * j == 0) {
+          return i.toString() + 'X' + j.toString();
+        }
+      }
+    }
+    return null;
+  }
+
+  /* method calls to have the number of remaining dart of the current player */
+  int _getNumberRemainingDart() {
+    if(_currentPlayer.firstDart == null) {
+      return 3;
+    }
+    else if(_currentPlayer.secondDart == null) {
+      return 2;
+    }
+    return 1;
+  }
+
+  /* method calls to have the number of necessary dart to end the game */
+  int _getNumberNecessaryDart() {
+    double result = _currentPlayer.score / 60;
+    if(result > 3) {
+      return 4;
+    }
+    else if(result > 2 && result <= 3) {
+      return 3;
+    }
+    else if(result > 1 && result <= 2) {
+      return 2;
+    }
+    else if(result > 0 && result <= 1){
+      return 1;
+    }
+    return 4;
   }
 
   @override
@@ -249,6 +318,7 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
     }
   }
 
+  /* method calls to validate adding player */
   void _handleValidateAddPlayerForm() {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
