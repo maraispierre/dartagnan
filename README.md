@@ -1,6 +1,13 @@
 # flutter_dart_score
 
-Dart score application
+Dart score application :
+  - Features :
+    - allows to play from 301 to 1001 without limit of player and display the scoreboard
+  - Next features :
+    - implements rooms system to play with friends
+    - implements the cricket game
+    - implements stats
+    
 
 ## Getting Started
 
