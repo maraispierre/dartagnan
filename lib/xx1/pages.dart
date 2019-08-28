@@ -162,25 +162,45 @@ class _GameXX1State extends State<GameXX1> {
     int nbRemainingDart = _getNumberRemainingDart();
     int nbNecessaryDart = _getNumberNecessaryDart();
     if(nbNecessaryDart <= 3 && nbRemainingDart>= nbNecessaryDart) {
-      String lastDart = _getLastDart();
-      if(lastDart != null) {
-        if(nbNecessaryDart == 3) {
-          return '[ 3X20 3X20 ' + lastDart + ' ]';
+      String lastDart = _getLastDart(_currentPlayer.score);
+      if(nbNecessaryDart == 3 && lastDart != null) {
+        return '[ 3X20 3X20 ' + lastDart + ' ]';
+      }
+      else if(nbNecessaryDart == 3) {
+        int remaining = _currentPlayer.score - 60;
+        for(int i = 1; i < 4; i++) {
+          for(int j= 1; j < 21; j++) {
+            String trueLastDart = _getLastDart(remaining - i * j);
+            if( trueLastDart != null) {
+              return '[ 3X20 '+ i.toString() + 'X' + j.toString() + ' '+ trueLastDart + ' ]';
+            }
+          }
         }
-        else if(nbNecessaryDart == 2) {
-          return '[ 3X20 ' + lastDart + ' ]';
+      }
+      else if(nbNecessaryDart == 2 && lastDart != null) {
+        return '[ 3X20 ' + lastDart + ' ]';
+      }
+      else if(nbNecessaryDart == 2) {
+        int remaining = _currentPlayer.score;
+        for(int i = 1; i < 4; i++) {
+          for(int j= 1; j < 21; j++) {
+            String trueLastDart = _getLastDart(remaining - i * j);
+            if( trueLastDart != null) {
+              return '[ '+ i.toString() + 'X' + j.toString() + ' '+ trueLastDart + ' ]';
+            }
+          }
         }
-        else {
-          return '[ ' + lastDart + ' ]';
-        }
+      }
+      else if(nbNecessaryDart == 1 && lastDart != null){
+        return '[ ' + lastDart + ' ]';
       }
     }
     return '';
   }
 
   /* method call to return the last dart to finish or null if it doesn't possible */
-  String _getLastDart(){
-    int remaining = _currentPlayer.score % 60 == 0 ? 60 :  _currentPlayer.score % 60;
+  String _getLastDart(int score){
+    int remaining = score;
     for(int i = 1; i < 4; i++) {
       for(int j = 1; j < 21; j++) {
         if(remaining - i * j == 0) {
