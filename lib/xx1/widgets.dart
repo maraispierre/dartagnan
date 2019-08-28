@@ -110,7 +110,7 @@ class PlayerListXX1Item extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              width: 80,
+              width: 70,
               child: Text(player.score.toString(),
                 style: TextStyle(
                   color: Colors.black,
@@ -122,7 +122,7 @@ class PlayerListXX1Item extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 80,
+              width: 50,
               child: Text(player.name,
                 style: TextStyle(
                   color: Colors.black,
@@ -133,7 +133,7 @@ class PlayerListXX1Item extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 30,
+              width: 20,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -288,230 +288,367 @@ class ScoringXX1 extends StatelessWidget {
       children: [
         Row(
           children: [
-            FloatingActionButton(
-              heroTag: "btn1",
-              tooltip: 'Add',
-              child: Text('1'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(1);
-              },
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn1",
+                    tooltip: 'Add',
+                    child: Text('1'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(1);
+                    },
+                  ),
+                ),
             ),
-            FloatingActionButton(
-              heroTag: "btn2",
-              tooltip: 'Add',
-              child: Text('2'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(2);
-              },
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn2",
+                    tooltip: 'Add',
+                    child: Text('2'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(2);
+                    },
+                  ),
+                ),
             ),
-            FloatingActionButton(
-              heroTag: "btn3",
-              tooltip: 'Add',
-              child: Text('3'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(3);
-              },
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn3",
+                    tooltip: 'Add',
+                    child: Text('3'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(3);
+                    },
+                  ),
+                ),
             ),
-            FloatingActionButton(
-              heroTag: "btn4",
-              tooltip: 'Add',
-              child: Text('4'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(4);
-              },
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn4",
+                    tooltip: 'Add',
+                    child: Text('4'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(4);
+                    },
+                  ),
+                ),
             ),
-            FloatingActionButton(
-              heroTag: "btn5",
-              tooltip: 'Add',
-              child: Text('5'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(5);
-              },
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn5",
+                    tooltip: 'Add',
+                    child: Text('5'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(5);
+                    },
+                  ),
+                ),
             ),
-            FloatingActionButton(
-              heroTag: "btn6",
-              tooltip: 'Add',
-              child: Text('6'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(6);
-              },
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn6",
+                    tooltip: 'Add',
+                    child: Text('6'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(7);
+                    },
+                  ),
+                ),
             ),
-            FloatingActionButton(
-              heroTag: "btn7",
-              tooltip: 'Add',
-              child: Text('7'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(7);
-              },
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            FloatingActionButton(
-              heroTag: "btn8",
-              tooltip: 'Add',
-              child: Text('8'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(8);
-              },
-            ),
-            FloatingActionButton(
-              heroTag: "btn9",
-              tooltip: 'Add',
-              child: Text('9'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(9);
-              },
-            ),
-            FloatingActionButton(
-              heroTag: "btn10",
-              tooltip: 'Add',
-              child: Text('10'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(10);
-              },
-            ),
-            FloatingActionButton(
-              heroTag: "btn11",
-              tooltip: 'Add',
-              child: Text('11'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(11);
-              },
-            ),
-            FloatingActionButton(
-              heroTag: "btn12",
-              tooltip: 'Add',
-              child: Text('12'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(12);
-              },
-            ),
-            FloatingActionButton(
-              heroTag: "btn13",
-              tooltip: 'Add',
-              child: Text('13'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(13);
-              },
-            ),
-            FloatingActionButton(
-              heroTag: "btn14",
-              tooltip: 'Add',
-              child: Text('14'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(14);
-              },
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            FloatingActionButton(
-              heroTag: "btn15",
-              tooltip: 'Add',
-              child: Text('15'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(15);
-              },
-            ),
-            FloatingActionButton(
-              heroTag: "btn16",
-              tooltip: 'Add',
-              child: Text('16'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(16);
-              },
-            ),
-            FloatingActionButton(
-              heroTag: "btn17",
-              tooltip: 'Add',
-              child: Text('17'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(17);
-              },
-            ),
-            FloatingActionButton(
-              heroTag: "btn18",
-              tooltip: 'Add',
-              child: Text('18'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(18);
-              },
-            ),
-            FloatingActionButton(
-              heroTag: "btn19",
-              tooltip: 'Add',
-              child: Text('19'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(19);
-              },
-            ),
-            FloatingActionButton(
-              heroTag: "btn20",
-              tooltip: 'Add',
-              child: Text('20'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(20);
-              },
-            ),
-            FloatingActionButton(
-              heroTag: "btn26",
-              tooltip: 'Add',
-              child: Text('25'),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                _handleTap(25);
-              },
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn7",
+                    tooltip: 'Add',
+                    child: Text('7'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(7);
+                    },
+                  ),
+                ),
             ),
           ],
         ),
         Row(
           children: [
             Expanded(
-              child: FloatingActionButton(
-                heroTag: "btn0",
-                tooltip: 'Add',
-                child: Text('0'),
-                backgroundColor: Colors.black,
-                onPressed: () {
-                  _handleTap(0);
-                },
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn8",
+                    tooltip: 'Add',
+                    child: Text('8'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(8);
+                    },
+                  ),
+                ),
+            ),
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn9",
+                    tooltip: 'Add',
+                    child: Text('9'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(9);
+                    },
+                  ),
+                ),
+            ),
+            Expanded(
+                child:  SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn10",
+                    tooltip: 'Add',
+                    child: Text('10'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(10);
+                    },
+                  ),
+                ),
+            ),
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn11",
+                    tooltip: 'Add',
+                    child: Text('11'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(11);
+                    },
+                  ),
+                ),
+            ),
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn12",
+                    tooltip: 'Add',
+                    child: Text('12'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(12);
+                    },
+                  ),
+                ),
+            ),
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn13",
+                    tooltip: 'Add',
+                    child: Text('13'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(13);
+                    },
+                  ),
+                ),
+            ),
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn14",
+                    tooltip: 'Add',
+                    child: Text('14'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(14);
+                    },
+                  ),
+                ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: FloatingActionButton(
+                  heroTag: "btn15",
+                  tooltip: 'Add',
+                  child: Text('15'),
+                  backgroundColor: Colors.black,
+                  onPressed: () {
+                    _handleTap(15);
+                  },
+                ),
               ),
             ),
             Expanded(
-              child: FloatingActionButton(
-                heroTag: "btnX1",
-                tooltip: 'Add',
-                child: Text('X1'),
-                backgroundColor: multiply == 1 ? Colors.black45 : Colors.black12,
-                onPressed: () {
-                  _handleTapMultiply(1);
-                },
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn16",
+                    tooltip: 'Add',
+                    child: Text('16'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(16);
+                    },
+                  ),
+                ),
+            ),
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn17",
+                    tooltip: 'Add',
+                    child: Text('17'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(17);
+                    },
+                  ),
+                ),
+            ),
+            Expanded(
+                child:SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn18",
+                    tooltip: 'Add',
+                    child: Text('18'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(18);
+                    },
+                  ),
+                ),
+            ),
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn19",
+                    tooltip: 'Add',
+                    child: Text('19'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(19);
+                    },
+                  ),
+                ),
+            ),
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn20",
+                    tooltip: 'Add',
+                    child: Text('20'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(20);
+                    },
+                  ),
+                ),
+            ),
+            Expanded(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: FloatingActionButton(
+                    heroTag: "btn25",
+                    tooltip: 'Add',
+                    child: Text('25'),
+                    backgroundColor: Colors.black,
+                    onPressed: () {
+                      _handleTap(25);
+                    },
+                  ),
+                ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: FloatingActionButton(
+                  heroTag: "btn0",
+                  tooltip: 'Add',
+                  child: Text('0'),
+                  backgroundColor: Colors.black,
+                  onPressed: () {
+                    _handleTap(0);
+                  },
+                ),
               ),
             ),
             Expanded(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: FloatingActionButton(
+                  heroTag: "btnX1",
+                  tooltip: 'Add',
+                  child: Text('X1'),
+                  backgroundColor: multiply == 1 ? Colors.black45 : Colors.black12,
+                  onPressed: () {
+                    _handleTapMultiply(1);
+                  },
+                ),
+              ),
+            ),
+            Expanded(
+            child: SizedBox(
+              width: 50,
+              height: 50,
               child: FloatingActionButton(
                 heroTag: "btnX2",
                 tooltip: 'Add',
@@ -522,26 +659,35 @@ class ScoringXX1 extends StatelessWidget {
                 },
               ),
             ),
+            ),
             Expanded(
-              child: FloatingActionButton(
-                heroTag: "btnX3",
-                tooltip: 'Add',
-                child: Text('X3'),
-                backgroundColor: multiply == 3 ? Colors.black45 : Colors.black12,
-                onPressed: () {
-                  _handleTapMultiply(3);
-                },
+            child: SizedBox(
+                width: 50,
+                height: 50,
+                child: FloatingActionButton(
+                  heroTag: "btnX3",
+                  tooltip: 'Add',
+                  child: Text('X3'),
+                  backgroundColor: multiply == 3 ? Colors.black45 : Colors.black12,
+                  onPressed: () {
+                    _handleTapMultiply(3);
+                  },
+                ),
               ),
             ),
             Expanded(
-              child: FloatingActionButton(
-                heroTag: "btnBack",
-                tooltip: 'Add',
-                child: Text('Back'),
-                backgroundColor: Colors.red,
-                onPressed: _handleTapBack,
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: FloatingActionButton(
+                  heroTag: "btnBack",
+                  tooltip: 'Add',
+                  child: Text('Back'),
+                  backgroundColor: Colors.red,
+                  onPressed: _handleTapBack,
+                ),
               ),
-            ),
+            )
           ],
         ),
       ],
