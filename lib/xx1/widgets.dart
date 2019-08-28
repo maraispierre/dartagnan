@@ -16,6 +16,7 @@ class Player {
 }
 
 typedef void UpdateUserCallback(Player player);
+typedef void UpdateMultiplyCallback(int multiply);
 typedef void RemovePlayerCallback(String namePlayer);
 
 /* Widget to display detail of an adding player */
@@ -224,11 +225,12 @@ class _PlayerListXX1State extends State<PlayerListXX1> {
 /* widget which contains buttons for give dart score for XX1 game */
 class ScoringXX1 extends StatelessWidget {
 
-  ScoringXX1({this.currentPlayer, this.onUpdatePlayer});
+  ScoringXX1({this.currentPlayer, this.multiply = 1, this.onUpdateMultiply, this.onUpdatePlayer});
 
   final Player currentPlayer;
   final UpdateUserCallback onUpdatePlayer;
-  int multiply = 1;
+  final int multiply;
+  final UpdateMultiplyCallback onUpdateMultiply;
 
   /* method call by backward button to return to the back dart */
   void _handleTapBack() {
@@ -255,7 +257,7 @@ class ScoringXX1 extends StatelessWidget {
 
   /* method call by multiply button to multiply next dart */
   void _handleTapMultiply(int value) {
-    multiply = value;
+    this.onUpdateMultiply(value);
   }
 
   /* method call by score button to give a score to a dart */
@@ -264,17 +266,17 @@ class ScoringXX1 extends StatelessWidget {
     if(currentPlayer.firstDart == null) {
       currentPlayer.firstDart = value * multiply;
       currentPlayer.score = currentPlayer.score - currentPlayer.firstDart;
-      multiply = 1;
+      onUpdateMultiply(1);
     }
     else if(currentPlayer.secondDart == null) {
       currentPlayer.secondDart = value * multiply;
       currentPlayer.score = currentPlayer.score - currentPlayer.secondDart;
-      multiply = 1;
+      onUpdateMultiply(1);
     }
     else if(currentPlayer.thirdDart == null) {
       currentPlayer.thirdDart = value * multiply;
       currentPlayer.score = currentPlayer.score - currentPlayer.thirdDart;
-      multiply = 1;
+      onUpdateMultiply(1);
     }
     onUpdatePlayer(currentPlayer);
   }
@@ -500,10 +502,21 @@ class ScoringXX1 extends StatelessWidget {
             ),
             Expanded(
               child: FloatingActionButton(
+                heroTag: "btnX1",
+                tooltip: 'Add',
+                child: Text('X1'),
+                backgroundColor: multiply == 1 ? Colors.black45 : Colors.black12,
+                onPressed: () {
+                  _handleTapMultiply(1);
+                },
+              ),
+            ),
+            Expanded(
+              child: FloatingActionButton(
                 heroTag: "btnX2",
                 tooltip: 'Add',
                 child: Text('X2'),
-                backgroundColor: Colors.black26,
+                backgroundColor: multiply == 2 ? Colors.black45 : Colors.black12,
                 onPressed: () {
                   _handleTapMultiply(2);
                 },
@@ -514,7 +527,7 @@ class ScoringXX1 extends StatelessWidget {
                 heroTag: "btnX3",
                 tooltip: 'Add',
                 child: Text('X3'),
-                backgroundColor: Colors.black26,
+                backgroundColor: multiply == 3 ? Colors.black45 : Colors.black12,
                 onPressed: () {
                   _handleTapMultiply(3);
                 },

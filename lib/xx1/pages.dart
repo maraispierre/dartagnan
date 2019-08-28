@@ -22,6 +22,7 @@ class _GameXX1State extends State<GameXX1> {
   Player _currentPlayer;
   String _message;
   int _counterPlayer;
+  int _multiply;
 
   @protected
   @mustCallSuper
@@ -30,6 +31,14 @@ class _GameXX1State extends State<GameXX1> {
     _currentPlayer = widget.players[0];
     _message = 'Round ' + (_currentPlayer.round + 1).toString() + ' of ' + _currentPlayer.name;
     _counterPlayer = 0;
+    _multiply = 1;
+  }
+
+  /* Methods call for update player information after an action. It is the global strategy of XX1 game */
+  void _handleUpdateMultiply(int multiply) {
+    setState(() {
+      _multiply = multiply;
+    });
   }
 
   /* Methods call for update player information after an action. It is the global strategy of XX1 game */
@@ -269,7 +278,7 @@ class _GameXX1State extends State<GameXX1> {
             flex: 4,
             child: Container(
               padding: EdgeInsets.all(8),
-              child: ScoringXX1(currentPlayer: _currentPlayer, onUpdatePlayer: _handleUpdatePlayer,),
+              child: ScoringXX1(currentPlayer: _currentPlayer, multiply: _multiply, onUpdatePlayer: _handleUpdatePlayer, onUpdateMultiply: _handleUpdateMultiply,),
             ),
           ),
         ],
