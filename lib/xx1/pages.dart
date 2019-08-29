@@ -21,6 +21,7 @@ class _GameXX1State extends State<GameXX1> {
 
   Player _currentPlayer;
   String _message;
+  String _helpMessage;
   int _counterPlayer;
   int _multiply;
 
@@ -30,6 +31,7 @@ class _GameXX1State extends State<GameXX1> {
     super.initState();
     _currentPlayer = widget.players[0];
     _message = 'Round ' + (_currentPlayer.round + 1).toString() + ' of ' + _currentPlayer.name;
+    _helpMessage = '';
     _counterPlayer = 0;
     _multiply = 1;
   }
@@ -163,17 +165,18 @@ class _GameXX1State extends State<GameXX1> {
 
   /* method calls to display message after each dart of a player */
   void _generateMessage() {
-    _message = 'Round ' + (_currentPlayer.round + 1).toString() + ' of ' + _currentPlayer.name + ' ' + _generateHelpMessage();
+    _message = 'Round ' + (_currentPlayer.round + 1).toString() + ' of ' + _currentPlayer.name;
+    _generateHelpMessage();
   }
 
   /* method calls to display a help message to a player when it can end game */
-  String _generateHelpMessage() {
+  void _generateHelpMessage() {
     int nbRemainingDart = _getNumberRemainingDart();
     int nbNecessaryDart = _getNumberNecessaryDart();
     if(nbNecessaryDart <= 3 && nbRemainingDart>= nbNecessaryDart) {
       String lastDart = _getLastDart(_currentPlayer.score);
       if(nbNecessaryDart == 3 && lastDart != null) {
-        return '[ 3X20 3X20 ' + lastDart + ' ]';
+        _helpMessage = '3X20 3X20 ' + lastDart;
       }
       else if(nbNecessaryDart == 3) {
         int remaining = _currentPlayer.score - 60;
@@ -181,13 +184,13 @@ class _GameXX1State extends State<GameXX1> {
           for(int j= 1; j < 21; j++) {
             String trueLastDart = _getLastDart(remaining - i * j);
             if( trueLastDart != null) {
-              return '[ 3X20 '+ i.toString() + 'X' + j.toString() + ' '+ trueLastDart + ' ]';
+              _helpMessage = '3X20 '+ i.toString() + 'X' + j.toString() + ' '+ trueLastDart;
             }
           }
         }
       }
       else if(nbNecessaryDart == 2 && lastDart != null) {
-        return '[ 3X20 ' + lastDart + ' ]';
+        _helpMessage = '3X20 ' + lastDart;
       }
       else if(nbNecessaryDart == 2) {
         int remaining = _currentPlayer.score;
@@ -195,16 +198,21 @@ class _GameXX1State extends State<GameXX1> {
           for(int j= 1; j < 21; j++) {
             String trueLastDart = _getLastDart(remaining - i * j);
             if( trueLastDart != null) {
-              return '[ '+ i.toString() + 'X' + j.toString() + ' '+ trueLastDart + ' ]';
+              _helpMessage =   i.toString() + 'X' + j.toString() + ' '+ trueLastDart;
             }
           }
         }
       }
       else if(nbNecessaryDart == 1 && lastDart != null){
-        return '[ ' + lastDart + ' ]';
+        _helpMessage =  lastDart;
+      }
+      else {
+        _helpMessage = '';
       }
     }
-    return '';
+    else {
+      _helpMessage = '';
+    }
   }
 
   /* method call to return the last dart to finish or null if it doesn't possible */
@@ -275,14 +283,7 @@ class _GameXX1State extends State<GameXX1> {
           ),
           Expanded(
             flex: 1,
-            child: Text('$_message',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Roboto',
-                letterSpacing: 0.5,
-              ),
-            ),
+            child: MessagePlayer(message: _message, helpMessage: _helpMessage,),
           ),
           Expanded(
             flex: 6,

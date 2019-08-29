@@ -229,6 +229,49 @@ class _PlayerListXX1State extends State<PlayerListXX1> {
   }
 }
 
+/* widget which contains message for player */
+class MessagePlayer extends StatelessWidget {
+
+  MessagePlayer({this.message, this.helpMessage});
+
+  final String message;
+  final String helpMessage;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black,
+      ),
+      child: Center(
+        child : Column(
+          children: <Widget>[
+            Text(message,
+              style: TextStyle(
+                fontSize: 23,
+                fontWeight: FontWeight.w800,
+                color: Colors.white,
+                fontFamily: 'Roboto',
+                letterSpacing: 0.5,
+              ),
+            ),
+            Text(helpMessage,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+                fontFamily: 'Roboto',
+                letterSpacing: 0.5,
+              ),
+            ),
+          ],
+        )
+      ),
+    );
+  }
+}
+
+
 /* widget which contains buttons for give dart score for XX1 game */
 class ScoringXX1 extends StatelessWidget {
 
