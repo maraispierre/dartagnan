@@ -259,7 +259,7 @@ class MessagePlayer extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: Colors.white,
+                color: Colors.white70,
                 fontFamily: 'Roboto',
                 letterSpacing: 0.5,
               ),
