@@ -337,6 +337,9 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
   /* method call to start the game */
   void _handleStartGame() {
     if(_players.length > 0) {
+      for(Player player in _players) {
+        _resetPlayer(player);
+      }
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => GameXX1(
@@ -345,6 +348,17 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
         ),
       );
     }
+  }
+
+  /* method call to reset player after each end game */
+  void _resetPlayer(Player player) {
+    player.score = _score;
+    player.firstDart = null;
+    player.secondDart = null;
+    player.thirdDart = null;
+    player.round = 0;
+    player.totalScore = 0;
+    player.average = 0;
   }
 
   /* method calls to validate adding player */
