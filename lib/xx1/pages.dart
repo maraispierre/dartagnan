@@ -8,10 +8,10 @@ import 'widgets.dart';
  * - Strategy to manage XX1 game
  */
 class GameXX1 extends StatefulWidget {
-  GameXX1({Key key, this.players}) : super(key: key);
+  GameXX1({Key key, this.players, this.endByDouble}) : super(key: key);
 
   final List<Player> players;
-
+  final bool endByDouble;
   @override
   _GameXX1State createState() => _GameXX1State();
 }
@@ -210,14 +210,24 @@ class _GameXX1State extends State<GameXX1> {
   /* method call to return the last dart to finish or null if it doesn't possible */
   String _getLastDart(int score){
     int remaining = score;
-    for(int i = 1; i < 4; i++) {
+    if(widget.endByDouble) {
       for(int j = 1; j < 21; j++) {
-        if(remaining - i * j == 0) {
-          return i.toString() + 'X' + j.toString();
+        if(remaining - 2 * j == 0) {
+          return '2X' + j.toString();
         }
       }
+      return null;
     }
-    return null;
+    else {
+      for(int i = 1; i < 4; i++) {
+        for(int j = 1; j < 21; j++) {
+          if(remaining - i * j == 0) {
+            return i.toString() + 'X' + j.toString();
+          }
+        }
+      }
+      return null;
+    }
   }
 
   /* method calls to have the number of remaining dart of the current player */
@@ -305,6 +315,7 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
   List<Player> _players = [];
   int _score = 301;
   ScrollController _scrollController = new ScrollController();
+  bool _endByDouble = false;
 
   /* method call to add player to the game after click on add button */
   void _handleUpdateAddPlayer(String namePlayer) {
@@ -345,6 +356,7 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
         context,
         MaterialPageRoute(builder: (context) => GameXX1(
           players: _players,
+          endByDouble: _endByDouble,
         ),
         ),
       );
@@ -439,34 +451,58 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
             ),
           ),
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            child: Column(
               children: <Widget>[
-                Text('Score',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'Roboto',
-                    letterSpacing: 0.5,
-                  ),
-                ),
-                DropdownButton<String>(
-                  value: _score.toString(),
-                  onChanged: (String score) => _handleUpdateChangeScore(score),
-                  items: scores
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'Roboto',
-                          letterSpacing: 0.5,
-                        ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Text('Score',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Roboto',
+                        letterSpacing: 0.5,
                       ),
-                    );
-                  }).toList(),
+                    ),
+                    DropdownButton<String>(
+                      value: _score.toString(),
+                      onChanged: (String score) => _handleUpdateChangeScore(score),
+                      items: scores
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Roboto',
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text('End by X2',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Roboto',
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                    Switch(
+                      value: _endByDouble,
+                      activeColor: Colors.black,
+                      onChanged: (value) {
+                        _endByDouble = value;
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
