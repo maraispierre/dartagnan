@@ -270,7 +270,7 @@ class _GameXX1State extends State<GameXX1> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Expanded(
-            flex: 5,
+            flex: 6,
             child: PlayerListXX1(key: widget.key, players: widget.players, currentPlayer: _currentPlayer, onUpdatePlayer: _handleUpdatePlayer,),
           ),
           Expanded(
@@ -285,7 +285,7 @@ class _GameXX1State extends State<GameXX1> {
             ),
           ),
           Expanded(
-            flex: 4,
+            flex: 6,
             child: Container(
               padding: EdgeInsets.all(8),
               child: ScoringXX1(currentPlayer: _currentPlayer, multiply: _multiply, onUpdatePlayer: _handleUpdatePlayer, onUpdateMultiply: _handleUpdateMultiply,),
