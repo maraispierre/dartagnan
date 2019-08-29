@@ -304,6 +304,7 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
   final _formKey = GlobalKey<FormState>();
   List<Player> _players = [];
   int _score = 301;
+  ScrollController _scrollController = new ScrollController();
 
   /* method call to add player to the game after click on add button */
   void _handleUpdateAddPlayer(String namePlayer) {
@@ -366,6 +367,7 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       _formKey.currentState.reset();
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent + 15);
     }
   }
 
@@ -379,103 +381,112 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          ListView(
-            shrinkWrap: true,
-            padding: EdgeInsets.symmetric(vertical: 8.0),
-            scrollDirection: Axis.vertical,
-            children: _players.map((Player player) {
-              return AddPlayerListItem(player: player, removePlayerCallback: _handleRemovePlayer,);
-            }).toList(),
+          Container(
+            height: 275,
+            child: ListView(
+              shrinkWrap: true,
+              controller: _scrollController,
+              children: _players.map((Player player) {
+                return AddPlayerListItem(player: player, removePlayerCallback: _handleRemovePlayer,);
+              }).toList(),
+            ),
           ),
-          Form(
-            key: _formKey,
-            child: Row (
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                  width: 200,
-                  child: TextFormField(
-                    cursorColor: Colors.black,
-                    decoration: const InputDecoration(
-                      icon: Icon(Icons.person, color: Colors.black,),
-                      hintText: 'Name',
-                      labelText: 'Add a player',
-                      labelStyle: TextStyle(color: Colors.black,),
-                      focusColor: Colors.black,
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
+          Expanded(
+            child: Form(
+              key: _formKey,
+              child: Row (
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    width: 200,
+                    child: TextFormField(
+                      cursorColor: Colors.black,
+                      decoration: const InputDecoration(
+                        icon: Icon(Icons.person, color: Colors.black,),
+                        hintText: 'Name',
+                        labelText: 'Add a player',
+                        labelStyle: TextStyle(color: Colors.black,),
+                        focusColor: Colors.black,
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                          ),
                         ),
                       ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please add a player';
+                        }
+                        return null;
+                      },
+                      onSaved: (namePlayer) => _handleUpdateAddPlayer(namePlayer),
                     ),
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Please add a player';
-                      }
-                      return null;
-                    },
-                    onSaved: (namePlayer) => _handleUpdateAddPlayer(namePlayer),
+                  ),
+                  SizedBox(
+                    width: 35.0,
+                    height: 35.0,
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.black,
+                      heroTag: "btnAdd",
+                      child: Icon(Icons.add),
+                      onPressed: () {
+                        _handleValidateAddPlayerForm();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text('Score',
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Roboto',
+                    letterSpacing: 0.5,
                   ),
                 ),
-                SizedBox(
-                  width: 35.0,
-                  height: 35.0,
-                  child: FloatingActionButton(
-                    backgroundColor: Colors.black,
-                    heroTag: "btnAdd",
-                    child: Icon(Icons.add),
-                    onPressed: () {
-                      _handleValidateAddPlayerForm();
-                    },
-                  ),
+                DropdownButton<String>(
+                  value: _score.toString(),
+                  onChanged: (String score) => _handleUpdateChangeScore(score),
+                  items: scores
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
               ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text('Score',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
+          Expanded(
+            child: Center(
+              child: RaisedButton(
+                color: Colors.black,
+                child: Text('PLAY',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
+                onPressed: () {
+                  _handleStartGame();
+                },
               ),
-              DropdownButton<String>(
-                value: _score.toString(),
-                onChanged: (String score) => _handleUpdateChangeScore(score),
-                items: scores
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Roboto',
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ],
-          ),
-          Center(
-            child: RaisedButton(
-              color: Colors.black,
-              child: Text('PLAY',
-                style: TextStyle(
-                color: Colors.white,
-                ),
-              ),
-              onPressed: () {
-                _handleStartGame();
-              },
             ),
           ),
+
         ],
       ),
 
