@@ -8,10 +8,10 @@ import 'widgets.dart';
  * - Strategy to manage XX1 game
  */
 class GameXX1 extends StatefulWidget {
-  GameXX1({Key key, this.players}) : super(key: key);
+  GameXX1({Key key, this.players, this.endByDouble}) : super(key: key);
 
   final List<Player> players;
-
+  final bool endByDouble;
   @override
   _GameXX1State createState() => _GameXX1State();
 }
@@ -21,7 +21,9 @@ class _GameXX1State extends State<GameXX1> {
 
   Player _currentPlayer;
   String _message;
+  String _helpMessage;
   int _counterPlayer;
+  int _multiply;
 
   @protected
   @mustCallSuper
@@ -29,7 +31,16 @@ class _GameXX1State extends State<GameXX1> {
     super.initState();
     _currentPlayer = widget.players[0];
     _message = 'Round ' + (_currentPlayer.round + 1).toString() + ' of ' + _currentPlayer.name;
+    _helpMessage = '';
     _counterPlayer = 0;
+    _multiply = 1;
+  }
+
+  /* Methods call for update player information after an action. It is the global strategy of XX1 game */
+  void _handleUpdateMultiply(int multiply) {
+    setState(() {
+      _multiply = multiply;
+    });
   }
 
   /* Methods call for update player information after an action. It is the global strategy of XX1 game */
@@ -42,16 +53,20 @@ class _GameXX1State extends State<GameXX1> {
       }
       // Verify if the currentPlayer take a too biggest score
       else if(_badScore(_currentPlayer)) {
+        _generateMessage();
         return;
       }
       // Verify if the user call to back to the previous player
       else if(_backToPreviousPlayer()){
+        _generateMessage();
         return;
       }
       // Go to next player when the current player shooted this 3 darts
       else if(_nextPlayer(_currentPlayer)) {
+        _generateMessage();
         return;
       }
+      _generateMessage();
     });
   }
 
@@ -73,13 +88,16 @@ class _GameXX1State extends State<GameXX1> {
       player.score = player.score + (player.firstDart != null ? player.firstDart : 0) + (player.secondDart != null ? player.secondDart : 0) + (player.thirdDart != null ? player.thirdDart : 0);
       if(widget.players.length - 1 == _counterPlayer) {
         _counterPlayer = 0;
-        player = widget.players[_counterPlayer];
+        _currentPlayer = widget.players[_counterPlayer];
+        _currentPlayer.round++;
+
       }
       else {
         _counterPlayer++;
-        player = widget.players[_counterPlayer];
+        _currentPlayer = widget.players[_counterPlayer];
+        _currentPlayer.round++;
       }
-      _initRound(player);
+      _initRound(_currentPlayer);
       return true;
     }
     return false;
@@ -102,7 +120,6 @@ class _GameXX1State extends State<GameXX1> {
         _currentPlayer = widget.players[_counterPlayer];
       }
       _currentPlayer.round--;
-      _generateMessage(_currentPlayer);
       return true;
     }
     return false;
@@ -144,11 +161,110 @@ class _GameXX1State extends State<GameXX1> {
     player.firstDart = null;
     player.secondDart = null;
     player.thirdDart = null;
-    _generateMessage(player);
   }
 
-  void _generateMessage(Player player) {
-    _message = 'Round ' + (player.round + 1).toString() + ' of ' + player.name;
+  /* method calls to display message after each dart of a player */
+  void _generateMessage() {
+    _message = 'Round ' + (_currentPlayer.round + 1).toString() + ' of ' + _currentPlayer.name;
+    _generateHelpMessage();
+  }
+
+  /* method calls to display a help message to a player when it can end game */
+  void _generateHelpMessage() {
+    int nbRemainingDart = _getNumberRemainingDart();
+    int nbNecessaryDart = _getNumberNecessaryDart();
+    if(nbNecessaryDart <= 3 && nbRemainingDart>= nbNecessaryDart) {
+      String lastDart = _getLastDart(_currentPlayer.score);
+      if(nbNecessaryDart == 3 && lastDart != null) {
+        _helpMessage = '3X20 3X20 ' + lastDart;
+      }
+      else if(nbNecessaryDart == 3) {
+        int remaining = _currentPlayer.score - 60;
+        for(int i = 1; i < 4; i++) {
+          for(int j= 1; j < 21; j++) {
+            String trueLastDart = _getLastDart(remaining - i * j);
+            if( trueLastDart != null) {
+              _helpMessage = '3X20 '+ i.toString() + 'X' + j.toString() + ' '+ trueLastDart;
+            }
+          }
+        }
+      }
+      else if(nbNecessaryDart == 2 && lastDart != null) {
+        _helpMessage = '3X20 ' + lastDart;
+      }
+      else if(nbNecessaryDart == 2) {
+        int remaining = _currentPlayer.score;
+        for(int i = 1; i < 4; i++) {
+          for(int j= 1; j < 21; j++) {
+            String trueLastDart = _getLastDart(remaining - i * j);
+            if( trueLastDart != null) {
+              _helpMessage =   i.toString() + 'X' + j.toString() + ' '+ trueLastDart;
+            }
+          }
+        }
+      }
+      else if(nbNecessaryDart == 1 && lastDart != null){
+        _helpMessage =  lastDart;
+      }
+      else {
+        _helpMessage = '';
+      }
+    }
+    else {
+      _helpMessage = '';
+    }
+  }
+
+  /* method call to return the last dart to finish or null if it doesn't possible */
+  String _getLastDart(int score){
+    int remaining = score;
+    if(widget.endByDouble) {
+      for(int j = 1; j < 21; j++) {
+        if(remaining - 2 * j == 0) {
+          return '2X' + j.toString();
+        }
+      }
+      return null;
+    }
+    else {
+      for(int i = 1; i < 4; i++) {
+        for(int j = 1; j < 21; j++) {
+          if(remaining - i * j == 0) {
+            return i.toString() + 'X' + j.toString();
+          }
+        }
+      }
+      return null;
+    }
+  }
+
+  /* method calls to have the number of remaining dart of the current player */
+  int _getNumberRemainingDart() {
+    if(_currentPlayer.firstDart == null) {
+      return 3;
+    }
+    else if(_currentPlayer.secondDart == null) {
+      return 2;
+    }
+    return 1;
+  }
+
+  /* method calls to have the number of necessary dart to end the game */
+  int _getNumberNecessaryDart() {
+    double result = _currentPlayer.score / 60;
+    if(result > 3) {
+      return 4;
+    }
+    else if(result > 2 && result <= 3) {
+      return 3;
+    }
+    else if(result > 1 && result <= 2) {
+      return 2;
+    }
+    else if(result > 0 && result <= 1){
+      return 1;
+    }
+    return 4;
   }
 
   @override
@@ -162,25 +278,18 @@ class _GameXX1State extends State<GameXX1> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Expanded(
-            flex: 5,
+            flex: 6,
             child: PlayerListXX1(key: widget.key, players: widget.players, currentPlayer: _currentPlayer, onUpdatePlayer: _handleUpdatePlayer,),
           ),
           Expanded(
             flex: 1,
-            child: Text('$_message',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Roboto',
-                letterSpacing: 0.5,
-              ),
-            ),
+            child: MessagePlayer(message: _message, helpMessage: _helpMessage,),
           ),
           Expanded(
-            flex: 4,
+            flex: 6,
             child: Container(
               padding: EdgeInsets.all(8),
-              child: ScoringXX1(currentPlayer: _currentPlayer, onUpdatePlayer: _handleUpdatePlayer,),
+              child: ScoringXX1(currentPlayer: _currentPlayer, multiply: _multiply, onUpdatePlayer: _handleUpdatePlayer, onUpdateMultiply: _handleUpdateMultiply,),
             ),
           ),
         ],
@@ -206,6 +315,8 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
   final _formKey = GlobalKey<FormState>();
   List<Player> _players = [];
   int _score = 301;
+  ScrollController _scrollController = new ScrollController();
+  bool _endByDouble = false;
 
   /* method call to add player to the game after click on add button */
   void _handleUpdateAddPlayer(String namePlayer) {
@@ -239,20 +350,37 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
   /* method call to start the game */
   void _handleStartGame() {
     if(_players.length > 0) {
+      for(Player player in _players) {
+        _resetPlayer(player);
+      }
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => GameXX1(
           players: _players,
+          endByDouble: _endByDouble,
         ),
         ),
       );
     }
   }
 
+  /* method call to reset player after each end game */
+  void _resetPlayer(Player player) {
+    player.score = _score;
+    player.firstDart = null;
+    player.secondDart = null;
+    player.thirdDart = null;
+    player.round = 0;
+    player.totalScore = 0;
+    player.average = 0;
+  }
+
+  /* method calls to validate adding player */
   void _handleValidateAddPlayerForm() {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       _formKey.currentState.reset();
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent + 15);
     }
   }
 
@@ -266,103 +394,146 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          ListView(
-            shrinkWrap: true,
-            padding: EdgeInsets.symmetric(vertical: 8.0),
-            scrollDirection: Axis.vertical,
-            children: _players.map((Player player) {
-              return AddPlayerListItem(player: player, removePlayerCallback: _handleRemovePlayer,);
-            }).toList(),
+          Expanded(
+            flex: 6,
+            child: ListView(
+              shrinkWrap: true,
+              controller: _scrollController,
+              children: _players.map((Player player) {
+                return AddPlayerListItem(player: player, removePlayerCallback: _handleRemovePlayer,);
+              }).toList(),
+            ),
           ),
-          Form(
-            key: _formKey,
-            child: Row (
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                  width: 200,
-                  child: TextFormField(
-                    cursorColor: Colors.black,
-                    decoration: const InputDecoration(
-                      icon: Icon(Icons.person, color: Colors.black,),
-                      hintText: 'Name',
-                      labelText: 'Add a player',
-                      labelStyle: TextStyle(color: Colors.black,),
-                      focusColor: Colors.black,
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
+          Expanded(
+            flex: 2,
+            child: Form(
+              key: _formKey,
+              child: Row (
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    width: 200,
+                    child: TextFormField(
+                      cursorColor: Colors.black,
+                      decoration: const InputDecoration(
+                        icon: Icon(Icons.person, color: Colors.black,),
+                        hintText: 'Name',
+                        labelText: 'Add a player',
+                        labelStyle: TextStyle(color: Colors.black,),
+                        focusColor: Colors.black,
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                          ),
                         ),
                       ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please add a player';
+                        }
+                        return null;
+                      },
+                      onSaved: (namePlayer) => _handleUpdateAddPlayer(namePlayer),
                     ),
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Please add a player';
-                      }
-                      return null;
-                    },
-                    onSaved: (namePlayer) => _handleUpdateAddPlayer(namePlayer),
                   ),
-                ),
-                SizedBox(
-                  width: 35.0,
-                  height: 35.0,
-                  child: FloatingActionButton(
-                    backgroundColor: Colors.black,
-                    heroTag: "btnAdd",
-                    child: Icon(Icons.add),
-                    onPressed: () {
-                      _handleValidateAddPlayerForm();
-                    },
+                  SizedBox(
+                    width: 35.0,
+                    height: 35.0,
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.black,
+                      heroTag: "btnAdd",
+                      child: Icon(Icons.add),
+                      onPressed: () {
+                        _handleValidateAddPlayerForm();
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text('Score',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                ),
-              ),
-              DropdownButton<String>(
-                value: _score.toString(),
-                onChanged: (String score) => _handleUpdateChangeScore(score),
-                items: scores
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Roboto',
-                        letterSpacing: 0.5,
+          Expanded(
+            flex: 3,
+            child: Container(
+              width: 300,
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text('Score',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                        ),
                       ),
-                    ),
-                  );
-                }).toList(),
+                      DropdownButton<String>(
+                        value: _score.toString(),
+                        onChanged: (String score) => _handleUpdateChangeScore(score),
+                        items: scores
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value,
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: 'Roboto',
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('End by X2',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                      Switch(
+                        value: _endByDouble,
+                        activeColor: Colors.black,
+                        onChanged: (value) {
+                          _endByDouble = value;
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
-          Center(
-            child: RaisedButton(
-              color: Colors.black,
-              child: Text('PLAY',
-                style: TextStyle(
-                color: Colors.white,
-                ),
-              ),
-              onPressed: () {
-                _handleStartGame();
-              },
             ),
           ),
+          Expanded(
+            flex: 2,
+            child: Center(
+              child: RaisedButton(
+                color: Colors.black,
+                child: Text('PLAY',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Roboto',
+                    letterSpacing: 0.5,
+                  ),
+                ),
+                onPressed: () {
+                  _handleStartGame();
+                },
+              ),
+            ),
+          ),
+
         ],
       ),
 
