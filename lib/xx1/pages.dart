@@ -393,8 +393,8 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
-            height: 275,
+          Expanded(
+            flex: 6,
             child: ListView(
               shrinkWrap: true,
               controller: _scrollController,
@@ -404,6 +404,7 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
             ),
           ),
           Expanded(
+            flex: 2,
             child: Form(
               key: _formKey,
               child: Row (
@@ -451,6 +452,7 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
             ),
           ),
           Expanded(
+            flex: 3,
             child: Column(
               children: <Widget>[
                 Row(
@@ -508,6 +510,7 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
             ),
           ),
           Expanded(
+            flex: 2,
             child: Center(
               child: RaisedButton(
                 color: Colors.black,
