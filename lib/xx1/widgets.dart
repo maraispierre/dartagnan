@@ -85,7 +85,7 @@ class PlayerListXX1Item extends StatelessWidget {
   /* method call to change the color of the current player*/
   Color _getColor(BuildContext context) {
     if(currentPlayer.name == player.name){
-      return Colors.black26;
+      return Colors.black45;
     }
     return Colors.black;
   }
@@ -104,7 +104,8 @@ class PlayerListXX1Item extends StatelessWidget {
       ),
       title: Container(
         decoration: BoxDecoration(
-          color: currentPlayer.name == player.name ? Colors.black26 : Colors.white,
+          color: currentPlayer.name == player.name ? Colors.black45 : Colors.white,
+          borderRadius: BorderRadius.circular(9.0),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,7 +114,7 @@ class PlayerListXX1Item extends StatelessWidget {
               width: 70,
               child: Text(player.score.toString(),
                 style: TextStyle(
-                  color: Colors.black,
+                  color: currentPlayer.name == player.name ? Colors.white : Colors.black,
                   fontWeight: FontWeight.w800,
                   fontFamily: 'Roboto',
                   letterSpacing: 0.5,
@@ -125,7 +126,7 @@ class PlayerListXX1Item extends StatelessWidget {
               width: 50,
               child: Text(player.name,
                 style: TextStyle(
-                  color: Colors.black,
+                  color: currentPlayer.name == player.name ? Colors.white : Colors.black,
                   fontFamily: 'Roboto',
                   letterSpacing: 0.5,
                   fontSize: 15,
@@ -142,7 +143,7 @@ class PlayerListXX1Item extends StatelessWidget {
                     children: [
                       Text(player.firstDart != null ? player.firstDart.toString() : '-',
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: currentPlayer.name == player.name ? Colors.white70 : Colors.grey,
                           fontFamily: 'Roboto',
                           letterSpacing: 0.5,
                           fontSize: 15,
@@ -150,7 +151,7 @@ class PlayerListXX1Item extends StatelessWidget {
                       ),
                       Text(player.secondDart != null ? player.secondDart.toString() : '-',
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: currentPlayer.name == player.name ? Colors.white70 : Colors.grey,
                           fontFamily: 'Roboto',
                           letterSpacing: 0.5,
                           fontSize: 15,
@@ -158,7 +159,7 @@ class PlayerListXX1Item extends StatelessWidget {
                       ),
                       Text(player.thirdDart != null ? player.thirdDart.toString() : '-',
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: currentPlayer.name == player.name ? Colors.white70 : Colors.grey,
                           fontFamily: 'Roboto',
                           letterSpacing: 0.5,
                           fontSize: 15,
@@ -173,7 +174,7 @@ class PlayerListXX1Item extends StatelessWidget {
               width: 30,
               child: Text(((player.firstDart != null ? player.firstDart : 0) + (player.secondDart != null ? player.secondDart : 0) + (player.thirdDart != null ? player.thirdDart : 0)).toString(),
                 style: TextStyle(
-                  color: Colors.black,
+                  color: currentPlayer.name == player.name ? Colors.white : Colors.black,
                   fontFamily: 'Roboto',
                   letterSpacing: 0.5,
                   fontSize: 15,
@@ -182,7 +183,13 @@ class PlayerListXX1Item extends StatelessWidget {
             ),
             SizedBox(
               width: 80,
-              child: Text('Θ : ' + player.average.toStringAsFixed(2)),
+              child: Text('Θ : ' + player.average.toStringAsFixed(2),
+              style: TextStyle(
+                color: currentPlayer.name == player.name ? Colors.white : Colors.black,
+                fontFamily: 'Roboto',
+                letterSpacing: 0.5,
+                fontSize: 15,
+              ),),
             ),
           ],
         ),
