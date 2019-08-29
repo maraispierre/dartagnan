@@ -278,15 +278,15 @@ class _GameXX1State extends State<GameXX1> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Expanded(
-            flex: 6,
+            flex: 10,
             child: PlayerListXX1(key: widget.key, players: widget.players, currentPlayer: _currentPlayer, onUpdatePlayer: _handleUpdatePlayer,),
           ),
           Expanded(
-            flex: 1,
+            flex: 2,
             child: MessagePlayer(message: _message, helpMessage: _helpMessage,),
           ),
           Expanded(
-            flex: 6,
+            flex: 10,
             child: Container(
               padding: EdgeInsets.all(8),
               child: ScoringXX1(currentPlayer: _currentPlayer, multiply: _multiply, onUpdatePlayer: _handleUpdatePlayer, onUpdateMultiply: _handleUpdateMultiply,),
