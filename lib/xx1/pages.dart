@@ -454,60 +454,63 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
           ),
           Expanded(
             flex: 3,
-            child: Column(
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text('Score',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Roboto',
-                        letterSpacing: 0.5,
+            child: Container(
+              width: 300,
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text('Score',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                        ),
                       ),
-                    ),
-                    DropdownButton<String>(
-                      value: _score.toString(),
-                      onChanged: (String score) => _handleUpdateChangeScore(score),
-                      items: scores
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: 'Roboto',
-                              letterSpacing: 0.5,
+                      DropdownButton<String>(
+                        value: _score.toString(),
+                        onChanged: (String score) => _handleUpdateChangeScore(score),
+                        items: scores
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value,
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: 'Roboto',
+                                letterSpacing: 0.5,
+                              ),
                             ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text('End by X2',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Roboto',
-                        letterSpacing: 0.5,
+                          );
+                        }).toList(),
                       ),
-                    ),
-                    Switch(
-                      value: _endByDouble,
-                      activeColor: Colors.black,
-                      onChanged: (value) {
-                        _endByDouble = value;
-                      },
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('End by X2',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                      Switch(
+                        value: _endByDouble,
+                        activeColor: Colors.black,
+                        onChanged: (value) {
+                          _endByDouble = value;
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -518,6 +521,10 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
                 child: Text('PLAY',
                   style: TextStyle(
                     color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Roboto',
+                    letterSpacing: 0.5,
                   ),
                 ),
                 onPressed: () {
