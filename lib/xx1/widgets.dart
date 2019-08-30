@@ -423,7 +423,7 @@ class ScoringXX1 extends StatelessWidget {
                     child: Text('6'),
                     backgroundColor: Colors.black,
                     onPressed: () {
-                      _handleTap(7);
+                      _handleTap(6);
                     },
                   ),
                 ),
