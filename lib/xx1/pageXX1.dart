@@ -120,6 +120,7 @@ class _GameXX1State extends State<GameXX1> {
         _counterPlayer--;
         _currentPlayer = widget.players[_counterPlayer];
       }
+      _currentPlayer.totalScore = _currentPlayer.totalScore - _currentPlayer.firstDart - _currentPlayer.secondDart - _currentPlayer.thirdDart;
       _currentPlayer.round--;
       return true;
     }
