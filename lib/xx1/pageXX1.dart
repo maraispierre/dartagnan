@@ -184,7 +184,7 @@ class _GameXX1State extends State<GameXX1> {
       else if(nbNecessaryDart == 3) {
         int remaining = _currentPlayer.score - 60;
         for(int i = 1; i < 4; i++) {
-          for(int j= 1; j < 21; j++) {
+          for(int j = 1; j < 21; j++) {
             String trueLastDart = _getLastDart(remaining - i * j);
             if( trueLastDart != null) {
               _helpMessage = '3X20 '+ i.toString() + 'X' + j.toString() + ' '+ trueLastDart;
@@ -198,16 +198,41 @@ class _GameXX1State extends State<GameXX1> {
       else if(nbNecessaryDart == 2) {
         int remaining = _currentPlayer.score;
         for(int i = 1; i < 4; i++) {
-          for(int j= 1; j < 21; j++) {
+          for(int j = 1; j < 21; j++) {
             String trueLastDart = _getLastDart(remaining - i * j);
             if( trueLastDart != null) {
               _helpMessage =   i.toString() + 'X' + j.toString() + ' '+ trueLastDart;
             }
           }
         }
+        if(_helpMessage == '' && nbRemainingDart == 3) {
+          for(int m = 1; m < 4; m++){
+            for(int n = 1; n < 21; n++) {
+              for(int i = 1; i < 4; i++) {
+                for(int j = 1; j < 21; j++) {
+                  String trueLastDart = _getLastDart(remaining - (i * j) - (m * n));
+                  if( trueLastDart != null) {
+                    _helpMessage =   m.toString() + 'X' + n.toString() + ' ' + i.toString() + 'X' + j.toString() + ' ' + trueLastDart;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
       else if(nbNecessaryDart == 1 && lastDart != null){
         _helpMessage =  lastDart;
+      }
+      else if(nbNecessaryDart == 1 && nbRemainingDart >= 2) {
+        int remaining = _currentPlayer.score;
+        for(int i = 1; i < 4; i++) {
+          for(int j = 1; j < 21; j++) {
+            String trueLastDart = _getLastDart(remaining - i * j);
+            if( trueLastDart != null) {
+              _helpMessage =   i.toString() + 'X' + j.toString() + ' '+ trueLastDart;
+            }
+          }
+        }
       }
       else {
         _helpMessage = '';
