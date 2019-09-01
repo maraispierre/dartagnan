@@ -74,6 +74,7 @@ class _GameXX1State extends State<GameXX1> {
   bool _endGame(Player player) {
     if(_currentPlayer.score == 0) {
       _message = _currentPlayer.name + ' a gagné la partie.';
+      _helpMessage = '';
       for(player in widget.players){
         _resetPlayer(player);
       }
