@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dart_score/xx1/pages.dart';
+import 'package:flutter_dart_score/pages/pages.dart';
 
 void main() {
   runApp(MaterialApp(

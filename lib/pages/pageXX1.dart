@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'widgets.dart';
+import 'package:flutter_dart_score/widgets/widgets.dart';
+import 'package:flutter_dart_score/widgets/widgetsXX1.dart';
 
 /* Global Widget Page  which contains :
  * - PlayerList for XX1 (PlayerListXX1)
