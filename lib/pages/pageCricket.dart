@@ -17,7 +17,7 @@ class GameCricket extends StatefulWidget {
   _GameCricketState createState() => _GameCricketState();
 }
 
-/* State form StatefulWidget GameXX1*/
+/* State form StatefulWidget GameXX1 */
 class _GameCricketState extends State<GameCricket> {
 
   Player _currentPlayer;

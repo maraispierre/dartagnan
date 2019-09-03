@@ -119,7 +119,7 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black26,
-        title: Text('XX1 - Add Players'),
+        title: Text('Add Players'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

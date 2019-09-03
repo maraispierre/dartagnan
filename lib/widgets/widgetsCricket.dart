@@ -3,12 +3,13 @@ import 'package:flutter_dart_score/widgets/widgets.dart';
 
 /* Widget to display the detail of a player during the game */
 class PlayerListCricketItem extends StatelessWidget {
-  PlayerListCricketItem({Player player, this.currentPlayer, this.onUpdatePlayer})
+  PlayerListCricketItem({Player player, this.currentPlayer, this.players, this.onUpdatePlayer})
       : player = player,
         super(key: ObjectKey(player));
 
   final Player player;
   final Player currentPlayer;
+  final List<Player> players;
   final UpdateUserCallback onUpdatePlayer;
 
   /* method call to change the color of the current player*/
@@ -63,8 +64,45 @@ class PlayerListCricketItem extends StatelessWidget {
               ),
             ),
             Expanded(
+              flex: 1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(player.firstDart != null ? player.firstDart.toString() : '-',
+                        style: TextStyle(
+                          color: currentPlayer.name == player.name ? Colors.white70 : Colors.grey,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                          fontSize: 15,
+                        ),
+                      ),
+                      Text(player.secondDart != null ? player.secondDart.toString() : '-',
+                        style: TextStyle(
+                          color: currentPlayer.name == player.name ? Colors.white70 : Colors.grey,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                          fontSize: 15,
+                        ),
+                      ),
+                      Text(player.thirdDart != null ? player.thirdDart.toString() : '-',
+                        style: TextStyle(
+                          color: currentPlayer.name == player.name ? Colors.white70 : Colors.grey,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
               flex: 6,
-              child: TablePlayerListItemCricket(tableScore: player.tableCricket,),
+              child: TablePlayerListItemCricket(tableScore: player.tableCricket, players: this.players, isCurrentPlayer: currentPlayer.name == player.name,),
             )
           ],
         ),
@@ -75,62 +113,203 @@ class PlayerListCricketItem extends StatelessWidget {
 
 class TablePlayerListItemCricket extends StatelessWidget {
 
-  TablePlayerListItemCricket({this.tableScore});
+  TablePlayerListItemCricket({this.tableScore, this.players, this.isCurrentPlayer});
 
   final Map<int, int> tableScore;
+  final List<Player> players;
+  bool isCurrentPlayer;
+
+  /* method calls to give a color to the number in links with the game */
+  Color _getColor(int number) {
+    if(tableScore[number] == 3 && !_numberIsClose(number)) {
+      return Colors.green;
+    }
+    if(tableScore[number] < 3 && _numberAtLeastOneClose(number)) {
+      return Colors.red;
+    }
+    return Colors.black;
+  }
+
+  /* method calls to verify if the number is closed or not */
+  bool _numberIsClose(int number) {
+    bool isClose = true;
+    for(Player player in players) {
+      if(player.tableCricket[number] < 3) {
+        return false;
+      }
+    }
+    return isClose;
+  }
+
+  /* method calls to verify if at least one player close the number */
+  bool _numberAtLeastOneClose(int number) {
+    bool isClose = false;
+    for(Player player in players) {
+      if(player.tableCricket[number] == 3) {
+        return true;
+      }
+    }
+    return isClose;
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
         return Table(
-          border: TableBorder.all(width: 1.0, color: Colors.black,),
+            border: TableBorder.all(width: 0.0, color: Colors.black45, style: BorderStyle.none),
+            textBaseline: TextBaseline.ideographic,
           children: [
             TableRow(
+              decoration: BoxDecoration(
+              ),
               children: [
                 TableCell(
-                  child: Text('15'),
+                  child: Text('15',
+                    style: TextStyle(
+                      color: isCurrentPlayer ? Colors.white : Colors.black,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
                 TableCell(
-                  child: Text('16'),
+                  child: Text('16',
+                    style: TextStyle(
+                      color: isCurrentPlayer ? Colors.white : Colors.black,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
                 TableCell(
-                  child: Text('17'),
+                  child: Text('17',
+                    style: TextStyle(
+                      color: isCurrentPlayer ? Colors.white : Colors.black,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
                 TableCell(
-                  child: Text('18'),
+                  child: Text('18',
+                    style: TextStyle(
+                      color: isCurrentPlayer ? Colors.white : Colors.black,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
                 TableCell(
-                  child: Text('19'),
+                  child: Text('19',
+                    style: TextStyle(
+                      color: isCurrentPlayer ? Colors.white : Colors.black,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
                 TableCell(
-                  child: Text('20'),
+                  child: Text('20',
+                    style: TextStyle(
+                      color: isCurrentPlayer ? Colors.white : Colors.black,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
                 TableCell(
-                  child: Text('BULL'),
+                  child: Text('B',
+                    style: TextStyle(
+                      color: isCurrentPlayer ? Colors.white : Colors.black,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
               ],
             ),
             TableRow(
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
               children: [
                 TableCell(
-                  child: Text(tableScore[15].toString()),
+                  child: Text(tableScore[15].toString(),
+                    style: TextStyle(
+                      color: _getColor(15),
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
                 TableCell(
-                  child: Text(tableScore[16].toString()),
+                  child: Text(tableScore[16].toString(),
+                    style: TextStyle(
+                      color: _getColor(16),
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
                 TableCell(
-                  child: Text(tableScore[17].toString()),
+                  child: Text(tableScore[17].toString(),
+                    style: TextStyle(
+                      color: _getColor(17),
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
                 TableCell(
-                  child: Text(tableScore[18].toString()),
+                  child: Text(tableScore[18].toString(),
+                    style: TextStyle(
+                      color: _getColor(18),
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
                 TableCell(
-                  child: Text(tableScore[19].toString()),
+                  child: Text(tableScore[19].toString(),
+                    style: TextStyle(
+                      color: _getColor(19),
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
                 TableCell(
-                  child: Text(tableScore[20].toString()),
+                  child: Text(tableScore[20].toString(),
+                    style: TextStyle(
+                        color: _getColor(20),
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
                 TableCell(
-                  child: Text(tableScore[25].toString()),
+                  child: Text(tableScore[25].toString(),
+                    style: TextStyle(
+                      color: _getColor(25),
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -162,6 +341,7 @@ class _PlayerListCricketState extends State<PlayerListCricket> {
       children: widget.players.map((Player player) {
         return PlayerListCricketItem(
           player: player,
+          players: widget.players,
           currentPlayer: widget.currentPlayer,
           onUpdatePlayer: widget.onUpdatePlayer,
         );
