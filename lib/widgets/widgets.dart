@@ -6,6 +6,7 @@ class Player {
   String name;
   int score;
   Map<int, int> tableCricket;
+  List<StateHistorical> historical = [];
   int firstDart;
   int secondDart;
   int thirdDart;
@@ -14,6 +15,16 @@ class Player {
   int totalScore;
   bool backward;
 
+}
+
+/* Class use for save historical state of cricket game */
+class StateHistorical extends Player{
+  StateHistorical({this.score, this.tableCricket, this.firstDart, this.secondDart, this.thirdDart});
+  int score;
+  Map<int, int> tableCricket;
+  int firstDart;
+  int secondDart;
+  int thirdDart;
 }
 
 typedef void UpdateUserCallback(Player player);

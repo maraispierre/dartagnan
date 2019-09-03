@@ -100,11 +100,11 @@ class _GameCricketState extends State<GameCricket> {
 
   /* method call to back to the previous player */
   bool _backToPreviousPlayer() {
-    if(_currentPlayer.backward && _currentPlayer.round == 0 && (_currentPlayer.name == widget.players[0].name)) {
+    if(_currentPlayer.backward && _currentPlayer.round == 0 && (_currentPlayer.name == widget.players[0].name) && _currentPlayer.firstDart == null) {
       _currentPlayer.backward = false;
       return true;
     }
-    else if(_currentPlayer.backward){
+    else if(_currentPlayer.backward && _currentPlayer.firstDart == null){
       _currentPlayer.backward = false;
       if(_counterPlayer == 0) {
         _counterPlayer = widget.players.length - 1;
@@ -115,6 +115,15 @@ class _GameCricketState extends State<GameCricket> {
         _currentPlayer = widget.players[_counterPlayer];
       }
       _currentPlayer.round--;
+      return true;
+    }
+    else if(_currentPlayer.backward) {
+      StateHistorical historical = _currentPlayer.historical.removeLast();
+      _currentPlayer.score = historical.score;
+      _currentPlayer.tableCricket = historical.tableCricket;
+      _currentPlayer.firstDart = historical.firstDart;
+      _currentPlayer.secondDart = historical.secondDart;
+      _currentPlayer.thirdDart = historical.thirdDart;
       return true;
     }
     return false;

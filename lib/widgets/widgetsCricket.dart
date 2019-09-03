@@ -183,24 +183,7 @@ class ScoringCricket extends StatelessWidget {
 
   /* method call by backward button to return to the back dart */
   void _handleTapBack() {
-    if(currentPlayer.firstDart == null) {
-      currentPlayer.backward = true;
-    }
-    else if(currentPlayer.secondDart == null) {
-      currentPlayer.score = currentPlayer.score + currentPlayer.firstDart;
-      currentPlayer.backward = false;
-      currentPlayer.firstDart = null;
-    }
-    else if(currentPlayer.thirdDart == null) {
-      currentPlayer.score = currentPlayer.score + currentPlayer.secondDart;
-      currentPlayer.backward = false;
-      currentPlayer.secondDart = null;
-    }
-    else {
-      currentPlayer.score = currentPlayer.score + currentPlayer.thirdDart;
-      currentPlayer.backward = false;
-      currentPlayer.thirdDart = null;
-    }
+    currentPlayer.backward = true;
     onUpdatePlayer(currentPlayer);
   }
 
@@ -211,69 +194,22 @@ class ScoringCricket extends StatelessWidget {
 
   /* method call by score button to give a score to a dart */
   void _handleTap(int value) {
-    currentPlayer.backward = false;
+    _addHistorical();
     if(currentPlayer.firstDart == null) {
       currentPlayer.firstDart = value;
-      if(value != 0 && currentPlayer.tableCricket[value] < 3) {
-        currentPlayer.tableCricket[value] = currentPlayer.tableCricket[value] + multiply * 1;
-        if(currentPlayer.tableCricket[value] > 3 && !_numberIsClose(value)) {
-          int multiply = 0;
-          while(currentPlayer.tableCricket[value] > 3) {
-            currentPlayer.tableCricket[value]--;
-            multiply++;
-          }
-          currentPlayer.score = currentPlayer.score + value * multiply;
-        }
-
-      }
-      else if( value != 0 && !_numberIsClose(value)) {
-        currentPlayer.score = currentPlayer.score = currentPlayer.score + multiply * value;
-      }
-      onUpdateMultiply(1);
-      onUpdatePlayer(currentPlayer);
+      _updateScore(value);
     }
     else if(currentPlayer.secondDart == null) {
       currentPlayer.secondDart = value;
-      if(value != 0 && currentPlayer.tableCricket[value] < 3) {
-        currentPlayer.tableCricket[value] = currentPlayer.tableCricket[value] + multiply * 1;
-        if(currentPlayer.tableCricket[value] > 3) {
-          int multiply = 0;
-          while(currentPlayer.tableCricket[value] > 3) {
-            currentPlayer.tableCricket[value]--;
-            multiply++;
-          }
-          currentPlayer.score = currentPlayer.score + value * multiply;
-        }
-
-      }
-      else if(value != 0 && !_numberIsClose(value)) {
-        currentPlayer.score = currentPlayer.score = currentPlayer.score + multiply * value;
-      }
-      onUpdateMultiply(1);
-      onUpdatePlayer(currentPlayer);
+      _updateScore(value);
     }
     else if(currentPlayer.thirdDart == null) {
       currentPlayer.thirdDart = value;
-      if(value != 0 && currentPlayer.tableCricket[value] < 3) {
-        currentPlayer.tableCricket[value] = currentPlayer.tableCricket[value] + multiply * 1;
-        if(currentPlayer.tableCricket[value] > 3) {
-          int multiply = 0;
-          while(currentPlayer.tableCricket[value] > 3) {
-            currentPlayer.tableCricket[value]--;
-            multiply++;
-          }
-          currentPlayer.score = currentPlayer.score + value * multiply;
-        }
-
-      }
-      else if(value != 0 && !_numberIsClose(value)) {
-        currentPlayer.score = currentPlayer.score = currentPlayer.score + multiply * value;
-      }
-      onUpdateMultiply(1);
-      onUpdatePlayer(currentPlayer);
+      _updateScore(value);
     }
   }
 
+  /* method calls to verify if the number is closed or not */
   bool _numberIsClose(int number) {
     bool isClose = true;
     for(Player player in players) {
@@ -282,6 +218,37 @@ class ScoringCricket extends StatelessWidget {
       }
     }
     return isClose;
+  }
+
+  /* methods calls to keep historic for player*/
+  void _addHistorical() {
+    currentPlayer.backward = false;
+    Map<int, int> stateTableCricket = new Map();
+    currentPlayer.tableCricket.forEach((key, value) {
+      stateTableCricket[key] = value;
+    });
+    currentPlayer.historical.add(StateHistorical(score: currentPlayer.score, tableCricket: stateTableCricket, firstDart: currentPlayer.firstDart, secondDart: currentPlayer.secondDart, thirdDart: currentPlayer.thirdDart));
+  }
+
+  /* methods calls to update score after a dart*/
+  void _updateScore(int value) {
+    if(value != 0 && currentPlayer.tableCricket[value] < 3) {
+      currentPlayer.tableCricket[value] = currentPlayer.tableCricket[value] + multiply * 1;
+      if(currentPlayer.tableCricket[value] > 3 && !_numberIsClose(value)) {
+        int multiply = 0;
+        while(currentPlayer.tableCricket[value] > 3) {
+          currentPlayer.tableCricket[value]--;
+          multiply++;
+        }
+        currentPlayer.score = currentPlayer.score + value * multiply;
+      }
+
+    }
+    else if( value != 0 && !_numberIsClose(value)) {
+      currentPlayer.score = currentPlayer.score = currentPlayer.score + multiply * value;
+    }
+    onUpdateMultiply(1);
+    onUpdatePlayer(currentPlayer);
   }
 
   @override
