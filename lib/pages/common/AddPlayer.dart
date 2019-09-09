@@ -1,26 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dart_score/widgets/widgets.dart';
-import 'pageXX1.dart';
-import 'package:flutter_dart_score/pages/pageCricket.dart';
+import 'package:flutter_dart_score/widgets/common/AddPlayerListItem.dart';
+import 'package:flutter_dart_score/pages/xx1/GameXX1.dart';
+import 'package:flutter_dart_score/pages/cricket/GameCricket.dart';
+import 'package:flutter_dart_score/widgets/common/Player.dart';
+import 'package:flutter_dart_score/widgets/xx1/PlayerXX1.dart';
+import 'package:flutter_dart_score/widgets/cricket/PlayerCricket.dart';
 
 enum ChoiceGame { CRICKET, XX1 }
 
 /* Widget page to add Player and start game XX1 */
-class GameXX1AddPlayer extends StatefulWidget {
+class AddPlayer extends StatefulWidget {
 
   @override
-  GameXX1AddPlayerState createState() {
-    return GameXX1AddPlayerState();
+  AddPlayerState createState() {
+    return AddPlayerState();
   }
 }
 
 /* State of GameXX1AddPlayer */
-class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
+class AddPlayerState extends State<AddPlayer> {
 
   static const List<String> scores = ['301', '401', '501', '601', '701', '801', '901', '1001'];
 
   final _formKey = GlobalKey<FormState>();
   List<Player> _players = [];
+  List<PlayerCricket> _playersCricket = [];
+  List<PlayerXX1> _playersXX1 = [];
   int _score = 301;
   ScrollController _scrollController = new ScrollController();
   bool _endByDouble = false;
@@ -29,7 +34,7 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
   /* method call to add player to the game after click on add button */
   void _handleUpdateAddPlayer(String namePlayer) {
     setState(() {
-      _players.add(new Player(name: namePlayer, score: _score,));
+        _players.add(new Player(name: namePlayer, score: _score,));
     });
   }
 
@@ -58,51 +63,43 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
   /* method call to start the game */
   void _handleStartGame() {
     if(_players.length > 0) {
-      for(Player player in _players) {
-        _resetPlayer(player);
-      }
       switch(_choiceGame){
         case ChoiceGame.XX1 :
+          _playersXX1 = [];
+          for(Player player in _players) {
+            player.resetPlayer(_score);
+            var playerX11 = new PlayerXX1(name: player.name, score: _score);
+            _playersXX1.add(playerX11);
+          }
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => GameXX1(
-              players: _players,
+              players: _playersXX1,
               endByDouble: _endByDouble,
+              score: _score,
             ),
             ),
           );
           break;
         case ChoiceGame.CRICKET :
+          _playersCricket = [];
+          for(Player player in _players) {
+            player.resetPlayer(_score);
+            var playerCricket = new PlayerCricket(name: player.name, score: _score);
+            _playersCricket.add(playerCricket);
+          }
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => GameCricket(
-              players: _players,
+              players: _playersCricket,
               endByDouble: _endByDouble,
+              score: _score,
             ),
             ),
           );
           break;
       }
     }
-  }
-
-  /* method call to reset player after each end game */
-  void _resetPlayer(Player player) {
-    player.score = _score;
-    player.firstDart = null;
-    player.secondDart = null;
-    player.thirdDart = null;
-    player.tableCricket = new Map();
-    player.tableCricket[15] = 0;
-    player.tableCricket[16] = 0;
-    player.tableCricket[17] = 0;
-    player.tableCricket[18] = 0;
-    player.tableCricket[19] = 0;
-    player.tableCricket[20] = 0;
-    player.tableCricket[25] = 0;
-    player.round = 0;
-    player.totalScore = 0;
-    player.average = 0;
   }
 
   /* method calls to validate adding player */
@@ -186,7 +183,15 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text('XX1'),
+                Text('XX1',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Roboto',
+                    letterSpacing: 0.5,
+                    color: _choiceGame == ChoiceGame.XX1 ? Colors.black : Colors.black12,
+                  )
+                ),
                 Radio(
                   groupValue: _choiceGame,
                   value: ChoiceGame.XX1,
@@ -203,7 +208,15 @@ class GameXX1AddPlayerState extends State<GameXX1AddPlayer> {
                   },
                   activeColor: Colors.black,
                 ),
-                Text('Cricket'),
+                Text('Cricket',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Roboto',
+                    letterSpacing: 0.5,
+                    color: _choiceGame == ChoiceGame.CRICKET ? Colors.black : Colors.black12,
+                  ),
+                ),
               ],
             ),
           ),

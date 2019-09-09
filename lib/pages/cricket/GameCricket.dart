@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dart_score/widgets/widgets.dart';
-import 'package:flutter_dart_score/widgets/widgetsCricket.dart';
+import 'package:flutter_dart_score/widgets/common/MessagePlayer.dart';
+import 'package:flutter_dart_score/widgets/cricket/widgetsCricket.dart';
+import 'package:flutter_dart_score/widgets/cricket/PlayerCricket.dart';
+import 'package:flutter_dart_score/widgets/cricket/StateHistorical.dart';
+import 'package:flutter_dart_score/widgets/cricket/ScoringCricket.dart';
 
 /* Global Widget Page  which contains :
  * - PlayerList for Cricket (PlayerListCricket)
@@ -8,11 +11,13 @@ import 'package:flutter_dart_score/widgets/widgetsCricket.dart';
  * - Scoring buttons for Cricket (ScoringCricket)
  * - Strategy to manage Cricket game
  */
-class GameCricket extends StatefulWidget {
-  GameCricket({Key key, this.players, this.endByDouble}) : super(key: key);
+class GameCricket extends StatefulWidget{
+  GameCricket({Key key, this.players, this.endByDouble, this.score}) : super(key: key);
 
-  final List<Player> players;
+  final List<PlayerCricket> players;
   final bool endByDouble;
+  final int score;
+
   @override
   _GameCricketState createState() => _GameCricketState();
 }
@@ -20,7 +25,7 @@ class GameCricket extends StatefulWidget {
 /* State form StatefulWidget GameXX1 */
 class _GameCricketState extends State<GameCricket> {
 
-  Player _currentPlayer;
+  PlayerCricket _currentPlayer;
   String _message;
   String _helpMessage;
   int _counterPlayer;
@@ -35,8 +40,8 @@ class _GameCricketState extends State<GameCricket> {
     _helpMessage = '';
     _counterPlayer = 0;
     _multiply = 1;
-    for(Player player in widget.players) {
-      player.score = 0;
+    for(PlayerCricket player in widget.players){
+      player.resetPlayer(widget.score);
     }
   }
 
@@ -48,7 +53,7 @@ class _GameCricketState extends State<GameCricket> {
   }
 
   /* Methods call for update player information after an action. It is the global strategy of XX1 game */
-  void _handleUpdatePlayer(Player player) {
+  void _handleUpdatePlayer(PlayerCricket player) {
     setState(() {
       _currentPlayer = player;
       // Verify if the current player finished the game
@@ -70,7 +75,7 @@ class _GameCricketState extends State<GameCricket> {
   }
 
   /* method call to verify and process end game if game is over */
-  bool _endGame(Player player) {
+  bool _endGame(PlayerCricket player) {
     bool endGame = true;
     player.tableCricket.forEach((key, value) {
       if(value<3) {
@@ -81,7 +86,7 @@ class _GameCricketState extends State<GameCricket> {
       return false;
     }
     else {
-      for(Player player in widget.players) {
+      for(PlayerCricket player in widget.players) {
         if(player.score > _currentPlayer.score) {
           endGame = false;
         }
@@ -89,8 +94,8 @@ class _GameCricketState extends State<GameCricket> {
       if(endGame) {
         _message = _currentPlayer.name + ' a gagné la partie.';
         _helpMessage = '';
-        for(player in widget.players){
-          _resetPlayer(player);
+        for(PlayerCricket player in widget.players){
+         player.resetPlayer(widget.score);
         }
       }
       return endGame;
@@ -130,7 +135,7 @@ class _GameCricketState extends State<GameCricket> {
   }
 
   /* method call to go to next player when the current player shooted this 3 darts */
-  bool _nextPlayer(Player player) {
+  bool _nextPlayer(PlayerCricket player) {
     if(player.thirdDart != null) {
       player.round++;
       if(widget.players.length - 1 == _counterPlayer) {
@@ -147,22 +152,8 @@ class _GameCricketState extends State<GameCricket> {
     return false;
   }
 
-  /* method call to reset player after each end game */
-  void _resetPlayer(Player player) {
-    player.score = 0;
-    player.firstDart = null;
-    player.secondDart = null;
-    player.thirdDart = null;
-    player.tableCricket.forEach( (key, value) {
-      player.tableCricket[key] = 0;
-    });
-    player.round = 0;
-    player.totalScore = 0;
-    player.average = 0;
-  }
-
   /* method call to init round before each next round */
-  void _initRound(Player player) {
+  void _initRound(PlayerCricket player) {
     player.firstDart = null;
     player.secondDart = null;
     player.thirdDart = null;

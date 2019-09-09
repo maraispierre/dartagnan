@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dart_score/widgets/widgets.dart';
-import 'package:flutter_dart_score/widgets/widgetsXX1.dart';
+import 'package:flutter_dart_score/widgets/common/MessagePlayer.dart';
+import 'package:flutter_dart_score/widgets/xx1/ScoringXX1.dart';
+import 'package:flutter_dart_score/widgets/xx1/PlayerXX1.dart';
+import 'package:flutter_dart_score/widgets/xx1/PlayerListXX1.dart';
 
 /* Global Widget Page  which contains :
  * - PlayerList for XX1 (PlayerListXX1)
@@ -9,10 +11,12 @@ import 'package:flutter_dart_score/widgets/widgetsXX1.dart';
  * - Strategy to manage XX1 game
  */
 class GameXX1 extends StatefulWidget {
-  GameXX1({Key key, this.players, this.endByDouble}) : super(key: key);
+  GameXX1({Key key, this.players, this.endByDouble, this.score,}) : super(key: key);
 
-  final List<Player> players;
+  final List<PlayerXX1> players;
   final bool endByDouble;
+  final int score;
+
   @override
   _GameXX1State createState() => _GameXX1State();
 }
@@ -20,7 +24,7 @@ class GameXX1 extends StatefulWidget {
 /* State form StatefulWidget GameXX1*/
 class _GameXX1State extends State<GameXX1> {
 
-  Player _currentPlayer;
+  PlayerXX1 _currentPlayer;
   String _message;
   String _helpMessage;
   int _counterPlayer;
@@ -35,6 +39,9 @@ class _GameXX1State extends State<GameXX1> {
     _helpMessage = '';
     _counterPlayer = 0;
     _multiply = 1;
+    for(PlayerXX1 player in widget.players){
+      player.resetPlayer(widget.score);
+    }
   }
 
   /* Methods call for update player information after an action. It is the global strategy of XX1 game */
@@ -45,7 +52,7 @@ class _GameXX1State extends State<GameXX1> {
   }
 
   /* Methods call for update player information after an action. It is the global strategy of XX1 game */
-  void _handleUpdatePlayer(Player player) {
+  void _handleUpdatePlayer(PlayerXX1 player) {
     setState(() {
       _currentPlayer = player;
       // Verify if the current player finished the game
@@ -72,12 +79,12 @@ class _GameXX1State extends State<GameXX1> {
   }
 
   /* method call to verify and process end game if game is over */
-  bool _endGame(Player player) {
+  bool _endGame(PlayerXX1 player) {
     if(_currentPlayer.score == 0) {
       _message = _currentPlayer.name + ' a gagné la partie.';
       _helpMessage = '';
-      for(player in widget.players){
-        _resetPlayer(player);
+      for(PlayerXX1 player in widget.players){
+        player.resetPlayer(widget.score);
       }
       return true;
     }
@@ -85,7 +92,7 @@ class _GameXX1State extends State<GameXX1> {
   }
 
   /* method call to verify that current player score is less than that zero */
-  bool _badScore(Player player) {
+  bool _badScore(PlayerXX1 player) {
     if(player.score < 0) {
       player.score = player.score + (player.firstDart != null ? player.firstDart : 0) + (player.secondDart != null ? player.secondDart : 0) + (player.thirdDart != null ? player.thirdDart : 0);
       if(widget.players.length - 1 == _counterPlayer) {
@@ -129,7 +136,7 @@ class _GameXX1State extends State<GameXX1> {
   }
 
   /* method call to go to next player when the current player shooted this 3 darts */
-  bool _nextPlayer(Player player) {
+  bool _nextPlayer(PlayerXX1 player) {
     if(player.thirdDart != null) {
       player.round++;
       player.totalScore = player.totalScore + player.firstDart + player.secondDart + player.thirdDart;
@@ -148,19 +155,8 @@ class _GameXX1State extends State<GameXX1> {
     return false;
   }
 
-  /* method call to reset player after each end game */
-  void _resetPlayer(Player player) {
-    player.score = 301;
-    player.firstDart = null;
-    player.secondDart = null;
-    player.thirdDart = null;
-    player.round = 0;
-    player.totalScore = 0;
-    player.average = 0;
-  }
-
   /* method call to init round before each next round */
-  void _initRound(Player player) {
+  void _initRound(PlayerXX1 player) {
     player.firstDart = null;
     player.secondDart = null;
     player.thirdDart = null;
