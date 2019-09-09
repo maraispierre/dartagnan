@@ -7,7 +7,7 @@ typedef void UpdateMultiplyCallback(int multiply);
 /* widget which contains buttons for give dart score for XX1 game */
 class ScoringXX1 extends StatelessWidget {
 
-  ScoringXX1({this.currentPlayer, this.multiply = 1, this.onUpdateMultiply, this.onUpdatePlayer});
+  ScoringXX1({Key key, this.currentPlayer, this.multiply = 1, this.onUpdateMultiply, this.onUpdatePlayer}) : super(key: key);
 
   final PlayerXX1 currentPlayer;
   final UpdateUserCallback onUpdatePlayer;
@@ -75,6 +75,7 @@ class ScoringXX1 extends StatelessWidget {
                   width: 50,
                   height: 50,
                   child: FloatingActionButton(
+                    key: Key('btn1'),
                     heroTag: "btn1",
                     tooltip: 'Add',
                     child: Text('1',
@@ -501,6 +502,7 @@ class ScoringXX1 extends StatelessWidget {
                   width: 50,
                   height: 50,
                   child: FloatingActionButton(
+                    key: Key('btn20'),
                     heroTag: "btn20",
                     tooltip: 'Add',
                     child: Text('20',
@@ -617,6 +619,7 @@ class ScoringXX1 extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: FloatingActionButton(
+                  key: Key('btnX3'),
                   heroTag: "btnX3",
                   tooltip: 'Add',
                   child: Text('X3',

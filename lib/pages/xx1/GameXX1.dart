@@ -304,17 +304,17 @@ class _GameXX1State extends State<GameXX1> {
         children: [
           Expanded(
             flex: 10,
-            child: PlayerListXX1(key: widget.key, players: widget.players, currentPlayer: _currentPlayer, onUpdatePlayer: _handleUpdatePlayer,),
+            child: PlayerListXX1(key: new Key('playersListXX1'), players: widget.players, currentPlayer: _currentPlayer, onUpdatePlayer: _handleUpdatePlayer,),
           ),
           Expanded(
             flex: 2,
-            child: MessagePlayer(message: _message, helpMessage: _helpMessage,),
+            child: MessagePlayer(key: new Key('messagePlayer'), message: _message, helpMessage: _helpMessage,),
           ),
           Expanded(
             flex: 10,
             child: Container(
               padding: EdgeInsets.all(8),
-              child: ScoringXX1(currentPlayer: _currentPlayer, multiply: _multiply, onUpdatePlayer: _handleUpdatePlayer, onUpdateMultiply: _handleUpdateMultiply,),
+              child: ScoringXX1(key: new Key('scoringXX1'), currentPlayer: _currentPlayer, multiply: _multiply, onUpdatePlayer: _handleUpdatePlayer, onUpdateMultiply: _handleUpdateMultiply,),
             ),
           ),
         ],

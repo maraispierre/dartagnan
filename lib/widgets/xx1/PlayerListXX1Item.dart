@@ -41,8 +41,8 @@ class PlayerListXX1Item extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
-              width: 70,
+            Expanded(
+              flex: 7,
               child: Text(player.score.toString(),
                 style: TextStyle(
                   color: currentPlayer.name == player.name ? Colors.white : Colors.black,
@@ -53,8 +53,8 @@ class PlayerListXX1Item extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              width: 50,
+            Expanded(
+              flex: 4,
               child: Text(player.name,
                 style: TextStyle(
                   color: currentPlayer.name == player.name ? Colors.white : Colors.black,
@@ -64,8 +64,8 @@ class PlayerListXX1Item extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              width: 20,
+            Expanded(
+              flex: 2,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -101,8 +101,8 @@ class PlayerListXX1Item extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              width: 30,
+            Expanded(
+              flex: 3,
               child: Text(((player.firstDart != null ? player.firstDart : 0) + (player.secondDart != null ? player.secondDart : 0) + (player.thirdDart != null ? player.thirdDart : 0)).toString(),
                 style: TextStyle(
                   color: currentPlayer.name == player.name ? Colors.white : Colors.black,
@@ -112,8 +112,8 @@ class PlayerListXX1Item extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              width: 80,
+            Expanded(
+              flex: 8,
               child: Text('Θ : ' + player.average.toStringAsFixed(2),
                 style: TextStyle(
                   color: currentPlayer.name == player.name ? Colors.white : Colors.black,

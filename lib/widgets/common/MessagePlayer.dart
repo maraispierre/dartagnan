@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /* widget which contains message for player */
 class MessagePlayer extends StatelessWidget {
 
-  MessagePlayer({this.message, this.helpMessage});
+  MessagePlayer({Key key, this.message, this.helpMessage}) : super(key: key);
 
   final String message;
   final String helpMessage;
