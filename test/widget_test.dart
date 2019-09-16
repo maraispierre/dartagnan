@@ -9,6 +9,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dart_score/pages/xx1/GameXX1.dart';
 import 'package:flutter_dart_score/widgets/xx1/PlayerXX1.dart';
+import 'package:flutter_dart_score/widgets/cricket/PlayerCricket.dart';
+import 'package:flutter_dart_score/pages/cricket/GameCricket.dart';
 
 void main() {
 
@@ -25,6 +27,20 @@ void main() {
     expect(find.byKey(Key('messagePlayer')), findsOneWidget);
     expect(find.byKey(Key('scoringXX1')), findsOneWidget);
   });
+
+  /* testWidgets('Init Cricket Game with 1 player', (WidgetTester tester) async {
+    List<PlayerCricket> players = [];
+    players.add(new PlayerCricket(score: 0, name: 'Léa',));
+    Widget testWidget = new MediaQuery(
+        data: new MediaQueryData(),
+        child: new MaterialApp(home: new GameCricket(score: 0, players: players,))
+    );
+    await tester.pumpWidget(testWidget);
+
+    expect(find.byKey(Key('playersListCricket')), findsOneWidget);
+    expect(find.byKey(Key('messagePlayerCricket')), findsOneWidget);
+    expect(find.byKey(Key('scoringCricket')), findsOneWidget);
+  });*/
 
   testWidgets('In XX1 Game a player throws a dart', (WidgetTester tester) async {
     List<PlayerXX1> players = [];
@@ -63,4 +79,5 @@ void main() {
     expect(players[0].score, 301);
 
   });
+
 }

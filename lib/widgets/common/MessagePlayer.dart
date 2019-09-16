@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dart_score/pages/common/CommonColors.dart';
 
 /* widget which contains message for player */
 class MessagePlayer extends StatelessWidget {
@@ -12,7 +13,7 @@ class MessagePlayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: COLOR_SECONDARY_YELLOW,
       ),
       child: Center(
           child : Column(

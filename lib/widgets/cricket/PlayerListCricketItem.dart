@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'PlayerCricket.dart';
 import 'TablePlayerListItemCricket.dart';
+import 'package:flutter_dart_score/pages/common/CommonColors.dart';
 
 typedef void UpdateUserCallback(PlayerCricket player);
 
@@ -18,9 +19,9 @@ class PlayerListCricketItem extends StatelessWidget {
   /* method call to change the color of the current player*/
   Color _getColor(BuildContext context) {
     if(currentPlayer.name == player.name){
-      return Colors.black45;
+      return COLOR_SECONDARY_YELLOW;
     }
-    return Colors.black;
+    return COLOR_MAIN_BLUE;
   }
 
 
@@ -37,7 +38,7 @@ class PlayerListCricketItem extends StatelessWidget {
       ),
       title: Container(
         decoration: BoxDecoration(
-          color: currentPlayer.name == player.name ? Colors.black45 : Colors.white,
+          color: currentPlayer.name == player.name ? COLOR_SECONDARY_YELLOW : Colors.white,
           borderRadius: BorderRadius.circular(9.0),
         ),
         child: Row(

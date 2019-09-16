@@ -3,6 +3,7 @@ import 'package:flutter_dart_score/widgets/common/MessagePlayer.dart';
 import 'package:flutter_dart_score/widgets/xx1/ScoringXX1.dart';
 import 'package:flutter_dart_score/widgets/xx1/PlayerXX1.dart';
 import 'package:flutter_dart_score/widgets/xx1/PlayerListXX1.dart';
+import 'package:flutter_dart_score/pages/common/CommonColors.dart';
 
 /* Global Widget Page  which contains :
  * - PlayerList for XX1 (PlayerListXX1)
@@ -297,7 +298,7 @@ class _GameXX1State extends State<GameXX1> {
     return Scaffold(
       appBar: AppBar(
         title: Text('XX1 - Game'),
-        backgroundColor: Colors.black26,
+        backgroundColor: COLOR_MAIN_BLUE,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

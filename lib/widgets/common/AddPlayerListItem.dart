@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Player.dart';
+import 'package:flutter_dart_score/pages/common/CommonColors.dart';
 
 typedef void UpdateMultiplyCallback(int multiply);
 typedef void RemovePlayerCallback(String namePlayer);
@@ -19,7 +20,7 @@ class AddPlayerListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
         leading: CircleAvatar(
-          backgroundColor: Colors.black,
+          backgroundColor: COLOR_MAIN_BLUE,
           child: Text(player.name[0],
             style: TextStyle(
               color: Colors.white,

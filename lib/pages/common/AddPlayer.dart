@@ -5,6 +5,7 @@ import 'package:flutter_dart_score/pages/cricket/GameCricket.dart';
 import 'package:flutter_dart_score/widgets/common/Player.dart';
 import 'package:flutter_dart_score/widgets/xx1/PlayerXX1.dart';
 import 'package:flutter_dart_score/widgets/cricket/PlayerCricket.dart';
+import 'CommonColors.dart';
 
 enum ChoiceGame { CRICKET, XX1 }
 
@@ -67,7 +68,6 @@ class AddPlayerState extends State<AddPlayer> {
         case ChoiceGame.XX1 :
           _playersXX1 = [];
           for(Player player in _players) {
-            player.resetPlayer(_score);
             var playerX11 = new PlayerXX1(name: player.name, score: _score);
             _playersXX1.add(playerX11);
           }
@@ -84,16 +84,14 @@ class AddPlayerState extends State<AddPlayer> {
         case ChoiceGame.CRICKET :
           _playersCricket = [];
           for(Player player in _players) {
-            player.resetPlayer(_score);
-            var playerCricket = new PlayerCricket(name: player.name, score: _score);
+            var playerCricket = new PlayerCricket(name: player.name, score: 0);
             _playersCricket.add(playerCricket);
           }
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => GameCricket(
               players: _playersCricket,
-              endByDouble: _endByDouble,
-              score: _score,
+              score: 0,
             ),
             ),
           );
@@ -115,7 +113,7 @@ class AddPlayerState extends State<AddPlayer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black26,
+        backgroundColor: COLOR_MAIN_BLUE,
         title: Text('Add Players'),
       ),
       body: Column(
@@ -132,7 +130,7 @@ class AddPlayerState extends State<AddPlayer> {
             ),
           ),
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Form(
               key: _formKey,
               child: Row (
@@ -141,16 +139,16 @@ class AddPlayerState extends State<AddPlayer> {
                   SizedBox(
                     width: 200,
                     child: TextFormField(
-                      cursorColor: Colors.black,
+                      cursorColor: COLOR_MAIN_BLUE,
                       decoration: const InputDecoration(
-                        icon: Icon(Icons.person, color: Colors.black,),
+                        icon: Icon(Icons.person, color: COLOR_MAIN_BLUE,),
                         hintText: 'Name',
                         labelText: 'Add a player',
                         labelStyle: TextStyle(color: Colors.black,),
-                        focusColor: Colors.black,
+                        focusColor: COLOR_MAIN_BLUE,
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Colors.black,
+                            color: COLOR_MAIN_BLUE,
                           ),
                         ),
                       ),
@@ -167,7 +165,7 @@ class AddPlayerState extends State<AddPlayer> {
                     width: 35.0,
                     height: 35.0,
                     child: FloatingActionButton(
-                      backgroundColor: Colors.black,
+                      backgroundColor: COLOR_MAIN_BLUE,
                       heroTag: "btnAdd",
                       child: Icon(Icons.add),
                       onPressed: () {
@@ -180,6 +178,7 @@ class AddPlayerState extends State<AddPlayer> {
             ),
           ),
            Expanded(
+            flex: 3,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -189,7 +188,7 @@ class AddPlayerState extends State<AddPlayer> {
                     fontWeight: FontWeight.w600,
                     fontFamily: 'Roboto',
                     letterSpacing: 0.5,
-                    color: _choiceGame == ChoiceGame.XX1 ? Colors.black : Colors.black12,
+                    color: _choiceGame == ChoiceGame.XX1 ? COLOR_MAIN_BLUE : Colors.black12,
                   )
                 ),
                 Radio(
@@ -198,7 +197,7 @@ class AddPlayerState extends State<AddPlayer> {
                   onChanged: (ChoiceGame value) {
                     setState(() { _choiceGame = value; });
                   },
-                  activeColor: Colors.black,
+                  activeColor: COLOR_MAIN_BLUE,
                 ),
                 Radio(
                   groupValue: _choiceGame,
@@ -206,7 +205,7 @@ class AddPlayerState extends State<AddPlayer> {
                   onChanged: (ChoiceGame value) {
                     setState(() { _choiceGame = value; });
                   },
-                  activeColor: Colors.black,
+                  activeColor: COLOR_MAIN_BLUE,
                 ),
                 Text('Cricket',
                   style: TextStyle(
@@ -214,7 +213,7 @@ class AddPlayerState extends State<AddPlayer> {
                     fontWeight: FontWeight.w600,
                     fontFamily: 'Roboto',
                     letterSpacing: 0.5,
-                    color: _choiceGame == ChoiceGame.CRICKET ? Colors.black : Colors.black12,
+                    color: _choiceGame == ChoiceGame.CRICKET ? COLOR_MAIN_BLUE : Colors.black12,
                   ),
                 ),
               ],
@@ -272,7 +271,7 @@ class AddPlayerState extends State<AddPlayer> {
                           ),
                           Switch(
                             value: _endByDouble,
-                            activeColor: Colors.black,
+                            activeColor: COLOR_MAIN_BLUE,
                             onChanged: (value) {
                               _endByDouble = value;
                             },
@@ -288,7 +287,7 @@ class AddPlayerState extends State<AddPlayer> {
             flex: 2,
             child: Center(
               child: RaisedButton(
-                color: Colors.black,
+                color: COLOR_MAIN_BLUE,
                 child: Text('PLAY',
                   style: TextStyle(
                     color: Colors.white,

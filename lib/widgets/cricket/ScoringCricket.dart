@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'PlayerCricket.dart';
 import 'StateHistorical.dart';
+import 'package:flutter_dart_score/pages/common/CommonColors.dart';
 
 typedef void UpdateUserCallback(PlayerCricket player);
 typedef void UpdateMultiplyCallback(int multiply);
@@ -8,7 +9,7 @@ typedef void UpdateMultiplyCallback(int multiply);
 /* widget which contains buttons for give dart score for cricket game */
 class ScoringCricket extends StatelessWidget {
 
-  ScoringCricket({this.players, this.currentPlayer, this.multiply = 1, this.onUpdateMultiply, this.onUpdatePlayer});
+  ScoringCricket({Key key, this.players, this.currentPlayer, this.multiply = 1, this.onUpdateMultiply, this.onUpdatePlayer}) : super(key: key);
 
   final List<PlayerCricket> players;
   final PlayerCricket currentPlayer;
@@ -108,7 +109,7 @@ class ScoringCricket extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: Colors.black,
+                  backgroundColor: COLOR_MAIN_BLUE,
                   onPressed: () {
                     _handleTap(15);
                   },
@@ -130,7 +131,7 @@ class ScoringCricket extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: Colors.black,
+                  backgroundColor: COLOR_MAIN_BLUE,
                   onPressed: () {
                     _handleTap(16);
                   },
@@ -152,7 +153,7 @@ class ScoringCricket extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: Colors.black,
+                  backgroundColor: COLOR_MAIN_BLUE,
                   onPressed: () {
                     _handleTap(17);
                   },
@@ -174,7 +175,7 @@ class ScoringCricket extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: Colors.black,
+                  backgroundColor: COLOR_MAIN_BLUE,
                   onPressed: () {
                     _handleTap(18);
                   },
@@ -196,7 +197,7 @@ class ScoringCricket extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: Colors.black,
+                  backgroundColor: COLOR_MAIN_BLUE,
                   onPressed: () {
                     _handleTap(19);
                   },
@@ -218,7 +219,7 @@ class ScoringCricket extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: Colors.black,
+                  backgroundColor: COLOR_MAIN_BLUE,
                   onPressed: () {
                     _handleTap(20);
                   },
@@ -240,7 +241,7 @@ class ScoringCricket extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: Colors.black,
+                  backgroundColor: COLOR_MAIN_BLUE,
                   onPressed: () {
                     if(multiply != 3) {
                       _handleTap(25);
@@ -268,7 +269,7 @@ class ScoringCricket extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: Colors.black,
+                  backgroundColor: COLOR_MAIN_BLUE,
                   onPressed: () {
                     _handleTap(0);
                   },
@@ -290,7 +291,7 @@ class ScoringCricket extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: multiply == 1 ? Colors.black45 : Colors.black12,
+                  backgroundColor: multiply == 1 ? Colors.black45 : COLOR_SECONDARY_YELLOW,
                   onPressed: () {
                     _handleTapMultiply(1);
                   },
@@ -312,7 +313,7 @@ class ScoringCricket extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: multiply == 2 ? Colors.black45 : Colors.black12,
+                  backgroundColor: multiply == 2 ? Colors.black45 : COLOR_SECONDARY_YELLOW,
                   onPressed: () {
                     _handleTapMultiply(2);
                   },
@@ -334,7 +335,7 @@ class ScoringCricket extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: multiply == 3 ? Colors.black45 : Colors.black12,
+                  backgroundColor: multiply == 3 ? Colors.black45 : COLOR_SECONDARY_YELLOW,
                   onPressed: () {
                     _handleTapMultiply(3);
                   },
