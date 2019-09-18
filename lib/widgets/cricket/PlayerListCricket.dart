@@ -20,18 +20,22 @@ class _PlayerListCricketState extends State<PlayerListCricket> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      padding: EdgeInsets.symmetric(vertical: 8.0),
-      scrollDirection: Axis.vertical,
-      children: widget.players.map((PlayerCricket player) {
-        return PlayerListCricketItem(
-          player: player,
-          players: widget.players,
-          currentPlayer: widget.currentPlayer,
-          onUpdatePlayer: widget.onUpdatePlayer,
-        );
-      }).toList(),
+    return SizedBox(
+      height:500,
+      width: 800,
+      child: ListView(
+        shrinkWrap: true,
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+        scrollDirection: Axis.vertical,
+        children: widget.players.map((PlayerCricket player) {
+          return PlayerListCricketItem(
+            player: player,
+            players: widget.players,
+            currentPlayer: widget.currentPlayer,
+            onUpdatePlayer: widget.onUpdatePlayer,
+          );
+        }).toList(),
+      )
     );
   }
 }

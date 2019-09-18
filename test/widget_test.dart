@@ -23,24 +23,10 @@ void main() {
     );
     await tester.pumpWidget(testWidget);
 
-    expect(find.byKey(Key('playersListXX1')), findsOneWidget);
+    expect(find.byKey(Key('detailPlayerXX1')), findsOneWidget);
     expect(find.byKey(Key('messagePlayer')), findsOneWidget);
     expect(find.byKey(Key('scoringXX1')), findsOneWidget);
   });
-
-  /* testWidgets('Init Cricket Game with 1 player', (WidgetTester tester) async {
-    List<PlayerCricket> players = [];
-    players.add(new PlayerCricket(score: 0, name: 'Léa',));
-    Widget testWidget = new MediaQuery(
-        data: new MediaQueryData(),
-        child: new MaterialApp(home: new GameCricket(score: 0, players: players,))
-    );
-    await tester.pumpWidget(testWidget);
-
-    expect(find.byKey(Key('playersListCricket')), findsOneWidget);
-    expect(find.byKey(Key('messagePlayerCricket')), findsOneWidget);
-    expect(find.byKey(Key('scoringCricket')), findsOneWidget);
-  });*/
 
   testWidgets('In XX1 Game a player throws a dart', (WidgetTester tester) async {
     List<PlayerXX1> players = [];
@@ -77,7 +63,20 @@ void main() {
     await tester.tap(find.byKey(Key('btn1')));
     await tester.pump();
     expect(players[0].score, 301);
+  });
 
+  testWidgets('Init Cricket Game with 1 player', (WidgetTester tester) async {
+    List<PlayerCricket> players = [];
+    players.add(new PlayerCricket(score: 0, name: 'Léa',));
+    Widget testWidget = new MediaQuery(
+        data: new MediaQueryData(),
+        child: new MaterialApp(home: new GameCricket(score: 0, players: players,))
+    );
+    await tester.pumpWidget(testWidget);
+
+    expect(find.byKey(Key('detailPlayerCricket')), findsOneWidget);
+    expect(find.byKey(Key('messagePlayerCricket')), findsOneWidget);
+    expect(find.byKey(Key('scoringCricket')), findsOneWidget);
   });
 
 }

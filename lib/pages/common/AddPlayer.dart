@@ -105,7 +105,7 @@ class AddPlayerState extends State<AddPlayer> {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       _formKey.currentState.reset();
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent + 15);
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent + 50);
     }
   }
 

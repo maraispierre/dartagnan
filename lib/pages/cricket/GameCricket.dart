@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dart_score/widgets/common/MessagePlayer.dart';
-import 'package:flutter_dart_score/widgets/cricket/PlayerListCricket.dart';
+import 'package:flutter_dart_score/widgets/cricket/PlayerCricketDetail.dart';
 import 'package:flutter_dart_score/widgets/cricket/PlayerCricket.dart';
 import 'package:flutter_dart_score/widgets/cricket/StateHistorical.dart';
 import 'package:flutter_dart_score/widgets/cricket/ScoringCricket.dart';
@@ -30,6 +30,7 @@ class _GameCricketState extends State<GameCricket> {
   String _helpMessage;
   int _counterPlayer;
   int _multiply;
+  bool _changePlayer;
 
   @protected
   @mustCallSuper
@@ -40,6 +41,7 @@ class _GameCricketState extends State<GameCricket> {
     _helpMessage = '';
     _counterPlayer = 0;
     _multiply = 1;
+    _changePlayer = true;
     for(PlayerCricket player in widget.players){
       player.resetPlayer(widget.score);
     }
@@ -48,6 +50,7 @@ class _GameCricketState extends State<GameCricket> {
   /* Methods call for update player information after an action. It is the global strategy of XX1 game */
   void _handleUpdateMultiply(int multiply) {
     setState(() {
+      _changePlayer = false;
       _multiply = multiply;
     });
   }
@@ -55,6 +58,7 @@ class _GameCricketState extends State<GameCricket> {
   /* Methods call for update player information after an action. It is the global strategy of XX1 game */
   void _handleUpdatePlayer(PlayerCricket player) {
     setState(() {
+      _changePlayer = false;
       _currentPlayer = player;
       // Verify if the current player finished the game
       if(_endGame(_currentPlayer)) {
@@ -120,6 +124,7 @@ class _GameCricketState extends State<GameCricket> {
         _currentPlayer = widget.players[_counterPlayer];
       }
       _currentPlayer.round--;
+      _changePlayer = true;
       return true;
     }
     else if(_currentPlayer.backward) {
@@ -131,6 +136,7 @@ class _GameCricketState extends State<GameCricket> {
       _currentPlayer.thirdDart = historical.thirdDart;
       return true;
     }
+    _changePlayer = false;
     return false;
   }
 
@@ -157,6 +163,7 @@ class _GameCricketState extends State<GameCricket> {
     player.firstDart = null;
     player.secondDart = null;
     player.thirdDart = null;
+    _changePlayer = true;
   }
 
   /* method calls to display message after each dart of a player */
@@ -176,7 +183,7 @@ class _GameCricketState extends State<GameCricket> {
         children: [
           Expanded(
             flex: 10,
-            child: PlayerListCricket(key: new Key('playersListCricket'), players: widget.players, currentPlayer: _currentPlayer, onUpdatePlayer: _handleUpdatePlayer,),
+            child: PlayerCricketDetail(key: Key('detailPlayerCricket'), players: widget.players, currentPlayer: _currentPlayer, onUpdatePlayer: _handleUpdatePlayer, changePlayer: _changePlayer,),
           ),
           Expanded(
             flex: 2,

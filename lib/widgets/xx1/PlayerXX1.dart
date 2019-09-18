@@ -10,7 +10,11 @@ class PlayerXX1 extends Player{
   /* method call to reset player after each end game */
   void resetPlayer(int score) {
     super.resetPlayer(score);
+    this.firstDart = null;
+    this.secondDart = null;
+    this.thirdDart = null;
     this.totalScore = 0;
+    this.round = 0;
     this.average = 0;
   }
 }

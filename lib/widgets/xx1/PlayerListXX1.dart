@@ -21,17 +21,21 @@ class _PlayerListXX1State extends State<PlayerListXX1> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      padding: EdgeInsets.symmetric(vertical: 8.0),
-      scrollDirection: Axis.vertical,
-      children: widget.players.map((PlayerXX1 player) {
-        return PlayerListXX1Item(
-          player: player,
-          currentPlayer: widget.currentPlayer,
-          onUpdatePlayer: widget.onUpdatePlayer,
-        );
-      }).toList(),
+    return SizedBox(
+      height:500,
+      width: 800,
+      child: ListView(
+        shrinkWrap: true,
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+        scrollDirection: Axis.vertical,
+        children: widget.players.map((PlayerXX1 player) {
+          return PlayerListXX1Item(
+            player: player,
+            currentPlayer: widget.currentPlayer,
+            onUpdatePlayer: widget.onUpdatePlayer,
+          );
+        }).toList(),
+      ),
     );
   }
 }
