@@ -38,6 +38,9 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
   @override
   Widget build(BuildContext context) {
     if(widget.changePlayer) {
+      if(_controller != null) {
+        _controller.reset();
+      }
       _controller = AnimationController(
         duration: const Duration(milliseconds: 300),
         vsync: this,

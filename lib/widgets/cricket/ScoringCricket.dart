@@ -99,6 +99,7 @@ class ScoringCricket extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: FloatingActionButton(
+                  key: Key('btn15'),
                   heroTag: "btn15",
                   tooltip: 'Add',
                   child: Text('15',
@@ -259,6 +260,7 @@ class ScoringCricket extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: FloatingActionButton(
+                  key: Key('btn0'),
                   heroTag: "btn0",
                   tooltip: 'Add',
                   child: Text('0',
@@ -325,6 +327,7 @@ class ScoringCricket extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: FloatingActionButton(
+                  key: Key('btnX3'),
                   heroTag: "btnX3",
                   tooltip: 'Add',
                   child: Text('X3',
