@@ -239,9 +239,9 @@ class TablePlayerListItemCricket extends StatelessWidget {
             TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Center(
-                  child: Text(tableScore[15].toString(),
+                  child: Text(tableScore[25].toString(),
                     style: TextStyle(
-                      color: _getColor(15),
+                      color: _getColor(25),
                       fontFamily: 'Roboto',
                       letterSpacing: 0.5,
                       fontSize: smallSize ? 15 : 20,
