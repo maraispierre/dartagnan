@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'PlayerXX1.dart';
+import 'package:flutter_dart_score/pages/common/CommonColors.dart';
 
 typedef void UpdateUserCallback(PlayerXX1 player);
 typedef void UpdateMultiplyCallback(int multiply);
@@ -7,12 +8,12 @@ typedef void UpdateMultiplyCallback(int multiply);
 /* widget which contains buttons for give dart score for XX1 game */
 class ScoringXX1 extends StatelessWidget {
 
-  ScoringXX1({this.currentPlayer, this.multiply = 1, this.onUpdateMultiply, this.onUpdatePlayer});
+  ScoringXX1({Key key, this.currentPlayer, this.multiply = 1, this.onUpdateMultiply, this.onUpdatePlayer}) : super(key: key);
 
   final PlayerXX1 currentPlayer;
   final UpdateUserCallback onUpdatePlayer;
   final int multiply;
-  final UpdateMultiplyCallback onUpdateMultiply;
+    final UpdateMultiplyCallback onUpdateMultiply;
 
   /* method call by backward button to return to the back dart */
   void _handleTapBack() {
@@ -75,6 +76,7 @@ class ScoringXX1 extends StatelessWidget {
                   width: 50,
                   height: 50,
                   child: FloatingActionButton(
+                    key: Key('btn1'),
                     heroTag: "btn1",
                     tooltip: 'Add',
                     child: Text('1',
@@ -85,7 +87,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(1);
                     },
@@ -107,7 +109,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(2);
                     },
@@ -129,7 +131,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(3);
                     },
@@ -151,7 +153,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(4);
                     },
@@ -173,7 +175,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(5);
                     },
@@ -195,7 +197,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(6);
                     },
@@ -217,7 +219,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(7);
                     },
@@ -243,7 +245,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(8);
                     },
@@ -265,7 +267,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(9);
                     },
@@ -287,7 +289,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(10);
                     },
@@ -309,7 +311,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(11);
                     },
@@ -331,7 +333,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(12);
                     },
@@ -353,7 +355,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(13);
                     },
@@ -375,7 +377,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(14);
                     },
@@ -401,7 +403,7 @@ class ScoringXX1 extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: Colors.black,
+                  backgroundColor: COLOR_MAIN_BLUE,
                   onPressed: () {
                     _handleTap(15);
                   },
@@ -423,7 +425,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(16);
                     },
@@ -445,7 +447,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(17);
                     },
@@ -467,7 +469,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(18);
                     },
@@ -489,7 +491,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(19);
                     },
@@ -501,6 +503,7 @@ class ScoringXX1 extends StatelessWidget {
                   width: 50,
                   height: 50,
                   child: FloatingActionButton(
+                    key: Key('btn20'),
                     heroTag: "btn20",
                     tooltip: 'Add',
                     child: Text('20',
@@ -511,7 +514,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       _handleTap(20);
                     },
@@ -533,7 +536,7 @@ class ScoringXX1 extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    backgroundColor: Colors.black,
+                    backgroundColor: COLOR_MAIN_BLUE,
                     onPressed: () {
                       if(multiply != 3) {
                         _handleTap(25);
@@ -553,15 +556,15 @@ class ScoringXX1 extends StatelessWidget {
                 child: FloatingActionButton(
                   heroTag: "btn0",
                   tooltip: 'Add',
-                  child: Text('0',
+                  child: Text('0/Next',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 13,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Roboto',
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: Colors.black,
+                  backgroundColor: COLOR_MAIN_BLUE,
                   onPressed: () {
                     _handleTap(0);
                   },
@@ -583,7 +586,7 @@ class ScoringXX1 extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: multiply == 1 ? Colors.black45 : Colors.black12,
+                  backgroundColor: multiply == 1 ? Colors.black45 : COLOR_SECONDARY_YELLOW,
                   onPressed: () {
                     _handleTapMultiply(1);
                   },
@@ -605,7 +608,7 @@ class ScoringXX1 extends StatelessWidget {
                     letterSpacing: 0.5,
                   ),
                 ),
-                backgroundColor: multiply == 2 ? Colors.black45 : Colors.black12,
+                backgroundColor: multiply == 2 ? Colors.black45 : COLOR_SECONDARY_YELLOW,
                 onPressed: () {
                   _handleTapMultiply(2);
                 },
@@ -617,6 +620,7 @@ class ScoringXX1 extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: FloatingActionButton(
+                  key: Key('btnX3'),
                   heroTag: "btnX3",
                   tooltip: 'Add',
                   child: Text('X3',
@@ -627,7 +631,7 @@ class ScoringXX1 extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: multiply == 3 ? Colors.black45 : Colors.black12,
+                  backgroundColor: multiply == 3 ? Colors.black45 : COLOR_SECONDARY_YELLOW,
                   onPressed: () {
                     _handleTapMultiply(3);
                   },

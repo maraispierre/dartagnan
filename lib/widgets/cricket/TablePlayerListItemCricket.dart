@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'PlayerCricket.dart';
+import 'package:flutter_dart_score/pages/common/CommonColors.dart';
 
 class TablePlayerListItemCricket extends StatelessWidget {
 
-  TablePlayerListItemCricket({this.tableScore, this.players, this.isCurrentPlayer});
+  TablePlayerListItemCricket({this.tableScore, this.players, this.isCurrentPlayer, this.smallSize});
 
   final Map<int, int> tableScore;
   final List<PlayerCricket> players;
-  bool isCurrentPlayer;
+  final bool isCurrentPlayer;
+  final bool smallSize;
 
   /* method calls to give a color to the number in links with the game */
   Color _getColor(int number) {
@@ -50,82 +52,104 @@ class TablePlayerListItemCricket extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Table(
-      border: TableBorder.all(width: 0.0, color: Colors.black45, style: BorderStyle.none),
+      border: TableBorder.all(width: 1.0, color: isCurrentPlayer ? COLOR_SECONDARY_YELLOW : COLOR_MAIN_BLUE, style: BorderStyle.solid),
       textBaseline: TextBaseline.ideographic,
       children: [
         TableRow(
           decoration: BoxDecoration(
+            color: isCurrentPlayer? COLOR_SECONDARY_YELLOW : COLOR_MAIN_BLUE,
           ),
           children: [
             TableCell(
-              child: Text('15',
-                style: TextStyle(
-                  color: isCurrentPlayer ? Colors.white : Colors.black,
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 15,
+              verticalAlignment: TableCellVerticalAlignment.middle,
+              child: Center(
+                child: Text('15',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Roboto',
+                    letterSpacing: 0.5,
+                    fontSize: smallSize ? 15 : 20,
+                  ),
                 ),
-              ),
+              )
             ),
             TableCell(
-              child: Text('16',
-                style: TextStyle(
-                  color: isCurrentPlayer ? Colors.white : Colors.black,
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 15,
-                ),
-              ),
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Center(
+                  child: Text('16',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: smallSize ? 15 : 20,
+                    ),
+                  ),
+                )
             ),
             TableCell(
-              child: Text('17',
-                style: TextStyle(
-                  color: isCurrentPlayer ? Colors.white : Colors.black,
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 15,
-                ),
-              ),
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Center(
+                  child: Text('17',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: smallSize ? 15 : 20,
+                    ),
+                  ),
+                )
             ),
             TableCell(
-              child: Text('18',
-                style: TextStyle(
-                  color: isCurrentPlayer ? Colors.white : Colors.black,
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 15,
-                ),
-              ),
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Center(
+                  child: Text('18',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: smallSize ? 15 : 20,
+                    ),
+                  ),
+                )
             ),
             TableCell(
-              child: Text('19',
-                style: TextStyle(
-                  color: isCurrentPlayer ? Colors.white : Colors.black,
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 15,
-                ),
-              ),
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Center(
+                  child: Text('19',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: smallSize ? 15 : 20,
+                    ),
+                  ),
+                )
             ),
             TableCell(
-              child: Text('20',
-                style: TextStyle(
-                  color: isCurrentPlayer ? Colors.white : Colors.black,
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 15,
-                ),
-              ),
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Center(
+                  child: Text('20',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: smallSize ? 15 : 20,
+                    ),
+                  ),
+                )
             ),
             TableCell(
-              child: Text('B',
-                style: TextStyle(
-                  color: isCurrentPlayer ? Colors.white : Colors.black,
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 15,
-                ),
-              ),
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Center(
+                  child: Text('B',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: smallSize ? 15 : 20,
+                    ),
+                  ),
+                )
             ),
           ],
         ),
@@ -135,74 +159,95 @@ class TablePlayerListItemCricket extends StatelessWidget {
           ),
           children: [
             TableCell(
-              child: Text(tableScore[15].toString(),
-                style: TextStyle(
-                  color: _getColor(15),
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 15,
+              verticalAlignment: TableCellVerticalAlignment.middle,
+              child: Center(
+                child: Text(tableScore[15].toString(),
+                  style: TextStyle(
+                    color: _getColor(15),
+                    fontFamily: 'Roboto',
+                    letterSpacing: 0.5,
+                    fontSize: smallSize ? 15 : 20,
+                  ),
                 ),
-              ),
+              )
             ),
             TableCell(
-              child: Text(tableScore[16].toString(),
-                style: TextStyle(
-                  color: _getColor(16),
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 15,
-                ),
-              ),
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Center(
+                  child: Text(tableScore[16].toString(),
+                    style: TextStyle(
+                      color: _getColor(16),
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: smallSize ? 15 : 20,
+                    ),
+                  ),
+                )
             ),
             TableCell(
-              child: Text(tableScore[17].toString(),
-                style: TextStyle(
-                  color: _getColor(17),
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 15,
-                ),
-              ),
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Center(
+                  child: Text(tableScore[17].toString(),
+                    style: TextStyle(
+                      color: _getColor(17),
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: smallSize ? 15 : 20,
+                    ),
+                  ),
+                )
             ),
             TableCell(
-              child: Text(tableScore[18].toString(),
-                style: TextStyle(
-                  color: _getColor(18),
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 15,
-                ),
-              ),
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Center(
+                  child: Text(tableScore[18].toString(),
+                    style: TextStyle(
+                      color: _getColor(18),
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: smallSize ? 15 : 20,
+                    ),
+                  ),
+                )
             ),
             TableCell(
-              child: Text(tableScore[19].toString(),
-                style: TextStyle(
-                  color: _getColor(19),
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 15,
-                ),
-              ),
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Center(
+                  child: Text(tableScore[19].toString(),
+                    style: TextStyle(
+                      color: _getColor(19),
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: smallSize ? 15 : 20,
+                    ),
+                  ),
+                )
             ),
             TableCell(
-              child: Text(tableScore[20].toString(),
-                style: TextStyle(
-                  color: _getColor(20),
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 15,
-                ),
-              ),
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Center(
+                  child: Text(tableScore[20].toString(),
+                    style: TextStyle(
+                      color: _getColor(20),
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: smallSize ? 15 : 20,
+                    ),
+                  ),
+                )
             ),
             TableCell(
-              child: Text(tableScore[25].toString(),
-                style: TextStyle(
-                  color: _getColor(25),
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 15,
-                ),
-              ),
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Center(
+                  child: Text(tableScore[25].toString(),
+                    style: TextStyle(
+                      color: _getColor(25),
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: smallSize ? 15 : 20,
+                    ),
+                  ),
+                )
             ),
           ],
         ),

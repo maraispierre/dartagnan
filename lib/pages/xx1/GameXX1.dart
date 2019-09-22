@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dart_score/widgets/common/MessagePlayer.dart';
 import 'package:flutter_dart_score/widgets/xx1/ScoringXX1.dart';
 import 'package:flutter_dart_score/widgets/xx1/PlayerXX1.dart';
-import 'package:flutter_dart_score/widgets/xx1/PlayerListXX1.dart';
+import 'package:flutter_dart_score/pages/common/CommonColors.dart';
+import 'package:flutter_dart_score/widgets/xx1/PlayerXX1Detail.dart';
 
 /* Global Widget Page  which contains :
  * - PlayerList for XX1 (PlayerListXX1)
@@ -10,6 +11,7 @@ import 'package:flutter_dart_score/widgets/xx1/PlayerListXX1.dart';
  * - Scoring buttons for XX1 (ScoringXX1)
  * - Strategy to manage XX1 game
  */
+
 class GameXX1 extends StatefulWidget {
   GameXX1({Key key, this.players, this.endByDouble, this.score,}) : super(key: key);
 
@@ -29,6 +31,8 @@ class _GameXX1State extends State<GameXX1> {
   String _helpMessage;
   int _counterPlayer;
   int _multiply;
+  bool _changePlayer;
+  bool _goToNextPlayer;
 
   @protected
   @mustCallSuper
@@ -39,6 +43,9 @@ class _GameXX1State extends State<GameXX1> {
     _helpMessage = '';
     _counterPlayer = 0;
     _multiply = 1;
+    _changePlayer = true;
+    _goToNextPlayer = false;
+
     for(PlayerXX1 player in widget.players){
       player.resetPlayer(widget.score);
     }
@@ -47,6 +54,7 @@ class _GameXX1State extends State<GameXX1> {
   /* Methods call for update player information after an action. It is the global strategy of XX1 game */
   void _handleUpdateMultiply(int multiply) {
     setState(() {
+      _changePlayer = false;
       _multiply = multiply;
     });
   }
@@ -55,6 +63,7 @@ class _GameXX1State extends State<GameXX1> {
   void _handleUpdatePlayer(PlayerXX1 player) {
     setState(() {
       _currentPlayer = player;
+      _changePlayer = false;
       // Verify if the current player finished the game
       if(_endGame(_currentPlayer)) {
         return;
@@ -116,6 +125,7 @@ class _GameXX1State extends State<GameXX1> {
   bool _backToPreviousPlayer() {
     if(_currentPlayer.backward && _currentPlayer.round == 0 && (_currentPlayer.name == widget.players[0].name)) {
       _currentPlayer.backward = false;
+      _changePlayer = true;
       return true;
     }
     else if(_currentPlayer.backward){
@@ -130,14 +140,16 @@ class _GameXX1State extends State<GameXX1> {
       }
       _currentPlayer.totalScore = _currentPlayer.totalScore - _currentPlayer.firstDart - _currentPlayer.secondDart - _currentPlayer.thirdDart;
       _currentPlayer.round--;
+      _changePlayer = true;
       return true;
     }
+    _changePlayer = false;
     return false;
   }
 
   /* method call to go to next player when the current player shooted this 3 darts */
   bool _nextPlayer(PlayerXX1 player) {
-    if(player.thirdDart != null) {
+   if(player.thirdDart != null) {
       player.round++;
       player.totalScore = player.totalScore + player.firstDart + player.secondDart + player.thirdDart;
       player.average = player.totalScore / player.round;
@@ -152,6 +164,7 @@ class _GameXX1State extends State<GameXX1> {
       _initRound(_currentPlayer);
       return true;
     }
+    _changePlayer = false;
     return false;
   }
 
@@ -160,6 +173,7 @@ class _GameXX1State extends State<GameXX1> {
     player.firstDart = null;
     player.secondDart = null;
     player.thirdDart = null;
+    _changePlayer = true;
   }
 
   /* method calls to display message after each dart of a player */
@@ -296,25 +310,25 @@ class _GameXX1State extends State<GameXX1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('XX1 - Game'),
-        backgroundColor: Colors.black26,
+        title: Text(widget.score.toString() + ' - Game'),
+        backgroundColor: COLOR_MAIN_BLUE,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Expanded(
             flex: 10,
-            child: PlayerListXX1(key: widget.key, players: widget.players, currentPlayer: _currentPlayer, onUpdatePlayer: _handleUpdatePlayer,),
+            child: PlayerXX1Detail(key: Key('detailPlayerXX1'), currentPlayer: _currentPlayer, players: widget.players, onUpdatePlayer: _handleUpdatePlayer, changePlayer:  _changePlayer),
           ),
           Expanded(
             flex: 2,
-            child: MessagePlayer(message: _message, helpMessage: _helpMessage,),
+            child: MessagePlayer(key: new Key('messagePlayer'), message: _message, helpMessage: _helpMessage,),
           ),
           Expanded(
             flex: 10,
             child: Container(
               padding: EdgeInsets.all(8),
-              child: ScoringXX1(currentPlayer: _currentPlayer, multiply: _multiply, onUpdatePlayer: _handleUpdatePlayer, onUpdateMultiply: _handleUpdateMultiply,),
+              child: ScoringXX1(key: new Key('scoringXX1'), currentPlayer: _currentPlayer, multiply: _multiply, onUpdatePlayer: _handleUpdatePlayer, onUpdateMultiply: _handleUpdateMultiply,),
             ),
           ),
         ],
