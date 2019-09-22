@@ -34,6 +34,20 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
     super.dispose();
   }
 
+  /* This methods returns the current dart of player */
+  int currentDart() {
+    if(widget.currentPlayer.firstDart != null && widget.currentPlayer.secondDart == null ) {
+      return 1;
+    }
+    else if(widget.currentPlayer.secondDart != null && widget.currentPlayer.thirdDart == null ) {
+      return 2;
+    }
+    else if(widget.currentPlayer.thirdDart != null) {
+      return 3;
+    }
+    return 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     if(widget.changePlayer) {
@@ -45,6 +59,7 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
         vsync: this,
       )..forward();
     }
+
     return AnimatedBuilder(
         animation: _controller,
         child: Container(
@@ -89,30 +104,60 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text(widget.currentPlayer.firstDart != null ? widget.currentPlayer.firstDart.toString() : '-',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontFamily: 'Roboto',
-                      letterSpacing: 0.5,
-                      fontSize: 20,
+                  AnimatedDefaultTextStyle(
+                    style: currentDart() == 1 ?
+                      TextStyle(
+                        color: COLOR_MAIN_BLUE,
+                        fontFamily: 'Roboto',
+                        letterSpacing: 0.5,
+                        fontSize: 25,
+                      ):
+                      TextStyle(
+                        color: Colors.grey,
+                        fontFamily: 'Roboto',
+                        letterSpacing: 0.5,
+                        fontSize: 20,
+                      ),
+                    duration: Duration(milliseconds: 200),
+                    child: Text(widget.currentPlayer.firstDart != null ? widget.currentPlayer.firstDart.toString() : '-',
                     ),
                   ),
-                  Text(widget.currentPlayer.secondDart != null ? widget.currentPlayer.secondDart.toString() : '-',
-                    style: TextStyle(
+                  AnimatedDefaultTextStyle(
+                    style: currentDart() == 2 ?
+                    TextStyle(
+                      color: COLOR_MAIN_BLUE,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 25,
+                    ):
+                    TextStyle(
                       color: Colors.grey,
                       fontFamily: 'Roboto',
                       letterSpacing: 0.5,
                       fontSize: 20,
+                    ),
+                    duration: Duration(milliseconds: 200),
+                    child: Text(widget.currentPlayer.secondDart != null ? widget.currentPlayer.secondDart.toString() : '-',
                     ),
                   ),
-                  Text(widget.currentPlayer.thirdDart != null ? widget.currentPlayer.thirdDart.toString() : '-',
-                    style: TextStyle(
+                  AnimatedDefaultTextStyle(
+                    style: currentDart() == 3 ?
+                    TextStyle(
+                      color: COLOR_MAIN_BLUE,
+                      fontFamily: 'Roboto',
+                      letterSpacing: 0.5,
+                      fontSize: 25,
+                    ):
+                    TextStyle(
                       color: Colors.grey,
                       fontFamily: 'Roboto',
                       letterSpacing: 0.5,
                       fontSize: 20,
                     ),
-                  )
+                    duration: Duration(milliseconds: 200),
+                    child: Text(widget.currentPlayer.thirdDart != null ? widget.currentPlayer.thirdDart.toString() : '-',
+                    ),
+                  ),
                 ],
               ),
               Text(((widget.currentPlayer.firstDart != null ? widget.currentPlayer.firstDart : 0) + (widget.currentPlayer.secondDart != null ? widget.currentPlayer.secondDart : 0) + (widget.currentPlayer.thirdDart != null ? widget.currentPlayer.thirdDart : 0)).toString(),

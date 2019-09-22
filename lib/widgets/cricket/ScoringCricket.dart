@@ -43,6 +43,9 @@ class ScoringCricket extends StatelessWidget {
       currentPlayer.thirdDart = value;
       _updateScore(value);
     }
+    else {
+      _updateScore(value);
+    }
   }
 
   /* method calls to verify if the number is closed or not */
@@ -263,9 +266,9 @@ class ScoringCricket extends StatelessWidget {
                   key: Key('btn0'),
                   heroTag: "btn0",
                   tooltip: 'Add',
-                  child: Text('0',
+                  child: Text('0/Next',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 13,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Roboto',
                       letterSpacing: 0.5,

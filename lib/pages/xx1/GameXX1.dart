@@ -11,6 +11,7 @@ import 'package:flutter_dart_score/widgets/xx1/PlayerXX1Detail.dart';
  * - Scoring buttons for XX1 (ScoringXX1)
  * - Strategy to manage XX1 game
  */
+
 class GameXX1 extends StatefulWidget {
   GameXX1({Key key, this.players, this.endByDouble, this.score,}) : super(key: key);
 
@@ -31,6 +32,7 @@ class _GameXX1State extends State<GameXX1> {
   int _counterPlayer;
   int _multiply;
   bool _changePlayer;
+  bool _goToNextPlayer;
 
   @protected
   @mustCallSuper
@@ -42,6 +44,8 @@ class _GameXX1State extends State<GameXX1> {
     _counterPlayer = 0;
     _multiply = 1;
     _changePlayer = true;
+    _goToNextPlayer = false;
+
     for(PlayerXX1 player in widget.players){
       player.resetPlayer(widget.score);
     }
@@ -145,7 +149,7 @@ class _GameXX1State extends State<GameXX1> {
 
   /* method call to go to next player when the current player shooted this 3 darts */
   bool _nextPlayer(PlayerXX1 player) {
-    if(player.thirdDart != null) {
+   if(player.thirdDart != null) {
       player.round++;
       player.totalScore = player.totalScore + player.firstDart + player.secondDart + player.thirdDart;
       player.average = player.totalScore / player.round;
@@ -306,7 +310,7 @@ class _GameXX1State extends State<GameXX1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('XX1 - Game'),
+        title: Text(widget.score.toString() + ' - Game'),
         backgroundColor: COLOR_MAIN_BLUE,
       ),
       body: Column(

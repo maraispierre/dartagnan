@@ -13,7 +13,7 @@ class ScoringXX1 extends StatelessWidget {
   final PlayerXX1 currentPlayer;
   final UpdateUserCallback onUpdatePlayer;
   final int multiply;
-  final UpdateMultiplyCallback onUpdateMultiply;
+    final UpdateMultiplyCallback onUpdateMultiply;
 
   /* method call by backward button to return to the back dart */
   void _handleTapBack() {
@@ -556,9 +556,9 @@ class ScoringXX1 extends StatelessWidget {
                 child: FloatingActionButton(
                   heroTag: "btn0",
                   tooltip: 'Add',
-                  child: Text('0',
+                  child: Text('0/Next',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 13,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Roboto',
                       letterSpacing: 0.5,

@@ -53,7 +53,7 @@ void main() {
         child: new MaterialApp(home: new GameXX1(score: 301, endByDouble: false, players: players,))
     );
     await tester.pumpWidget(testWidget);
-
+  
     for(int i = 0; i<5; i++) {
       await tester.tap(find.byKey(Key('btnX3')));
       await tester.pump();
@@ -79,4 +79,61 @@ void main() {
     expect(find.byKey(Key('scoringCricket')), findsOneWidget);
   });
 
+  testWidgets('In Cricket Game, a player can close a number and make points', (WidgetTester tester) async {
+    List<PlayerCricket> players = [];
+    players.add(new PlayerCricket(score: 0, name: 'Léa',));
+    players.add(new PlayerCricket(score: 0, name: 'Hugo',));
+
+    Widget testWidget = new MediaQuery(
+        data: new MediaQueryData(),
+        child: new MaterialApp(home: new GameCricket(score: 0, players: players,))
+    );
+    await tester.pumpWidget(testWidget);
+
+    await tester.tap(find.byKey(Key('btnX3')));
+    await tester.pump();
+    await tester.tap(find.byKey(Key('btn15')));
+    await tester.pump();
+    await tester.tap(find.byKey(Key('btn15')));
+    await tester.pump();
+    await tester.tap(find.byKey(Key('btn15')));
+    await tester.pump();
+    expect(players[0].score, 30);
+  });
+
+  testWidgets('In Cricket Game, two players can close a number and nobody make points', (WidgetTester tester) async {
+    List<PlayerCricket> players = [];
+    players.add(new PlayerCricket(score: 0, name: 'Léa',));
+    players.add(new PlayerCricket(score: 0, name: 'Hugo',));
+
+    Widget testWidget = new MediaQuery(
+        data: new MediaQueryData(),
+        child: new MaterialApp(home: new GameCricket(score: 0, players: players,))
+    );
+    await tester.pumpWidget(testWidget);
+
+    //First Player
+    await tester.tap(find.byKey(Key('btnX3')));
+    await tester.pump();
+    await tester.tap(find.byKey(Key('btn15')));
+    await tester.pump();
+    await tester.tap(find.byKey(Key('btn0')));
+    await tester.pump();
+    await tester.tap(find.byKey(Key('btn0')));
+    await tester.pump();
+
+    //Second Player
+    await tester.tap(find.byKey(Key('btnX3')));
+    await tester.pump();
+    await tester.tap(find.byKey(Key('btn15')));
+    await tester.pump();
+    await tester.tap(find.byKey(Key('btn15')));
+    await tester.pump();
+    await tester.tap(find.byKey(Key('btn15')));
+    await tester.pump();
+
+    expect(players[1].score, 0);
+  });
+
 }
+
