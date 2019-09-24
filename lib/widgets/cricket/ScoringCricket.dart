@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'PlayerCricket.dart';
 import 'StateHistorical.dart';
 import 'package:flutter_dart_score/pages/common/CommonColors.dart';
+import 'package:flutter_dart_score/pages/common/AppLocalizations.dart';
 
 typedef void UpdateUserCallback(PlayerCricket player);
 typedef void UpdateMultiplyCallback(int multiply);
@@ -266,7 +267,7 @@ class ScoringCricket extends StatelessWidget {
                   key: Key('btn0'),
                   heroTag: "btn0",
                   tooltip: 'Add',
-                  child: Text('0/Next',
+                  child: Text('0/' + AppLocalizations.of(context).next,
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -355,9 +356,9 @@ class ScoringCricket extends StatelessWidget {
                 child: FloatingActionButton(
                   heroTag: "btnBack",
                   tooltip: 'Add',
-                  child: Text('Back',
+                  child: Text(AppLocalizations.of(context).back,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 15,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Roboto',
                       letterSpacing: 0.5,

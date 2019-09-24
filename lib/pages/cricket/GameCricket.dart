@@ -5,6 +5,7 @@ import 'package:flutter_dart_score/widgets/cricket/PlayerCricket.dart';
 import 'package:flutter_dart_score/widgets/cricket/StateHistorical.dart';
 import 'package:flutter_dart_score/widgets/cricket/ScoringCricket.dart';
 import 'package:flutter_dart_score/pages/common/CommonColors.dart';
+import 'package:flutter_dart_score/pages/common/AppLocalizations.dart';
 
 /* Global Widget Page  which contains :
  * - PlayerList for Cricket (PlayerListCricket)
@@ -26,18 +27,18 @@ class GameCricket extends StatefulWidget {
 class _GameCricketState extends State<GameCricket> {
 
   PlayerCricket _currentPlayer;
-  String _message;
   String _helpMessage;
   int _counterPlayer;
   int _multiply;
   bool _changePlayer;
+  bool _isEndGame;
 
   @protected
   @mustCallSuper
   void initState() {
     super.initState();
     _currentPlayer = widget.players[0];
-    _message = 'Round ' + (_currentPlayer.round + 1).toString() + ' of ' + _currentPlayer.name;
+    _isEndGame = false;
     _helpMessage = '';
     _counterPlayer = 0;
     _multiply = 1;
@@ -59,6 +60,7 @@ class _GameCricketState extends State<GameCricket> {
   void _handleUpdatePlayer(PlayerCricket player) {
     setState(() {
       _changePlayer = false;
+      _isEndGame = false;
       _currentPlayer = player;
       // Verify if the current player finished the game
       if(_endGame(_currentPlayer)) {
@@ -66,15 +68,12 @@ class _GameCricketState extends State<GameCricket> {
       }
       // Verify if the user call to back to the previous player
       else if(_backToPreviousPlayer()){
-        _generateMessage();
         return;
       }
       // Go to next player when the current player shooted this 3 darts
       else if(_nextPlayer(_currentPlayer)) {
-        _generateMessage();
         return;
       }
-      _generateMessage();
     });
   }
 
@@ -96,7 +95,7 @@ class _GameCricketState extends State<GameCricket> {
         }
       }
       if(endGame) {
-        _message = _currentPlayer.name + ' a gagné la partie.';
+        _isEndGame = true;
         _helpMessage = '';
         for(PlayerCricket player in widget.players){
          player.resetPlayer(widget.score);
@@ -166,16 +165,11 @@ class _GameCricketState extends State<GameCricket> {
     _changePlayer = true;
   }
 
-  /* method calls to display message after each dart of a player */
-  void _generateMessage() {
-    _message = 'Round ' + (_currentPlayer.round + 1).toString() + ' of ' + _currentPlayer.name;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cricket - Game'),
+        title: Text('Cricket - ' + AppLocalizations.of(context).game),
         backgroundColor: COLOR_MAIN_BLUE,
       ),
       body: Column(
@@ -187,7 +181,7 @@ class _GameCricketState extends State<GameCricket> {
           ),
           Expanded(
             flex: 2,
-            child: MessagePlayer(key: new Key('messagePlayerCricket'), message: _message, helpMessage: _helpMessage,),
+            child: MessagePlayer(key: new Key('messagePlayerCricket'), currentPlayer: _currentPlayer, helpMessage: _helpMessage, isEndGame: _isEndGame,),
           ),
           Expanded(
             flex: 10,

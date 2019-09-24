@@ -3,6 +3,7 @@ import 'PlayerCricket.dart';
 import 'package:flutter_dart_score/pages/common/CommonColors.dart';
 import 'package:flutter_dart_score/widgets/cricket/PlayerListCricket.dart';
 import 'package:flutter_dart_score/widgets/cricket/TablePlayerListItemCricket.dart';
+import 'package:flutter_dart_score/pages/common/AppLocalizations.dart';
 
 typedef void UpdateUserCallback(PlayerCricket player);
 
@@ -163,7 +164,7 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
               ),
               TablePlayerListItemCricket(players: widget.players, tableScore: widget.currentPlayer.tableCricket, isCurrentPlayer: false, smallSize: false,),
               RaisedButton(
-                child: Text('SEE ALL', style: TextStyle(
+                child: Text(AppLocalizations.of(context).seeAll, style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,

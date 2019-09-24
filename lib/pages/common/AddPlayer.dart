@@ -5,6 +5,7 @@ import 'package:flutter_dart_score/pages/cricket/GameCricket.dart';
 import 'package:flutter_dart_score/widgets/common/Player.dart';
 import 'package:flutter_dart_score/widgets/xx1/PlayerXX1.dart';
 import 'package:flutter_dart_score/widgets/cricket/PlayerCricket.dart';
+import 'AppLocalizations.dart';
 import 'CommonColors.dart';
 
 enum ChoiceGame { CRICKET, XX1 }
@@ -114,7 +115,7 @@ class AddPlayerState extends State<AddPlayer> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: COLOR_MAIN_BLUE,
-        title: Text('Add Players'),
+        title: Text(AppLocalizations.of(context).titleAddPlayer),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -140,10 +141,10 @@ class AddPlayerState extends State<AddPlayer> {
                     width: 200,
                     child: TextFormField(
                       cursorColor: COLOR_MAIN_BLUE,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         icon: Icon(Icons.person, color: COLOR_MAIN_BLUE,),
-                        hintText: 'Name',
-                        labelText: 'Add a player',
+                        hintText: AppLocalizations.of(context).addPlayerFieldName,
+                        labelText: AppLocalizations.of(context).addPlayerField ,
                         labelStyle: TextStyle(color: Colors.black,),
                         focusColor: COLOR_MAIN_BLUE,
                         focusedBorder: UnderlineInputBorder(
@@ -154,7 +155,7 @@ class AddPlayerState extends State<AddPlayer> {
                       ),
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Please add a player';
+                          return AppLocalizations.of(context).addPlayerFieldHelp;
                         }
                         return null;
                       },
@@ -261,7 +262,7 @@ class AddPlayerState extends State<AddPlayer> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text('End by X2',
+                          Text(AppLocalizations.of(context).endByDouble,
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
@@ -288,7 +289,7 @@ class AddPlayerState extends State<AddPlayer> {
             child: Center(
               child: RaisedButton(
                 color: COLOR_MAIN_BLUE,
-                child: Text('PLAY',
+                child: Text(AppLocalizations.of(context).play,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 30,

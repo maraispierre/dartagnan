@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'PlayerXX1.dart';
 import 'package:flutter_dart_score/pages/common/CommonColors.dart';
 import 'package:flutter_dart_score/widgets/xx1/PlayerListXX1.dart';
+import 'package:flutter_dart_score/pages/common/AppLocalizations.dart';
 
 typedef void UpdateUserCallback(PlayerXX1 player);
 
@@ -177,7 +178,7 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
                 ),
               ),
               RaisedButton(
-                child: Text('SEE ALL', style: TextStyle(
+                child: Text(AppLocalizations.of(context).seeAll, style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
