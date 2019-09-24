@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'PlayerXX1.dart';
 import 'package:flutter_dart_score/pages/common/CommonColors.dart';
+import 'package:flutter_dart_score/pages/common/AppLocalizations.dart';
 
 typedef void UpdateUserCallback(PlayerXX1 player);
 typedef void UpdateMultiplyCallback(int multiply);
@@ -556,7 +557,7 @@ class ScoringXX1 extends StatelessWidget {
                 child: FloatingActionButton(
                   heroTag: "btn0",
                   tooltip: 'Add',
-                  child: Text('0/Next',
+                  child: Text('0/' + AppLocalizations.of(context).next,
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -645,9 +646,9 @@ class ScoringXX1 extends StatelessWidget {
                 child: FloatingActionButton(
                   heroTag: "btnBack",
                   tooltip: 'Add',
-                  child: Text('Back',
+                  child: Text(AppLocalizations.of(context).back,
                     style: TextStyle(
-                      fontSize: 19,
+                      fontSize: 15,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Roboto',
                       letterSpacing: 0.5,

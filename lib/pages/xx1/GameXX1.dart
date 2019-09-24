@@ -4,6 +4,7 @@ import 'package:flutter_dart_score/widgets/xx1/ScoringXX1.dart';
 import 'package:flutter_dart_score/widgets/xx1/PlayerXX1.dart';
 import 'package:flutter_dart_score/pages/common/CommonColors.dart';
 import 'package:flutter_dart_score/widgets/xx1/PlayerXX1Detail.dart';
+import 'package:flutter_dart_score/pages/common/AppLocalizations.dart';
 
 /* Global Widget Page  which contains :
  * - PlayerList for XX1 (PlayerListXX1)
@@ -27,24 +28,22 @@ class GameXX1 extends StatefulWidget {
 class _GameXX1State extends State<GameXX1> {
 
   PlayerXX1 _currentPlayer;
-  String _message;
   String _helpMessage;
   int _counterPlayer;
   int _multiply;
   bool _changePlayer;
-  bool _goToNextPlayer;
+  bool _isEndGame;
 
   @protected
   @mustCallSuper
   void initState() {
     super.initState();
     _currentPlayer = widget.players[0];
-    _message = 'Round ' + (_currentPlayer.round + 1).toString() + ' of ' + _currentPlayer.name;
     _helpMessage = '';
     _counterPlayer = 0;
     _multiply = 1;
     _changePlayer = true;
-    _goToNextPlayer = false;
+    _isEndGame = false;
 
     for(PlayerXX1 player in widget.players){
       player.resetPlayer(widget.score);
@@ -64,6 +63,7 @@ class _GameXX1State extends State<GameXX1> {
     setState(() {
       _currentPlayer = player;
       _changePlayer = false;
+      _isEndGame = false;
       // Verify if the current player finished the game
       if(_endGame(_currentPlayer)) {
         return;
@@ -90,7 +90,7 @@ class _GameXX1State extends State<GameXX1> {
   /* method call to verify and process end game if game is over */
   bool _endGame(PlayerXX1 player) {
     if(_currentPlayer.score == 0) {
-      _message = _currentPlayer.name + ' a gagné la partie.';
+      _isEndGame = true;
       _helpMessage = '';
       for(PlayerXX1 player in widget.players){
         player.resetPlayer(widget.score);
@@ -178,7 +178,6 @@ class _GameXX1State extends State<GameXX1> {
 
   /* method calls to display message after each dart of a player */
   void _generateMessage() {
-    _message = 'Round ' + (_currentPlayer.round + 1).toString() + ' of ' + _currentPlayer.name;
     _generateHelpMessage();
   }
 
@@ -310,7 +309,7 @@ class _GameXX1State extends State<GameXX1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.score.toString() + ' - Game'),
+        title: Text(widget.score.toString() + ' - ' + AppLocalizations.of(context).game),
         backgroundColor: COLOR_MAIN_BLUE,
       ),
       body: Column(
@@ -322,7 +321,7 @@ class _GameXX1State extends State<GameXX1> {
           ),
           Expanded(
             flex: 2,
-            child: MessagePlayer(key: new Key('messagePlayer'), message: _message, helpMessage: _helpMessage,),
+            child: MessagePlayer(key: new Key('messagePlayer'), currentPlayer: _currentPlayer, helpMessage: _helpMessage, isEndGame: _isEndGame,),
           ),
           Expanded(
             flex: 10,

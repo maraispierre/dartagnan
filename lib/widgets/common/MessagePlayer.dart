@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dart_score/pages/common/CommonColors.dart';
+import 'package:flutter_dart_score/widgets/common/Player.dart';
+import 'package:flutter_dart_score/pages/common/AppLocalizations.dart';
 
 /* widget which contains message for player */
 class MessagePlayer extends StatelessWidget {
 
-  MessagePlayer({Key key, this.message, this.helpMessage}) : super(key: key);
+  MessagePlayer({Key key, this.currentPlayer, this.helpMessage, this.isEndGame}) : super(key: key);
 
-  final String message;
+  final Player currentPlayer;
   final String helpMessage;
+  final bool isEndGame;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,7 @@ class MessagePlayer extends StatelessWidget {
       child: Center(
           child : Column(
             children: <Widget>[
-              Text(message,
+              Text(isEndGame ? currentPlayer.name + AppLocalizations.of(context).wonTheGame : AppLocalizations.of(context).round + (currentPlayer.round + 1).toString() + AppLocalizations.of(context).det_of + currentPlayer.name,
                 style: TextStyle(
                   fontSize: 23,
                   fontWeight: FontWeight.w800,
