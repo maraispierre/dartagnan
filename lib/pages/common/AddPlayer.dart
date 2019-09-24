@@ -113,6 +113,7 @@ class AddPlayerState extends State<AddPlayer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: COLOR_MAIN_BLUE,
         title: Text(AppLocalizations.of(context).titleAddPlayer),
