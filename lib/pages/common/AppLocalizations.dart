@@ -24,6 +24,7 @@ class AppLocalizations {
       'add_player_field_help': 'Please add a player',
       'add_player_field_name': 'Name',
       'end_by_double': 'End by X2',
+      'average': 'Average ',
     },
     'fr': {
       'play': 'JOUER',
@@ -39,6 +40,7 @@ class AppLocalizations {
       'add_player_field_help': 'Entrer un joueur',
       'add_player_field_name': 'Nom',
       'end_by_double': 'Terminer avec un X2',
+      'average': 'Moyenne ',
     },
   };
 
@@ -92,6 +94,10 @@ class AppLocalizations {
 
   String get seeAll {
     return _localizedValues[locale.languageCode]['see_all'];
+  }
+
+  String get average {
+    return _localizedValues[locale.languageCode]['average'];
   }
 
 }

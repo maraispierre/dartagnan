@@ -3,6 +3,7 @@ import 'PlayerXX1.dart';
 import 'package:flutter_dart_score/pages/common/CommonColors.dart';
 import 'package:flutter_dart_score/widgets/xx1/PlayerListXX1.dart';
 import 'package:flutter_dart_score/pages/common/AppLocalizations.dart';
+import 'package:flutter_dart_score/pages/common/CustomIcons.dart';
 
 typedef void UpdateUserCallback(PlayerXX1 player);
 
@@ -65,7 +66,7 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
         animation: _controller,
         child: Container(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(
@@ -105,71 +106,101 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  AnimatedDefaultTextStyle(
-                    style: currentDart() == 1 ?
-                      TextStyle(
-                        color: COLOR_MAIN_BLUE,
-                        fontFamily: 'Roboto',
-                        letterSpacing: 0.5,
-                        fontSize: 25,
-                      ):
-                      TextStyle(
-                        color: Colors.grey,
-                        fontFamily: 'Roboto',
-                        letterSpacing: 0.5,
-                        fontSize: 20,
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        CustomIcons.first_dart,
+                        color: currentDart() == 1 ? COLOR_MAIN_BLUE : Colors.grey,
                       ),
-                    duration: Duration(milliseconds: 200),
-                    child: Text(widget.currentPlayer.firstDart != null ? widget.currentPlayer.firstDart.toString() : '-',
-                    ),
+                      AnimatedDefaultTextStyle(
+                        style: currentDart() == 1 ?
+                        TextStyle(
+                          color: COLOR_MAIN_BLUE,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                          fontSize: 25,
+                        ):
+                        TextStyle(
+                          color: Colors.grey,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                          fontSize: 20,
+                        ),
+                        duration: Duration(milliseconds: 200),
+                        child: Text(widget.currentPlayer.firstDart != null ? widget.currentPlayer.firstDart.toString() : '-',
+                        ),
+                      ),
+                    ],
                   ),
-                  AnimatedDefaultTextStyle(
-                    style: currentDart() == 2 ?
-                    TextStyle(
-                      color: COLOR_MAIN_BLUE,
-                      fontFamily: 'Roboto',
-                      letterSpacing: 0.5,
-                      fontSize: 25,
-                    ):
-                    TextStyle(
-                      color: Colors.grey,
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        CustomIcons.second_dart,
+                        color: currentDart() == 2 ? COLOR_MAIN_BLUE : Colors.grey,
+                      ),
+                      AnimatedDefaultTextStyle(
+                        style: currentDart() == 2 ?
+                        TextStyle(
+                          color: COLOR_MAIN_BLUE,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                          fontSize: 25,
+                        ):
+                        TextStyle(
+                          color: Colors.grey,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                          fontSize: 20,
+                        ),
+                        duration: Duration(milliseconds: 200),
+                        child: Text(widget.currentPlayer.secondDart != null ? widget.currentPlayer.secondDart.toString() : '-',
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        CustomIcons.third_dart,
+                        color: currentDart() == 3 ? COLOR_MAIN_BLUE : Colors.grey,
+                      ),
+                      AnimatedDefaultTextStyle(
+                        style: currentDart() == 3 ?
+                        TextStyle(
+                          color: COLOR_MAIN_BLUE,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                          fontSize: 25,
+                        ):
+                        TextStyle(
+                          color: Colors.grey,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                          fontSize: 20,
+                        ),
+                        duration: Duration(milliseconds: 200),
+                        child: Text(widget.currentPlayer.thirdDart != null ? widget.currentPlayer.thirdDart.toString() : '-',
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(CustomIcons.three_darts),
+                  Text(((widget.currentPlayer.firstDart != null ? widget.currentPlayer.firstDart : 0) + (widget.currentPlayer.secondDart != null ? widget.currentPlayer.secondDart : 0) + (widget.currentPlayer.thirdDart != null ? widget.currentPlayer.thirdDart : 0)).toString(),
+                    style: TextStyle(
+                      color: Colors.black,
                       fontFamily: 'Roboto',
                       letterSpacing: 0.5,
                       fontSize: 20,
-                    ),
-                    duration: Duration(milliseconds: 200),
-                    child: Text(widget.currentPlayer.secondDart != null ? widget.currentPlayer.secondDart.toString() : '-',
-                    ),
-                  ),
-                  AnimatedDefaultTextStyle(
-                    style: currentDart() == 3 ?
-                    TextStyle(
-                      color: COLOR_MAIN_BLUE,
-                      fontFamily: 'Roboto',
-                      letterSpacing: 0.5,
-                      fontSize: 25,
-                    ):
-                    TextStyle(
-                      color: Colors.grey,
-                      fontFamily: 'Roboto',
-                      letterSpacing: 0.5,
-                      fontSize: 20,
-                    ),
-                    duration: Duration(milliseconds: 200),
-                    child: Text(widget.currentPlayer.thirdDart != null ? widget.currentPlayer.thirdDart.toString() : '-',
                     ),
                   ),
                 ],
               ),
-              Text(((widget.currentPlayer.firstDart != null ? widget.currentPlayer.firstDart : 0) + (widget.currentPlayer.secondDart != null ? widget.currentPlayer.secondDart : 0) + (widget.currentPlayer.thirdDart != null ? widget.currentPlayer.thirdDart : 0)).toString(),
-                style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'Roboto',
-                  letterSpacing: 0.5,
-                  fontSize: 20,
-                ),
-              ),
-              Text('Θ : ' + widget.currentPlayer.average.toStringAsFixed(2),
+              Text(AppLocalizations.of(context).average + widget.currentPlayer.average.toStringAsFixed(2),
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Roboto',

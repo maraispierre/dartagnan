@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'PlayerXX1.dart';
 import 'package:flutter_dart_score/pages/common/CommonColors.dart';
+import 'package:flutter_dart_score/pages/common/CustomIcons.dart';
 
 typedef void UpdateUserCallback(PlayerXX1 player);
 
@@ -72,29 +73,56 @@ class PlayerListXX1Item extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(player.firstDart != null ? player.firstDart.toString() : '-',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontFamily: 'Roboto',
-                              letterSpacing: 0.5,
-                              fontSize: 15,
-                            ),
+                          Row(
+                            children: <Widget>[
+                              Icon(
+                                CustomIcons.first_dart,
+                                color: Colors.grey,
+                                size: 20.0,
+                              ),
+                              Text(player.firstDart != null ? player.firstDart.toString() : '-',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontFamily: 'Roboto',
+                                  letterSpacing: 0.5,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(player.secondDart != null ? player.secondDart.toString() : '-',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontFamily: 'Roboto',
-                              letterSpacing: 0.5,
-                              fontSize: 15,
-                            ),
+                          Row(
+                            children: <Widget>[
+                              Icon(
+                                CustomIcons.second_dart,
+                                color: Colors.grey,
+                                size: 20.0,
+                              ),
+                              Text(player.secondDart != null ? player.secondDart.toString() : '-',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontFamily: 'Roboto',
+                                  letterSpacing: 0.5,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(player.thirdDart != null ? player.thirdDart.toString() : '-',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontFamily: 'Roboto',
-                              letterSpacing: 0.5,
-                              fontSize: 15,
-                            ),
+                          Row(
+                            children: <Widget>[
+                              Icon(
+                                CustomIcons.third_dart,
+                                color: Colors.grey,
+                                size: 20.0  ,
+                              ),
+                              Text(player.thirdDart != null ? player.thirdDart.toString() : '-',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontFamily: 'Roboto',
+                                  letterSpacing: 0.5,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -103,14 +131,22 @@ class PlayerListXX1Item extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 4,
-                  child: Text(((player.firstDart != null ? player.firstDart : 0) + (player.secondDart != null ? player.secondDart : 0) + (player.thirdDart != null ? player.thirdDart : 0)).toString(),
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'Roboto',
-                      letterSpacing: 0.5,
-                      fontSize: 15,
-                    ),
-                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        CustomIcons.three_darts,
+                        size: 20,
+                      ),
+                      Text(((player.firstDart != null ? player.firstDart : 0) + (player.secondDart != null ? player.secondDart : 0) + (player.thirdDart != null ? player.thirdDart : 0)).toString(),
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Roboto',
+                          letterSpacing: 0.5,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  )
                 ),
                 Expanded(
                   flex: 6,
