@@ -126,6 +126,7 @@ class ScoringCricket extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: FloatingActionButton(
+                  key: Key('btn16'),
                   heroTag: "btn16",
                   tooltip: 'Add',
                   child: Text('16',
@@ -148,6 +149,7 @@ class ScoringCricket extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: FloatingActionButton(
+                  key: Key('btn17'),
                   heroTag: "btn17",
                   tooltip: 'Add',
                   child: Text('17',
@@ -170,6 +172,7 @@ class ScoringCricket extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: FloatingActionButton(
+                  key: Key('btn18'),
                   heroTag: "btn18",
                   tooltip: 'Add',
                   child: Text('18',
@@ -192,6 +195,7 @@ class ScoringCricket extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: FloatingActionButton(
+                  key: Key('btn19'),
                   heroTag: "btn19",
                   tooltip: 'Add',
                   child: Text('19',
@@ -214,6 +218,7 @@ class ScoringCricket extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: FloatingActionButton(
+                  key: Key('btn20'),
                   heroTag: "btn20",
                   tooltip: 'Add',
                   child: Text('20',
@@ -236,6 +241,7 @@ class ScoringCricket extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: FloatingActionButton(
+                  key: Key('btn25'),
                   heroTag: "btn25",
                   tooltip: 'Add',
                   child: Text('25',
@@ -309,6 +315,7 @@ class ScoringCricket extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: FloatingActionButton(
+                  key: Key('btnX2'),
                   heroTag: "btnX2",
                   tooltip: 'Add',
                   child: Text('X2',
