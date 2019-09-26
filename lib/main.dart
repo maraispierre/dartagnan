@@ -16,7 +16,8 @@ void main() {
       const Locale('en'), // English
       const Locale('fr'), // Français
     ],
-    title: 'Dart Play',
+    debugShowCheckedModeBanner: false,
+    title: 'Dartagnan',
     home: AddPlayer(),
   ));
 }
