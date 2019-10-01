@@ -17,4 +17,12 @@ class Player {
     this.thirdDart = null;
     this.round = 0;
   }
+
+
+  /* method call to transform response JSON to Player */
+  factory Player.fromJson(Map<String, dynamic> json) {
+    return Player(
+      name: json['name'],
+    );
+  }
 }
