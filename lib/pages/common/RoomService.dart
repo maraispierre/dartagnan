@@ -8,7 +8,6 @@ class RoomService {
     await http.get('http://marais.tk:8080/rooms');
 
     if (response.statusCode == 200) {
-      // If server returns an OK response, parse the JSON.
       List<Room> rooms = [];
       for(var roomJson in jsonDecode(response.body)) {
         rooms.add(Room.fromJson(roomJson));
@@ -17,6 +16,54 @@ class RoomService {
     } else {
       // If that response was not OK, throw an error.
       throw Exception('Failed to load rooms');
+    }
+  }
+
+  Future<Room> createRoom(String nameRoom) async {
+    final response =
+    await http.post('http://marais.tk:8080/room/' + nameRoom);
+
+    if (response.statusCode == 200) {
+      return Room.fromJson(jsonDecode(response.body));
+    } else {
+      // If that response was not OK, throw an error.
+      throw Exception('Failed to create room');
+    }
+  }
+
+  Future<Room> deleteRoom(Room room) async {
+    final response =
+    await http.delete('http://marais.tk:8080/room/' + room.id.toString());
+
+    if (response.statusCode == 200) {
+      return Room.fromJson(jsonDecode(response.body));
+    } else {
+      // If that response was not OK, throw an error.
+      throw Exception('Failed to delete room');
+    }
+  }
+
+  Future<Room> addUser(Room room, String playerName) async {
+    final response =
+    await http.post('http://marais.tk:8080/room/' + room.id.toString() + '/player/' + playerName);
+
+    if (response.statusCode == 200) {
+      return Room.fromJson(jsonDecode(response.body));
+    } else {
+      // If that response was not OK, throw an error.
+      throw Exception('Failed to add player');
+    }
+  }
+
+  Future<Room> removeUser(Room room, int playerId) async {
+    final response =
+    await http.delete('http://marais.tk:8080/room/' + room.id.toString() + '/player/' + playerId.toString());
+
+    if (response.statusCode == 200) {
+      return Room.fromJson(jsonDecode(response.body));
+    } else {
+      // If that response was not OK, throw an error.
+      throw Exception('Failed to remove player');
     }
   }
 }

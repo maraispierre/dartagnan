@@ -55,10 +55,10 @@ class AddPlayerState extends State<AddPlayer> {
   }
 
   /* method call to remove player to the game after click on remove button */
-  void _handleRemovePlayer(String namePlayer) {
+  void _handleRemovePlayer(Player player) {
     setState(() {
       for(int i = 0; i< _players.length; i++) {
-        if(_players[i].name == namePlayer) {
+        if(_players[i].name == player.name) {
           _players.remove(_players[i]);
           break;
         }

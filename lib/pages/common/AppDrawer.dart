@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'AddPlayer.dart';
-import 'RoomsManager.dart';
+import 'RoomsManagerPage.dart';
 import 'CommonColors.dart';
 
 
@@ -35,7 +35,7 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => RoomsManager(),
+                MaterialPageRoute(builder: (context) => RoomsManagerPage(),
                 ),
               );
             },

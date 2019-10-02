@@ -1,6 +1,7 @@
 /* Object Player manipulate on all  game widget */
 class Player {
-  Player({this.name, this.score, this.firstDart, this.secondDart ,this.thirdDart, this.backward = false, this.round = 0,});
+  Player({this.id, this.name, this.score, this.firstDart, this.secondDart ,this.thirdDart, this.backward = false, this.round = 0,});
+  int id;
   String name;
   int score;
   int firstDart;
@@ -22,6 +23,7 @@ class Player {
   /* method call to transform response JSON to Player */
   factory Player.fromJson(Map<String, dynamic> json) {
     return Player(
+      id: json['player_id'],
       name: json['name'],
     );
   }
