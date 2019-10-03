@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'CommonColors.dart';
 import 'Room.dart';
-import 'package:flutter_dart_score/widgets/common/Player.dart';
-import 'package:flutter_dart_score/widgets/common/AddPlayerListItem.dart';
+import 'package:dartagnan/widgets/common/Player.dart';
+import 'package:dartagnan/widgets/common/AddPlayerListItem.dart';
 import 'RoomService.dart';
 import 'AppLocalizations.dart';
 

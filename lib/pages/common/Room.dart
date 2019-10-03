@@ -1,4 +1,4 @@
-import 'package:flutter_dart_score/widgets/common/Player.dart';
+import 'package:dartagnan/widgets/common/Player.dart';
 import 'dart:convert';
 
 /* Object Room uses to list connected group of players*/

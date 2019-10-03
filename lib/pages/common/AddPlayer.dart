@@ -8,7 +8,7 @@ import 'package:dartagnan/widgets/cricket/PlayerCricket.dart';
 import 'AppLocalizations.dart';
 import 'CommonColors.dart';
 import 'RoomService.dart';
-import 'package:flutter_dart_score/pages/common/Room.dart';
+import 'package:dartagnan/pages/common/Room.dart';
 import 'AppDrawer.dart';
 
 enum ChoiceGame { CRICKET, XX1 }

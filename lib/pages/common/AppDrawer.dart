@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'AddPlayer.dart';
 import 'RoomsManagerPage.dart';
 import 'CommonColors.dart';
-
+import 'package:dartagnan/SignInService.dart';
+import 'package:dartagnan/LoginPage.dart';
 
 class AppDrawer extends StatelessWidget {
 
@@ -15,7 +16,34 @@ class AppDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
-            child: Text('Dartagnan'),
+            child: Column(
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    imageUrl,
+                  ),
+                  radius: 40,
+                  backgroundColor: Colors.transparent,
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    signOutGoogle();
+                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return LoginPage();}), ModalRoute.withName('/'));
+                  },
+                  color: COLOR_SECONDARY_YELLOW,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Sign Out',
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                  ),
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40)),
+                ),
+              ],
+            ),
             decoration: BoxDecoration(
               color: COLOR_MAIN_BLUE,
             ),

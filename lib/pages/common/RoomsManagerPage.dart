@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'CommonColors.dart';
 import 'AppDrawer.dart';
 import 'Room.dart';
-import 'package:flutter_dart_score/widgets/common/AddRoomListItem.dart';
+import 'package:dartagnan/widgets/common/AddRoomListItem.dart';
 import 'RoomService.dart';
 import 'AppLocalizations.dart';
 
