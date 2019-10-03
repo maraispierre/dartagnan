@@ -20,8 +20,10 @@ class RoomService {
   }
 
   Future<Room> createRoom(String nameRoom) async {
+    Map<String, String> headers = {"Content-type": "application/json"};
+    String json = '{"name": "' + nameRoom + '"};
     final response =
-    await http.post('http://marais.tk:8080/room/' + nameRoom);
+    await http.post('http://marais.tk:8080/room', headers: headers, body: json);
 
     if (response.statusCode == 200) {
       return Room.fromJson(jsonDecode(response.body));
@@ -44,8 +46,10 @@ class RoomService {
   }
 
   Future<Room> addUser(Room room, String playerName) async {
+    Map<String, String> headers = {"Content-type": "application/json"};
+    String json = '{"name": "' + playerName + '"};
     final response =
-    await http.post('http://marais.tk:8080/room/' + room.id.toString() + '/player/' + playerName);
+    await http.post('http://marais.tk:8080/room/' + room.id.toString() + '/player', headers: headers, body: json);
 
     if (response.statusCode == 200) {
       return Room.fromJson(jsonDecode(response.body));
