@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Player.dart';
-import 'package:flutter_dart_score/pages/common/CommonColors.dart';
+import 'package:dartagnan/pages/common/CommonColors.dart';
 
 typedef void UpdateMultiplyCallback(int multiply);
 typedef void RemovePlayerCallback(Player player);

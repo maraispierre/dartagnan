@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'PlayerXX1.dart';
-import 'package:flutter_dart_score/pages/common/CommonColors.dart';
-import 'package:flutter_dart_score/pages/common/AppLocalizations.dart';
+import 'package:dartagnan/pages/common/CommonColors.dart';
+import 'package:dartagnan/pages/common/AppLocalizations.dart';
 
 typedef void UpdateUserCallback(PlayerXX1 player);
 typedef void UpdateMultiplyCallback(int multiply);
