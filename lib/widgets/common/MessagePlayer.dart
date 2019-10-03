@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dart_score/pages/common/CommonColors.dart';
-import 'package:flutter_dart_score/widgets/common/Player.dart';
-import 'package:flutter_dart_score/pages/common/AppLocalizations.dart';
+import 'package:dartagnan/pages/common/CommonColors.dart';
+import 'package:dartagnan/widgets/common/Player.dart';
+import 'package:dartagnan/pages/common/AppLocalizations.dart';
 
 /* widget which contains message for player */
 class MessagePlayer extends StatelessWidget {

@@ -7,12 +7,12 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dart_score/pages/xx1/GameXX1.dart';
-import 'package:flutter_dart_score/widgets/xx1/PlayerXX1.dart';
-import 'package:flutter_dart_score/widgets/cricket/PlayerCricket.dart';
-import 'package:flutter_dart_score/pages/cricket/GameCricket.dart';
+import 'package:dartagnan/pages/xx1/GameXX1.dart';
+import 'package:dartagnan/widgets/xx1/PlayerXX1.dart';
+import 'package:dartagnan/widgets/cricket/PlayerCricket.dart';
+import 'package:dartagnan/pages/cricket/GameCricket.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_dart_score/pages/common/AppLocalizationsDelegate.dart';
+import 'package:dartagnan/pages/common/AppLocalizationsDelegate.dart';
 
 void main() {
 

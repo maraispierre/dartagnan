@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dart_score/widgets/common/AddPlayerListItem.dart';
-import 'package:flutter_dart_score/pages/xx1/GameXX1.dart';
-import 'package:flutter_dart_score/pages/cricket/GameCricket.dart';
-import 'package:flutter_dart_score/widgets/common/Player.dart';
-import 'package:flutter_dart_score/widgets/xx1/PlayerXX1.dart';
-import 'package:flutter_dart_score/widgets/cricket/PlayerCricket.dart';
+import 'package:dartagnan/widgets/common/AddPlayerListItem.dart';
+import 'package:dartagnan/pages/xx1/GameXX1.dart';
+import 'package:dartagnan/pages/cricket/GameCricket.dart';
+import 'package:dartagnan/widgets/common/Player.dart';
+import 'package:dartagnan/widgets/xx1/PlayerXX1.dart';
+import 'package:dartagnan/widgets/cricket/PlayerCricket.dart';
 import 'AppLocalizations.dart';
 import 'CommonColors.dart';
 
@@ -141,6 +141,7 @@ class AddPlayerState extends State<AddPlayer> {
                   SizedBox(
                     width: 200,
                     child: TextFormField(
+                      maxLength: 30,
                       cursorColor: COLOR_MAIN_BLUE,
                       decoration: InputDecoration(
                         icon: Icon(Icons.person, color: COLOR_MAIN_BLUE,),
@@ -271,11 +272,13 @@ class AddPlayerState extends State<AddPlayer> {
                               letterSpacing: 0.5,
                             ),
                           ),
-                          Switch(
+                          Checkbox(
                             value: _endByDouble,
                             activeColor: COLOR_MAIN_BLUE,
                             onChanged: (value) {
-                              _endByDouble = value;
+                              setState(() {
+                                _endByDouble = value;
+                              });
                             },
                           ),
                         ],
