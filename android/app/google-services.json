@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "987206823185",
+    "firebase_url": "https://dartagnan-9a1d0.firebaseio.com",
+    "project_id": "dartagnan-9a1d0",
+    "storage_bucket": "dartagnan-9a1d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987206823185:android:be97ad23fb43b112abb0b0",
+        "android_client_info": {
+          "package_name": "tk.marais.dartagnan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987206823185-7bkikqu1ql9cg492l1537q1uj871fee7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tk.marais.dartagnan",
+            "certificate_hash": "19f43526ce9cdccf54da7c8abf9a50ecfdfdb372"
+          }
+        },
+        {
+          "client_id": "987206823185-oqjc47242h1dq7hpshv8jmdo5drdu7r6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLvUKgGVCFoENHMs_uNbH1EdaPAps063w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987206823185-oqjc47242h1dq7hpshv8jmdo5drdu7r6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

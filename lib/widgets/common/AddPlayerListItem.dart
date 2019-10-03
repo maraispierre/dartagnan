@@ -3,7 +3,7 @@ import 'Player.dart';
 import 'package:dartagnan/pages/common/CommonColors.dart';
 
 typedef void UpdateMultiplyCallback(int multiply);
-typedef void RemovePlayerCallback(String namePlayer);
+typedef void RemovePlayerCallback(Player player);
 
 /* Widget to display detail of an adding player */
 class AddPlayerListItem extends StatelessWidget {
@@ -48,7 +48,7 @@ class AddPlayerListItem extends StatelessWidget {
                 backgroundColor: Colors.red,
                 child: Icon(Icons.remove),
                 onPressed: () {
-                  onRemovePlayer(player.name);
+                  onRemovePlayer(player);
                 },
               ),
             ),
