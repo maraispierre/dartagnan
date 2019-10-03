@@ -141,6 +141,7 @@ class AddPlayerState extends State<AddPlayer> {
                   SizedBox(
                     width: 200,
                     child: TextFormField(
+                      maxLength: 30,
                       cursorColor: COLOR_MAIN_BLUE,
                       decoration: InputDecoration(
                         icon: Icon(Icons.person, color: COLOR_MAIN_BLUE,),
