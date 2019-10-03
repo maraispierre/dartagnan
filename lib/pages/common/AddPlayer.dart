@@ -272,11 +272,13 @@ class AddPlayerState extends State<AddPlayer> {
                               letterSpacing: 0.5,
                             ),
                           ),
-                          Switch(
+                          Checkbox(
                             value: _endByDouble,
                             activeColor: COLOR_MAIN_BLUE,
                             onChanged: (value) {
-                              _endByDouble = value;
+                              setState(() {
+                                _endByDouble = value;
+                              });
                             },
                           ),
                         ],
