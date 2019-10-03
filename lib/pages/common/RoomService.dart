@@ -21,7 +21,7 @@ class RoomService {
 
   Future<Room> createRoom(String nameRoom) async {
     Map<String, String> headers = {"Content-type": "application/json"};
-    String json = '{"name": "' + nameRoom + '"};
+    String json = '{"name": "' + nameRoom + '"}';
     final response =
     await http.post('http://marais.tk:8080/room', headers: headers, body: json);
 
@@ -47,7 +47,7 @@ class RoomService {
 
   Future<Room> addUser(Room room, String playerName) async {
     Map<String, String> headers = {"Content-type": "application/json"};
-    String json = '{"name": "' + playerName + '"};
+    String json = '{"name": "' + playerName + '"}';
     final response =
     await http.post('http://marais.tk:8080/room/' + room.id.toString() + '/player', headers: headers, body: json);
 
