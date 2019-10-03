@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'PlayerCricket.dart';
-import 'package:flutter_dart_score/widgets/cricket/TablePlayerListItemCricket.dart';
-import 'package:flutter_dart_score/pages/common/CommonColors.dart';
+import 'package:dartagnan/widgets/cricket/TablePlayerListItemCricket.dart';
+import 'package:dartagnan/pages/common/CommonColors.dart';
 
 typedef void UpdateUserCallback(PlayerCricket player);
 

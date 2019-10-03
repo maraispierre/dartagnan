@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'PlayerXX1.dart';
-import 'package:flutter_dart_score/pages/common/CommonColors.dart';
-import 'package:flutter_dart_score/widgets/xx1/PlayerListXX1.dart';
-import 'package:flutter_dart_score/pages/common/AppLocalizations.dart';
-import 'package:flutter_dart_score/pages/common/CustomIcons.dart';
+import 'package:dartagnan/pages/common/CommonColors.dart';
+import 'package:dartagnan/widgets/xx1/PlayerListXX1.dart';
+import 'package:dartagnan/pages/common/AppLocalizations.dart';
+import 'package:dartagnan/pages/common/CustomIcons.dart';
 
 typedef void UpdateUserCallback(PlayerXX1 player);
 

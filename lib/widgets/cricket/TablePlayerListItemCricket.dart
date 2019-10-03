@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'PlayerCricket.dart';
-import 'package:flutter_dart_score/pages/common/CommonColors.dart';
+import 'package:dartagnan/pages/common/CommonColors.dart';
 
 class TablePlayerListItemCricket extends StatelessWidget {
 

@@ -1,4 +1,4 @@
-package tk.marais.flutter_dart_score;
+package tk.marais.dartagnan;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

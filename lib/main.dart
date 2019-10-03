@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dart_score/pages/common/AddPlayer.dart';
+import 'package:dartagnan/pages/common/AddPlayer.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_dart_score/pages/common/AppLocalizationsDelegate.dart';
+import 'package:dartagnan/pages/common/AppLocalizationsDelegate.dart';
 
 void main() {
   runApp(MaterialApp(

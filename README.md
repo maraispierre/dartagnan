@@ -1,4 +1,4 @@
-# flutter_dart_score
+# dartagnan
 
 Dart score application :
   - Features :
