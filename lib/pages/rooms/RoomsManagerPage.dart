@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'CommonColors.dart';
-import 'AppDrawer.dart';
-import 'Room.dart';
-import 'package:dartagnan/widgets/common/AddRoomListItem.dart';
-import 'RoomService.dart';
-import 'AppLocalizations.dart';
+import '../../common/CommonColors.dart';
+import '../../common/widgets/AppDrawer.dart';
+import '../../common/Room.dart';
+import 'package:dartagnan/common/widgets/AddRoomListItem.dart';
+import '../../services/RoomService.dart';
+import '../../common/AppLocalizations.dart';
 
 
 /* Widget page to manage rooms*/

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:dartagnan/widgets/common/MessagePlayer.dart';
-import 'package:dartagnan/widgets/cricket/PlayerCricketDetail.dart';
-import 'package:dartagnan/widgets/cricket/PlayerCricket.dart';
-import 'package:dartagnan/widgets/cricket/StateHistorical.dart';
-import 'package:dartagnan/widgets/cricket/ScoringCricket.dart';
-import 'package:dartagnan/pages/common/CommonColors.dart';
-import 'package:dartagnan/pages/common/AppLocalizations.dart';
+import 'package:dartagnan/common/widgets/MessagePlayer.dart';
+import 'package:dartagnan/pages/cricket/widgets/PlayerCricketDetail.dart';
+import 'package:dartagnan/pages/cricket/widgets/PlayerCricket.dart';
+import 'package:dartagnan/pages/cricket/widgets/StateHistorical.dart';
+import 'package:dartagnan/pages/cricket/widgets/ScoringCricket.dart';
+import 'package:dartagnan/common/CommonColors.dart';
+import 'package:dartagnan/common/AppLocalizations.dart';
 
 /* Global Widget Page  which contains :
  * - PlayerList for Cricket (PlayerListCricket)

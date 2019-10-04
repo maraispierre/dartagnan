@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:dartagnan/widgets/common/MessagePlayer.dart';
-import 'package:dartagnan/widgets/xx1/ScoringXX1.dart';
-import 'package:dartagnan/widgets/xx1/PlayerXX1.dart';
-import 'package:dartagnan/pages/common/CommonColors.dart';
-import 'package:dartagnan/widgets/xx1/PlayerXX1Detail.dart';
-import 'package:dartagnan/pages/common/AppLocalizations.dart';
+import 'package:dartagnan/common/widgets/MessagePlayer.dart';
+import 'package:dartagnan/pages/xx1/widgets/ScoringXX1.dart';
+import 'package:dartagnan/pages/xx1/widgets/PlayerXX1.dart';
+import 'package:dartagnan/common/CommonColors.dart';
+import 'package:dartagnan/pages/xx1/widgets/PlayerXX1Detail.dart';
+import 'package:dartagnan/common/AppLocalizations.dart';
 
 /* Global Widget Page  which contains :
  * - PlayerList for XX1 (PlayerListXX1)

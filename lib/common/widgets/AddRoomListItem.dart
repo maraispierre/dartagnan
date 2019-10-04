@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:dartagnan/pages/common/Room.dart';
-import 'package:dartagnan/pages/common/CommonColors.dart';
-import 'package:dartagnan/pages/common/RoomDetailPage.dart';
+import 'package:dartagnan/common/Room.dart';
+import 'package:dartagnan/common/CommonColors.dart';
+import 'package:dartagnan/pages/rooms/RoomDetailPage.dart';
 
 typedef void RemoveRoomCallback(Room room);
 

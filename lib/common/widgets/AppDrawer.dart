@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'AddPlayer.dart';
-import 'RoomsManagerPage.dart';
-import 'CommonColors.dart';
-import 'package:dartagnan/SignInService.dart';
-import 'package:dartagnan/LoginPage.dart';
+import '../../pages/launcher/GameLauncher.dart';
+import '../../pages/rooms/RoomsManagerPage.dart';
+import '../CommonColors.dart';
+import 'package:dartagnan/services/SignInService.dart';
+import 'package:dartagnan/pages/login/LoginPage.dart';
 
 class AppDrawer extends StatelessWidget {
 
@@ -53,7 +53,7 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AddPlayer(),
+                MaterialPageRoute(builder: (context) => GameLauncher(),
                 ),
               );
             },

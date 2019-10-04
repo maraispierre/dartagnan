@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'SignInService.dart';
-import 'pages/common/AddPlayer.dart';
+import '../../services/SignInService.dart';
+import '../launcher/GameLauncher.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) {
-                return AddPlayer();
+                return GameLauncher();
               },
             ),
           );

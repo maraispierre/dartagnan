@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'PlayerCricket.dart';
 import 'StateHistorical.dart';
-import 'package:dartagnan/pages/common/CommonColors.dart';
-import 'package:dartagnan/pages/common/AppLocalizations.dart';
+import 'package:dartagnan/common/CommonColors.dart';
+import 'package:dartagnan/common/AppLocalizations.dart';
 
 typedef void UpdateUserCallback(PlayerCricket player);
 typedef void UpdateMultiplyCallback(int multiply);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'PlayerXX1.dart';
-import 'package:dartagnan/pages/common/CommonColors.dart';
-import 'package:dartagnan/pages/common/CustomIcons.dart';
+import 'package:dartagnan/common/CommonColors.dart';
+import 'package:dartagnan/common/CustomIcons.dart';
 
 typedef void UpdateUserCallback(PlayerXX1 player);
 

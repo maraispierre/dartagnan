@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:dartagnan/widgets/common/AddPlayerListItem.dart';
+import 'package:dartagnan/common/widgets/AddPlayerListItem.dart';
 import 'package:dartagnan/pages/xx1/GameXX1.dart';
 import 'package:dartagnan/pages/cricket/GameCricket.dart';
-import 'package:dartagnan/widgets/common/Player.dart';
-import 'package:dartagnan/widgets/xx1/PlayerXX1.dart';
-import 'package:dartagnan/widgets/cricket/PlayerCricket.dart';
-import 'AppLocalizations.dart';
-import 'CommonColors.dart';
-import 'RoomService.dart';
-import 'package:dartagnan/pages/common/Room.dart';
-import 'AppDrawer.dart';
+import 'package:dartagnan/common/Player.dart';
+import 'package:dartagnan/pages/xx1/widgets/PlayerXX1.dart';
+import 'package:dartagnan/pages/cricket/widgets/PlayerCricket.dart';
+import '../../common/AppLocalizations.dart';
+import '../../common/CommonColors.dart';
+import '../../services/RoomService.dart';
+import 'package:dartagnan/common/Room.dart';
+import '../../common/widgets/AppDrawer.dart';
 
 enum ChoiceGame { CRICKET, XX1 }
 
 /* Widget page to add Player and start game XX1 */
-class AddPlayer extends StatefulWidget {
+class GameLauncher extends StatefulWidget {
 
   @override
-  AddPlayerState createState() {
-    return AddPlayerState();
+  GameLauncherState createState() {
+    return GameLauncherState();
   }
 }
 
 /* State of GameXX1AddPlayer */
-class AddPlayerState extends State<AddPlayer> {
+class GameLauncherState extends State<GameLauncher> {
 
   static const List<String> scores = ['301', '401', '501', '601', '701', '801', '901', '1001'];
 

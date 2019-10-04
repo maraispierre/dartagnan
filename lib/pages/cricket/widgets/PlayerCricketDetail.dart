@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'PlayerCricket.dart';
-import 'package:dartagnan/pages/common/CommonColors.dart';
-import 'package:dartagnan/widgets/cricket/PlayerListCricket.dart';
-import 'package:dartagnan/widgets/cricket/TablePlayerListItemCricket.dart';
-import 'package:dartagnan/pages/common/AppLocalizations.dart';
-import 'package:dartagnan/pages/common/CustomIcons.dart';
+import 'package:dartagnan/common/CommonColors.dart';
+import 'package:dartagnan/pages/cricket/widgets/PlayerListCricket.dart';
+import 'package:dartagnan/pages/cricket/widgets/TablePlayerListItemCricket.dart';
+import 'package:dartagnan/common/AppLocalizations.dart';
+import 'package:dartagnan/common/CustomIcons.dart';
 
 typedef void UpdateUserCallback(PlayerCricket player);
 

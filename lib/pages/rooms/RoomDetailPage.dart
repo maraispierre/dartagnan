@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'CommonColors.dart';
-import 'Room.dart';
-import 'package:dartagnan/widgets/common/Player.dart';
-import 'package:dartagnan/widgets/common/AddPlayerListItem.dart';
-import 'RoomService.dart';
-import 'AppLocalizations.dart';
+import '../../common/CommonColors.dart';
+import '../../common/Room.dart';
+import 'package:dartagnan/common/Player.dart';
+import 'package:dartagnan/common/widgets/AddPlayerListItem.dart';
+import '../../services/RoomService.dart';
+import '../../common/AppLocalizations.dart';
 
 
 /* Widget page to display detail page */

@@ -1,7 +1,7 @@
-import 'Room.dart';
+import '../common/Room.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:dartagnan/SignInService.dart';
+import 'package:dartagnan/services/SignInService.dart';
 
 class RoomService {
   Future<List<Room>> fetchRooms() async {

@@ -1,4 +1,4 @@
-import 'package:dartagnan/widgets/common/Player.dart';
+import 'package:dartagnan/common/Player.dart';
 import 'StateHistorical.dart';
 /* Object Player manipulate on all Cricket game widget */
 class PlayerCricket extends Player{

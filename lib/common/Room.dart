@@ -1,4 +1,4 @@
-import 'package:dartagnan/widgets/common/Player.dart';
+import 'package:dartagnan/common/Player.dart';
 import 'dart:convert';
 
 /* Object Room uses to list connected group of players*/
