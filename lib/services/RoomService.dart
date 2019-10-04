@@ -2,11 +2,12 @@ import '../common/Room.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:dartagnan/services/SignInService.dart';
+import 'package:crypt/crypt.dart';
 
 class RoomService {
   Future<List<Room>> fetchRooms() async {
     final response =
-    await http.get('http://marais.tk:8080/rooms/' + email);
+    await http.get('http://marais.tk:8080/rooms/' + new Crypt.sha256(email).hash);
 
     if (response.statusCode == 200) {
       List<Room> rooms = [];
@@ -22,7 +23,7 @@ class RoomService {
 
   Future<Room> createRoom(String nameRoom) async {
     Map<String, String> headers = {"Content-type": "application/json"};
-    String json = '{"name": "' + nameRoom + '", "userId": "' + email + '"}';
+    String json = '{"name": "' + nameRoom + '", "userId": "' + new Crypt.sha256(email).hash + '"}';
     final response =
     await http.post('http://marais.tk:8080/room', headers: headers, body: json);
 

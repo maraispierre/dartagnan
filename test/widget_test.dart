@@ -8,11 +8,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:dartagnan/pages/xx1/GameXX1.dart';
-import 'package:dartagnan/widgets/xx1/PlayerXX1.dart';
-import 'package:dartagnan/widgets/cricket/PlayerCricket.dart';
+import 'package:dartagnan/pages/xx1/widgets/PlayerXX1.dart';
+import 'package:dartagnan/pages/cricket/widgets/PlayerCricket.dart';
 import 'package:dartagnan/pages/cricket/GameCricket.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:dartagnan/pages/common/AppLocalizationsDelegate.dart';
+import 'package:dartagnan/common/AppLocalizationsDelegate.dart';
 
 void main() {
 
