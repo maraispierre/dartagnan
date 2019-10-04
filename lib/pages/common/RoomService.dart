@@ -22,7 +22,7 @@ class RoomService {
 
   Future<Room> createRoom(String nameRoom) async {
     Map<String, String> headers = {"Content-type": "application/json"};
-    String json = '{"name": "' + nameRoom + '", "user_id": "' + email + '"}';
+    String json = '{"name": "' + nameRoom + '", "userId": "' + email + '"}';
     final response =
     await http.post('http://marais.tk:8080/room', headers: headers, body: json);
 
