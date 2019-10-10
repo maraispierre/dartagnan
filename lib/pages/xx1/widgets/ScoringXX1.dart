@@ -50,17 +50,14 @@ class ScoringXX1 extends StatelessWidget {
     if(currentPlayer.firstDart == null) {
       currentPlayer.firstDart = value * multiply;
       currentPlayer.score = currentPlayer.score - currentPlayer.firstDart;
-      onUpdateMultiply(1);
     }
     else if(currentPlayer.secondDart == null) {
       currentPlayer.secondDart = value * multiply;
       currentPlayer.score = currentPlayer.score - currentPlayer.secondDart;
-      onUpdateMultiply(1);
     }
     else if(currentPlayer.thirdDart == null) {
       currentPlayer.thirdDart = value * multiply;
       currentPlayer.score = currentPlayer.score - currentPlayer.thirdDart;
-      onUpdateMultiply(1);
     }
     onUpdatePlayer(currentPlayer);
   }
