@@ -82,6 +82,9 @@ class ScoringCricket extends StatelessWidget {
         }
         currentPlayer.score = currentPlayer.score + value * multiply;
       }
+      if(currentPlayer.tableCricket[value] > 3) {
+        currentPlayer.tableCricket[value] = 3;
+      }
 
     }
     else if( value != 0 && !_numberIsClose(value)) {
