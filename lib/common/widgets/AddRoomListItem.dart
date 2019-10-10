@@ -35,19 +35,20 @@ class AddRoomListItem extends StatelessWidget {
               child: Text(room.name,
                 style: TextStyle(
                   fontSize: 20,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Portico',
                   letterSpacing: 0.5,
                 ),
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 SizedBox(
                   width: 35.0,
                   height: 35.0,
                   child: FloatingActionButton(
                     heroTag: "btnEdit" + room.name,
-                    backgroundColor: Colors.green,
+                    backgroundColor: COLOR_SECONDARY_YELLOW,
                     child: Icon(Icons.edit),
                     onPressed: () {
                       Navigator.push(

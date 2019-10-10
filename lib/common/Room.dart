@@ -16,7 +16,7 @@ class Room {
       players.add(Player.fromJson(playerJson));
     }
     return Room(
-      id: json['room_id'],
+      id: json['roomId'],
       name: json['name'],
       players: players,
     );

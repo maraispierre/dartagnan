@@ -6,8 +6,10 @@ import 'package:crypt/crypt.dart';
 
 class RoomService {
   Future<List<Room>> fetchRooms() async {
+    Map<String, String> headers = {"Content-type": "application/json"};
+    String json = '{"userId": "' + new Crypt.sha256(SignInService.email, rounds: 10000, salt:"abcdefghijklmnop").hash+ '"}';
     final response =
-    await http.get('http://marais.tk:8080/rooms/' + new Crypt.sha256(email).hash);
+    await http.post('http://marais.tk:8080/rooms', headers: headers, body: json);
 
     if (response.statusCode == 200) {
       List<Room> rooms = [];
@@ -23,7 +25,7 @@ class RoomService {
 
   Future<Room> createRoom(String nameRoom) async {
     Map<String, String> headers = {"Content-type": "application/json"};
-    String json = '{"name": "' + nameRoom + '", "userId": "' + new Crypt.sha256(email).hash + '"}';
+    String json = '{"name": "' + nameRoom + '", "userId": "' + new Crypt.sha256(SignInService.email, rounds: 10000, salt:"abcdefghijklmnop").hash + '"}';
     final response =
     await http.post('http://marais.tk:8080/room', headers: headers, body: json);
 

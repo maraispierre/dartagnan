@@ -43,7 +43,7 @@ class PlayerListXX1Item extends StatelessWidget {
                   child: Text(player.name,
                     style: TextStyle(
                       color: Colors.white,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: 20,
                     ),
@@ -59,7 +59,7 @@ class PlayerListXX1Item extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w800,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: 30,
                     ),
@@ -83,7 +83,7 @@ class PlayerListXX1Item extends StatelessWidget {
                               Text(player.firstDart != null ? player.firstDart.toString() : '-',
                                 style: TextStyle(
                                   color: Colors.grey,
-                                  fontFamily: 'Roboto',
+                                  fontFamily: 'Portico',
                                   letterSpacing: 0.5,
                                   fontSize: 15,
                                 ),
@@ -100,7 +100,7 @@ class PlayerListXX1Item extends StatelessWidget {
                               Text(player.secondDart != null ? player.secondDart.toString() : '-',
                                 style: TextStyle(
                                   color: Colors.grey,
-                                  fontFamily: 'Roboto',
+                                  fontFamily: 'Portico',
                                   letterSpacing: 0.5,
                                   fontSize: 15,
                                 ),
@@ -117,7 +117,7 @@ class PlayerListXX1Item extends StatelessWidget {
                               Text(player.thirdDart != null ? player.thirdDart.toString() : '-',
                                 style: TextStyle(
                                   color: Colors.grey,
-                                  fontFamily: 'Roboto',
+                                  fontFamily: 'Portico',
                                   letterSpacing: 0.5,
                                   fontSize: 15,
                                 ),
@@ -140,7 +140,7 @@ class PlayerListXX1Item extends StatelessWidget {
                       Text(((player.firstDart != null ? player.firstDart : 0) + (player.secondDart != null ? player.secondDart : 0) + (player.thirdDart != null ? player.thirdDart : 0)).toString(),
                         style: TextStyle(
                           color: Colors.black,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 15,
                         ),
@@ -153,7 +153,7 @@ class PlayerListXX1Item extends StatelessWidget {
                   child: Text('Θ : ' + player.average.toStringAsFixed(2),
                     style: TextStyle(
                       color: Colors.black,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: 15,
                     ),),

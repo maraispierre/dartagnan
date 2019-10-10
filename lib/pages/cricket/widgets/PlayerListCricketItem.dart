@@ -44,7 +44,7 @@ class PlayerListCricketItem extends StatelessWidget {
                 child: Text(player.name,
                   style: TextStyle(
                     color: Colors.white,
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Portico',
                     letterSpacing: 0.5,
                     fontSize: 20,
                   ),

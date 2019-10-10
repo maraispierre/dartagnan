@@ -23,7 +23,7 @@ class Player {
   /* method call to transform response JSON to Player */
   factory Player.fromJson(Map<String, dynamic> json) {
     return Player(
-      id: json['player_id'],
+      id: json['playerId'],
       name: json['name'],
     );
   }

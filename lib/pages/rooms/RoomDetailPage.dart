@@ -91,7 +91,7 @@ class RoomDetailPageState extends State<RoomDetailPage> {
                       child: TextFormField(
                         cursorColor: COLOR_MAIN_BLUE,
                         decoration: InputDecoration(
-                          icon: Icon(Icons.add, color: COLOR_MAIN_BLUE,),
+                          icon: Icon(Icons.person, color: COLOR_MAIN_BLUE,),
                           hintText: AppLocalizations.of(context).addPlayerFieldName,
                           labelText: AppLocalizations.of(context).addPlayerField,
                           labelStyle: TextStyle(color: Colors.black,),

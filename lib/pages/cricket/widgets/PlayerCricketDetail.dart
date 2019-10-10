@@ -80,7 +80,7 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                     ),
                   ),
@@ -91,7 +91,7 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Portico',
                   letterSpacing: 0.5,
                 ),
               ),
@@ -100,7 +100,7 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
                   color: Colors.black,
                   fontSize: 30,
                   fontWeight: FontWeight.w600,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Portico',
                   letterSpacing: 0.5,
                 ),
               ),
@@ -117,13 +117,13 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
                         style: currentDart() == 1 ?
                         TextStyle(
                           color: COLOR_MAIN_BLUE,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 25,
                         ):
                         TextStyle(
                           color: Colors.grey,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 20,
                         ),
@@ -143,13 +143,13 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
                         style: currentDart() == 2 ?
                         TextStyle(
                           color: COLOR_MAIN_BLUE,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 25,
                         ):
                         TextStyle(
                           color: Colors.grey,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 20,
                         ),
@@ -169,13 +169,13 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
                         style: currentDart() == 3 ?
                         TextStyle(
                           color: COLOR_MAIN_BLUE,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 25,
                         ):
                         TextStyle(
                           color: Colors.grey,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 20,
                         ),
@@ -193,7 +193,7 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Portico',
                   letterSpacing: 0.5,
                 ),
                 ),

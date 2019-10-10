@@ -4,42 +4,36 @@ import 'package:google_sign_in/google_sign_in.dart';
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
 
-String name;
-String email;
-String imageUrl;
+class SignInService {
 
-Future<String> signInWithGoogle() async {
-  final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-  final GoogleSignInAuthentication googleSignInAuthentication =
-  await googleSignInAccount.authentication;
+  static String name;
+  static String email;
+  static String imageUrl;
 
-  final AuthCredential credential = GoogleAuthProvider.getCredential(
-    accessToken: googleSignInAuthentication.accessToken,
-    idToken: googleSignInAuthentication.idToken,
-  );
+  static Future<String> signInWithGoogle() async {
+    final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
+    final GoogleSignInAuthentication googleSignInAuthentication =
+    await googleSignInAccount.authentication;
 
-  final FirebaseUser user = await _auth.signInWithCredential(credential);
+    final AuthCredential credential = GoogleAuthProvider.getCredential(
+      accessToken: googleSignInAuthentication.accessToken,
+      idToken: googleSignInAuthentication.idToken,
+    );
 
-  // Add the following lines after getting the user
-  // Checking if email and name is null
-  assert(user.email != null);
-  assert(user.displayName != null);
-  assert(user.photoUrl != null);
-  name = user.displayName;
-  email = user.email;
-  imageUrl = user.photoUrl;
+    final FirebaseUser user = await _auth.signInWithCredential(credential);
 
-  assert(!user.isAnonymous);
-  assert(await user.getIdToken() != null);
+    name = user.displayName;
+    email = user.email;
+    imageUrl = user.photoUrl;
 
-  final FirebaseUser currentUser = await _auth.currentUser();
-  assert(user.uid == currentUser.uid);
+    assert(!user.isAnonymous);
+    assert(await user.getIdToken() != null);
 
-  return 'signInWithGoogle succeeded: $user';
-}
+    final FirebaseUser currentUser = await _auth.currentUser();
+    assert(user.uid == currentUser.uid);
+  }
 
-void signOutGoogle() async{
-  await googleSignIn.signOut();
-
-  print("User Sign Out");
+  static void signOutGoogle() async{
+    await googleSignIn.signOut();
+  }
 }

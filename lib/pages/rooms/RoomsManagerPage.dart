@@ -61,7 +61,7 @@ class RoomsManagerPageState extends State<RoomsManagerPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: COLOR_MAIN_BLUE,
-        title: Text('Gestion des Rooms'),
+        title: Text(AppLocalizations.of(context).titleAddRoom),
       ),
       body: Container(
         child: Column(
@@ -99,9 +99,9 @@ class RoomsManagerPageState extends State<RoomsManagerPage> {
                       child: TextFormField(
                         cursorColor: COLOR_MAIN_BLUE,
                         decoration: InputDecoration(
-                          icon: Icon(Icons.add, color: COLOR_MAIN_BLUE,),
+                          icon: Icon(Icons.supervised_user_circle, color: COLOR_MAIN_BLUE,),
                           hintText: AppLocalizations.of(context).addPlayerFieldName,
-                          labelText: 'Add a room',
+                          labelText: AppLocalizations.of(context).addRoomField,
                           labelStyle: TextStyle(color: Colors.black,),
                           focusColor: COLOR_MAIN_BLUE,
                           focusedBorder: UnderlineInputBorder(
@@ -112,7 +112,7 @@ class RoomsManagerPageState extends State<RoomsManagerPage> {
                         ),
                         validator: (value) {
                           if (value.isEmpty) {
-                            return AppLocalizations.of(context).addPlayerFieldHelp;
+                            return AppLocalizations.of(context).addRoomFieldHelp;
                           }
                           return null;
                         },

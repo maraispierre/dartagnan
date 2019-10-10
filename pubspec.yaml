@@ -51,7 +51,10 @@ flutter:
     - assets/
 
   fonts:
-    - family:  CustomIcons
+    - family: Portico
+      fonts:
+        - asset: fonts/PorticoRegular.otf
+    - family: CustomIcons
       fonts:
         - asset: fonts/CustomIcons.ttf
 

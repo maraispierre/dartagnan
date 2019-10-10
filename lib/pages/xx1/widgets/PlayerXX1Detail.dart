@@ -79,7 +79,7 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                     ),
                   ),
@@ -90,7 +90,7 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Portico',
                   letterSpacing: 0.5,
                 ),
               ),
@@ -99,7 +99,7 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
                   color: Colors.black,
                   fontSize: 30,
                   fontWeight: FontWeight.w600,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Portico',
                   letterSpacing: 0.5,
                 ),
               ),
@@ -116,13 +116,13 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
                         style: currentDart() == 1 ?
                         TextStyle(
                           color: COLOR_MAIN_BLUE,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 25,
                         ):
                         TextStyle(
                           color: Colors.grey,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 20,
                         ),
@@ -142,13 +142,13 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
                         style: currentDart() == 2 ?
                         TextStyle(
                           color: COLOR_MAIN_BLUE,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 25,
                         ):
                         TextStyle(
                           color: Colors.grey,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 20,
                         ),
@@ -168,13 +168,13 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
                         style: currentDart() == 3 ?
                         TextStyle(
                           color: COLOR_MAIN_BLUE,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 25,
                         ):
                         TextStyle(
                           color: Colors.grey,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 20,
                         ),
@@ -193,7 +193,7 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
                   Text(((widget.currentPlayer.firstDart != null ? widget.currentPlayer.firstDart : 0) + (widget.currentPlayer.secondDart != null ? widget.currentPlayer.secondDart : 0) + (widget.currentPlayer.thirdDart != null ? widget.currentPlayer.thirdDart : 0)).toString(),
                     style: TextStyle(
                       color: Colors.black,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: 20,
                     ),
@@ -203,7 +203,7 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
               Text(AppLocalizations.of(context).average + widget.currentPlayer.average.toStringAsFixed(2),
                 style: TextStyle(
                   color: Colors.black,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Portico',
                   letterSpacing: 0.5,
                   fontSize: 20,
                 ),
@@ -213,7 +213,7 @@ class _PlayerListDetailState extends State<PlayerXX1Detail> with TickerProviderS
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Portico',
                   letterSpacing: 0.5,
                 ),
                 ),

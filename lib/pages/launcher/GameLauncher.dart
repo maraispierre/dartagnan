@@ -16,6 +16,9 @@ enum ChoiceGame { CRICKET, XX1 }
 /* Widget page to add Player and start game XX1 */
 class GameLauncher extends StatefulWidget {
 
+  GameLauncher({this.isOffline = false});
+  final bool isOffline;
+
   @override
   GameLauncherState createState() {
     return GameLauncherState();
@@ -68,7 +71,7 @@ class GameLauncherState extends State<GameLauncher> {
 
   /* method call to start the game */
   void _handleStartGame() {
-    if(_players.length > 0 || (_currentRoom != null && _currentRoom.id != -1)) {
+    if(_players.length > 0 || (_currentRoom != null && _currentRoom.id != -1 && _currentRoom.players.length > 0)) {
       switch(_choiceGame){
         case ChoiceGame.XX1 :
           _playersXX1 = [];
@@ -133,7 +136,7 @@ class GameLauncherState extends State<GameLauncher> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(),
+      drawer: widget.isOffline ? null : AppDrawer(),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: COLOR_MAIN_BLUE,
@@ -201,35 +204,37 @@ class GameLauncherState extends State<GameLauncher> {
               ),
             ),
           ),
-          Text('Or'),
-          FutureBuilder<List<Room>>(
-            future: RoomService().fetchRooms(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                List<DropdownMenuItem> items = [];
-                items.add(DropdownMenuItem(child: Text('Choose a room'), value: Room(name: 'Choose a room', id: -1),));
-                for(var room in snapshot.data) {
-                  items.add(DropdownMenuItem(
-                      value: room,
-                      child: Text(room.name)
-                  ));
+          Visibility(visible: !widget.isOffline,
+            child: FutureBuilder<List<Room>>(
+              future: RoomService().fetchRooms(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<DropdownMenuItem> items = [];
+                  items.add(DropdownMenuItem(child: Text('Choose a room'), value: Room(name: 'Choose a room', id: -1, players: []),));
+                  for(var room in snapshot.data) {
+                    items.add(DropdownMenuItem(
+                        value: room,
+                        child: Text(room.name),
+                    ));
+                  }
+                  return DropdownButton(
+                    items: items,
+                    hint: Text(_currentRoom == null ? 'Choose a room': _currentRoom.name),
+                    onChanged: (room) {
+                      setState(() {
+                        _currentRoom = room;
+                        _players = _currentRoom.players;
+                      });
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
                 }
-                return DropdownButton(
-                  items: items,
-                  hint: Text(_currentRoom == null ? 'Choose a room': _currentRoom.name),
-                  onChanged: (room) {
-                    setState(() {
-                      _currentRoom = room;
-                    });
-                  },
-                );
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
 
-              // By default, show a loading spinner.
-              return CircularProgressIndicator();
-            },
+                // By default, show a loading spinner.
+                return CircularProgressIndicator();
+              },
+            ),
           ),
           Expanded(
             flex: 3,
@@ -240,7 +245,7 @@ class GameLauncherState extends State<GameLauncher> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Portico',
                     letterSpacing: 0.5,
                     color: _choiceGame == ChoiceGame.XX1 ? COLOR_MAIN_BLUE : Colors.black12,
                   )
@@ -265,7 +270,7 @@ class GameLauncherState extends State<GameLauncher> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Portico',
                     letterSpacing: 0.5,
                     color: _choiceGame == ChoiceGame.CRICKET ? COLOR_MAIN_BLUE : Colors.black12,
                   ),
@@ -288,7 +293,7 @@ class GameLauncherState extends State<GameLauncher> {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Roboto',
+                              fontFamily: 'Portico',
                               letterSpacing: 0.5,
                             ),
                           ),
@@ -303,7 +308,7 @@ class GameLauncherState extends State<GameLauncher> {
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
-                                    fontFamily: 'Roboto',
+                                    fontFamily: 'Portico',
                                     letterSpacing: 0.5,
                                   ),
                                 ),
@@ -319,7 +324,7 @@ class GameLauncherState extends State<GameLauncher> {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Roboto',
+                              fontFamily: 'Portico',
                               letterSpacing: 0.5,
                             ),
                           ),
@@ -349,7 +354,7 @@ class GameLauncherState extends State<GameLauncher> {
                     color: Colors.white,
                     fontSize: 30,
                     fontWeight: FontWeight.w600,
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Portico',
                     letterSpacing: 0.5,
                   ),
                 ),
@@ -359,7 +364,6 @@ class GameLauncherState extends State<GameLauncher> {
               ),
             ),
           ),
-
         ],
       ),
 

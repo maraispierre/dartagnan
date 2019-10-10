@@ -110,7 +110,7 @@ class ScoringCricket extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                     ),
                   ),
@@ -133,7 +133,7 @@ class ScoringCricket extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                     ),
                   ),
@@ -156,7 +156,7 @@ class ScoringCricket extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                     ),
                   ),
@@ -179,7 +179,7 @@ class ScoringCricket extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                     ),
                   ),
@@ -202,7 +202,7 @@ class ScoringCricket extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                     ),
                   ),
@@ -225,7 +225,7 @@ class ScoringCricket extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                     ),
                   ),
@@ -248,7 +248,7 @@ class ScoringCricket extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                     ),
                   ),
@@ -270,21 +270,18 @@ class ScoringCricket extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: FloatingActionButton(
-                  key: Key('btn0'),
-                  heroTag: "btn0",
+                  heroTag: "btnBack",
                   tooltip: 'Add',
-                  child: Text('0/' + AppLocalizations.of(context).next,
+                  child: Text(AppLocalizations.of(context).back,
                     style: TextStyle(
-                      fontSize: 13,
+                      fontSize: 15,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: COLOR_MAIN_BLUE,
-                  onPressed: () {
-                    _handleTap(0);
-                  },
+                  backgroundColor: Colors.red,
+                  onPressed: _handleTapBack,
                 ),
               ),
             ),
@@ -299,7 +296,7 @@ class ScoringCricket extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                     ),
                   ),
@@ -322,7 +319,7 @@ class ScoringCricket extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                     ),
                   ),
@@ -345,7 +342,7 @@ class ScoringCricket extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                     ),
                   ),
@@ -361,21 +358,23 @@ class ScoringCricket extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: FloatingActionButton(
-                  heroTag: "btnBack",
+                  key: Key('btn0'),
+                  heroTag: "btn0",
                   tooltip: 'Add',
-                  child: Text(AppLocalizations.of(context).back,
+                  child: Text('0/' + AppLocalizations.of(context).next,
                     style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
                       letterSpacing: 0.5,
                     ),
                   ),
-                  backgroundColor: Colors.red,
-                  onPressed: _handleTapBack,
+                  backgroundColor: COLOR_MAIN_BLUE,
+                  onPressed: () {
+                    _handleTap(0);
+                  },
                 ),
               ),
-            )
+            ),
           ],
         ),
       ],

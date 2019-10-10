@@ -18,6 +18,7 @@ void main() {
       const Locale('en'), // English
       const Locale('fr'), // Français
     ],
+    theme: ThemeData(fontFamily: 'Portico'),
     debugShowCheckedModeBanner: false,
     title: 'Dartagnan',
     home: LoginPage(),
