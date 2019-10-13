@@ -67,24 +67,27 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
         animation: _controller,
         child: Container(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: 60,
-                width: 60,
-                child: CircleAvatar(
-                  backgroundColor: COLOR_SECONDARY_YELLOW,
-                  child: Text(widget.currentPlayer.name[0],
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Portico',
-                      letterSpacing: 0.5,
+                height: 80,
+                width: 80,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 20.0, 0, 0),
+                  child: CircleAvatar(
+                    backgroundColor: COLOR_SECONDARY_YELLOW,
+                    child: Text(widget.currentPlayer.name[0],
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Portico',
+                        letterSpacing: 0.5,
+                      ),
                     ),
                   ),
-                ),
+                )
               ),
               Text(widget.currentPlayer.name,
                 style: TextStyle(

@@ -18,6 +18,7 @@ class AppLocalizations {
       'next': 'Next',
       'round': 'Round ',
       'of': ' of ',
+      'or': 'Or',
       'won_the_game': ' wons the game.',
       'see_all': 'SEE ALL',
       'title_add_player': 'Add players',
@@ -29,15 +30,18 @@ class AppLocalizations {
       'add_player_field_name': 'Name',
       'end_by_double': 'End by X2',
       'average': 'Average ',
+      'login': 'Sign in with Google',
+      'offline': 'Play Offline'
     },
     'fr': {
       'play': 'JOUER',
       'rooms': 'SALONS',
       'game': 'Jeu',
-      'back': 'Retour',
+      'back': 'Ret.',
       'next': 'Suiv.',
       'round': 'Tour ',
       'of': ' de ',
+      'or': 'Ou',
       'won_the_game': ' a gagné la partie.',
       'see_all': 'VOIR TOUS',
       'title_add_player': 'Ajouter des joueurs',
@@ -49,6 +53,8 @@ class AppLocalizations {
       'add_room_field_help': 'Entrer un salon',
       'end_by_double': 'Terminer avec un X2',
       'average': 'Moyenne ',
+      'login': 'Se connecter avec Google',
+      'offline': 'Jouer hors-ligne'
     },
   };
 
@@ -112,6 +118,10 @@ class AppLocalizations {
     return _localizedValues[locale.languageCode]['of'];
   }
 
+  String get det_or {
+    return _localizedValues[locale.languageCode]['or'];
+  }
+
   String get wonTheGame {
     return _localizedValues[locale.languageCode]['won_the_game'];
   }
@@ -124,4 +134,11 @@ class AppLocalizations {
     return _localizedValues[locale.languageCode]['average'];
   }
 
+  String get login {
+    return _localizedValues[locale.languageCode]['login'];
+  }
+
+  String get offline {
+    return _localizedValues[locale.languageCode]['offline'];
+  }
 }

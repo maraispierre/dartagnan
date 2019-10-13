@@ -15,11 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "987206823185-7bkikqu1ql9cg492l1537q1uj871fee7.apps.googleusercontent.com",
+          "client_id": "987206823185-62mnj9ns68700lujui03tschm78u94fj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "tk.marais.dartagnan",
-            "certificate_hash": "19f43526ce9cdccf54da7c8abf9a50ecfdfdb372"
+            "certificate_hash": "b54cb0e9ca75dfbfb3f4bc54b690c30f1b468bd5"
+          }
+        },
+        {
+          "client_id": "987206823185-ur6ufpm5dbn8oo2j6lgguikjq710nbj3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tk.marais.dartagnan",
+            "certificate_hash": "831f5528c12f6d75ba2e3de7a61e8b5fa6b79100"
           }
         },
         {
@@ -38,6 +46,13 @@
             {
               "client_id": "987206823185-oqjc47242h1dq7hpshv8jmdo5drdu7r6.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "987206823185-c94u0apog3e3l0u3t5spnioor087ukqs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "tk.marais.dartagnan"
+              }
             }
           ]
         }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:dartagnan/pages/launcher/GameLauncher.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:dartagnan/common/AppLocalizationsDelegate.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'pages/login/LoginPage.dart';
 
 void main() {

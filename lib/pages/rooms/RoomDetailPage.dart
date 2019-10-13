@@ -61,7 +61,6 @@ class RoomDetailPageState extends State<RoomDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: COLOR_MAIN_BLUE,
         title: Text(room.name),

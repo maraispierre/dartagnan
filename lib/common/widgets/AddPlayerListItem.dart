@@ -35,7 +35,6 @@ class AddPlayerListItem extends StatelessWidget {
               child: Text(player.name,
                 style: TextStyle(
                   fontSize: 20,
-                  fontFamily: 'Portico',
                   letterSpacing: 0.5,
                 ),
               ),

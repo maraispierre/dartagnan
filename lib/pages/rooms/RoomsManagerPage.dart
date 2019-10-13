@@ -58,7 +58,6 @@ class RoomsManagerPageState extends State<RoomsManagerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: AppDrawer(),
-      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: COLOR_MAIN_BLUE,
         title: Text(AppLocalizations.of(context).titleAddRoom),

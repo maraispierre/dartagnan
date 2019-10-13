@@ -3,6 +3,7 @@ import '../../services/SignInService.dart';
 import '../launcher/GameLauncher.dart';
 import 'package:dartagnan/common/CustomIcons.dart';
 import 'package:dartagnan/common/CommonColors.dart';
+import 'package:dartagnan/common/AppLocalizations.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -25,9 +26,9 @@ class _LoginPageState extends State<LoginPage> {
               _signInButton(),
               Padding(
                 padding: EdgeInsets.all(10.0),
-                child: Text('Or', style: TextStyle(
+                child: Text(AppLocalizations.of(context).det_or, style: TextStyle(
                     fontSize: 20,
-                    color: Colors.grey,
+                    color: COLOR_MAIN_BLUE,
                     fontFamily: 'Portico',
                   ),
                 ),
@@ -67,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
-                'Sign in with Google',
+                AppLocalizations.of(context).login,
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.grey,
@@ -109,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: Text(
-                  'Play Offline',
+                  AppLocalizations.of(context).offline,
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
