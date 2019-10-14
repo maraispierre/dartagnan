@@ -4,8 +4,8 @@ Dart score application :
   - Features :
     - allows to play from 301 to 1001 without limit of player and display the scoreboard
     - implements the cricket game
-  - Next features :
     - implements rooms system to play with friends
+  - Next features :
     - implements stats
     
 
