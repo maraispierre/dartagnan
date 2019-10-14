@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'Player.dart';
-import 'package:dartagnan/pages/common/CommonColors.dart';
+import '../Player.dart';
+import 'package:dartagnan/common/CommonColors.dart';
 
 typedef void UpdateMultiplyCallback(int multiply);
-typedef void RemovePlayerCallback(String namePlayer);
+typedef void RemovePlayerCallback(Player player);
 
 /* Widget to display detail of an adding player */
 class AddPlayerListItem extends StatelessWidget {
@@ -35,7 +35,6 @@ class AddPlayerListItem extends StatelessWidget {
               child: Text(player.name,
                 style: TextStyle(
                   fontSize: 20,
-                  fontFamily: 'Roboto',
                   letterSpacing: 0.5,
                 ),
               ),
@@ -48,7 +47,7 @@ class AddPlayerListItem extends StatelessWidget {
                 backgroundColor: Colors.red,
                 child: Icon(Icons.remove),
                 onPressed: () {
-                  onRemovePlayer(player.name);
+                  onRemovePlayer(player);
                 },
               ),
             ),

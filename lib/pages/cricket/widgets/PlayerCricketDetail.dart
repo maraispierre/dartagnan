@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'PlayerCricket.dart';
-import 'package:dartagnan/pages/common/CommonColors.dart';
-import 'package:dartagnan/widgets/cricket/PlayerListCricket.dart';
-import 'package:dartagnan/widgets/cricket/TablePlayerListItemCricket.dart';
-import 'package:dartagnan/pages/common/AppLocalizations.dart';
-import 'package:dartagnan/pages/common/CustomIcons.dart';
+import 'package:dartagnan/common/CommonColors.dart';
+import 'package:dartagnan/pages/cricket/widgets/PlayerListCricket.dart';
+import 'package:dartagnan/pages/cricket/widgets/TablePlayerListItemCricket.dart';
+import 'package:dartagnan/common/AppLocalizations.dart';
+import 'package:dartagnan/common/CustomIcons.dart';
 
 typedef void UpdateUserCallback(PlayerCricket player);
 
@@ -67,31 +67,34 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
         animation: _controller,
         child: Container(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: 60,
-                width: 60,
-                child: CircleAvatar(
-                  backgroundColor: COLOR_SECONDARY_YELLOW,
-                  child: Text(widget.currentPlayer.name[0],
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Roboto',
-                      letterSpacing: 0.5,
+                height: 80,
+                width: 80,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 20.0, 0, 0),
+                  child: CircleAvatar(
+                    backgroundColor: COLOR_SECONDARY_YELLOW,
+                    child: Text(widget.currentPlayer.name[0],
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Portico',
+                        letterSpacing: 0.5,
+                      ),
                     ),
                   ),
-                ),
+                )
               ),
               Text(widget.currentPlayer.name,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Portico',
                   letterSpacing: 0.5,
                 ),
               ),
@@ -100,7 +103,7 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
                   color: Colors.black,
                   fontSize: 30,
                   fontWeight: FontWeight.w600,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Portico',
                   letterSpacing: 0.5,
                 ),
               ),
@@ -117,13 +120,13 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
                         style: currentDart() == 1 ?
                         TextStyle(
                           color: COLOR_MAIN_BLUE,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 25,
                         ):
                         TextStyle(
                           color: Colors.grey,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 20,
                         ),
@@ -143,13 +146,13 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
                         style: currentDart() == 2 ?
                         TextStyle(
                           color: COLOR_MAIN_BLUE,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 25,
                         ):
                         TextStyle(
                           color: Colors.grey,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 20,
                         ),
@@ -169,13 +172,13 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
                         style: currentDart() == 3 ?
                         TextStyle(
                           color: COLOR_MAIN_BLUE,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 25,
                         ):
                         TextStyle(
                           color: Colors.grey,
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Portico',
                           letterSpacing: 0.5,
                           fontSize: 20,
                         ),
@@ -193,7 +196,7 @@ class _PlayerCricketDetailState extends State<PlayerCricketDetail> with TickerPr
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Portico',
                   letterSpacing: 0.5,
                 ),
                 ),

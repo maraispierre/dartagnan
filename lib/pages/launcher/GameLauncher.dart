@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:dartagnan/widgets/common/AddPlayerListItem.dart';
+import 'package:dartagnan/common/widgets/AddPlayerListItem.dart';
 import 'package:dartagnan/pages/xx1/GameXX1.dart';
 import 'package:dartagnan/pages/cricket/GameCricket.dart';
-import 'package:dartagnan/widgets/common/Player.dart';
-import 'package:dartagnan/widgets/xx1/PlayerXX1.dart';
-import 'package:dartagnan/widgets/cricket/PlayerCricket.dart';
-import 'AppLocalizations.dart';
-import 'CommonColors.dart';
+import 'package:dartagnan/common/Player.dart';
+import 'package:dartagnan/pages/xx1/widgets/PlayerXX1.dart';
+import 'package:dartagnan/pages/cricket/widgets/PlayerCricket.dart';
+import '../../common/AppLocalizations.dart';
+import '../../common/CommonColors.dart';
+import '../../services/RoomService.dart';
+import 'package:dartagnan/common/Room.dart';
+import '../../common/widgets/AppDrawer.dart';
 
 enum ChoiceGame { CRICKET, XX1 }
 
 /* Widget page to add Player and start game XX1 */
-class AddPlayer extends StatefulWidget {
+class GameLauncher extends StatefulWidget {
+
+  GameLauncher({this.isOffline = false});
+  final bool isOffline;
 
   @override
-  AddPlayerState createState() {
-    return AddPlayerState();
+  GameLauncherState createState() {
+    return GameLauncherState();
   }
 }
 
 /* State of GameXX1AddPlayer */
-class AddPlayerState extends State<AddPlayer> {
+class GameLauncherState extends State<GameLauncher> {
 
   static const List<String> scores = ['301', '401', '501', '601', '701', '801', '901', '1001'];
 
@@ -29,6 +35,7 @@ class AddPlayerState extends State<AddPlayer> {
   List<PlayerCricket> _playersCricket = [];
   List<PlayerXX1> _playersXX1 = [];
   int _score = 301;
+  Room _currentRoom = null;
   ScrollController _scrollController = new ScrollController();
   bool _endByDouble = false;
   ChoiceGame _choiceGame = ChoiceGame.XX1;
@@ -51,10 +58,10 @@ class AddPlayerState extends State<AddPlayer> {
   }
 
   /* method call to remove player to the game after click on remove button */
-  void _handleRemovePlayer(String namePlayer) {
+  void _handleRemovePlayer(Player player) {
     setState(() {
       for(int i = 0; i< _players.length; i++) {
-        if(_players[i].name == namePlayer) {
+        if(_players[i].name == player.name) {
           _players.remove(_players[i]);
           break;
         }
@@ -64,13 +71,21 @@ class AddPlayerState extends State<AddPlayer> {
 
   /* method call to start the game */
   void _handleStartGame() {
-    if(_players.length > 0) {
+    if(_players.length > 0 || (_currentRoom != null && _currentRoom.id != -1 && _currentRoom.players.length > 0)) {
       switch(_choiceGame){
         case ChoiceGame.XX1 :
           _playersXX1 = [];
-          for(Player player in _players) {
-            var playerX11 = new PlayerXX1(name: player.name, score: _score);
-            _playersXX1.add(playerX11);
+          if(_currentRoom == null || _currentRoom.id == -1) {
+            for(Player player in _players) {
+              var playerX11 = new PlayerXX1(name: player.name, score: _score);
+              _playersXX1.add(playerX11);
+            }
+          }
+          else {
+            for(Player player in _currentRoom.players) {
+              var playerX11 = new PlayerXX1(name: player.name, score: _score);
+              _playersXX1.add(playerX11);
+            }
           }
           Navigator.push(
             context,
@@ -84,9 +99,17 @@ class AddPlayerState extends State<AddPlayer> {
           break;
         case ChoiceGame.CRICKET :
           _playersCricket = [];
-          for(Player player in _players) {
-            var playerCricket = new PlayerCricket(name: player.name, score: 0);
-            _playersCricket.add(playerCricket);
+          if(_currentRoom == null || _currentRoom.id == -1) {
+            for(Player player in _players) {
+              var playerCricket = new PlayerCricket(name: player.name, score: 0);
+              _playersCricket.add(playerCricket);
+            }
+          }
+          else {
+            for(Player player in _currentRoom.players) {
+              var playerCricket = new PlayerCricket(name: player.name, score: 0);
+              _playersCricket.add(playerCricket);
+            }
           }
           Navigator.push(
             context,
@@ -113,6 +136,7 @@ class AddPlayerState extends State<AddPlayer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: widget.isOffline ? null : AppDrawer(),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: COLOR_MAIN_BLUE,
@@ -180,7 +204,39 @@ class AddPlayerState extends State<AddPlayer> {
               ),
             ),
           ),
-           Expanded(
+          Visibility(visible: !widget.isOffline,
+            child: FutureBuilder<List<Room>>(
+              future: RoomService().fetchRooms(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<DropdownMenuItem> items = [];
+                  items.add(DropdownMenuItem(child: Text('Choose a room'), value: Room(name: 'Choose a room', id: -1, players: []),));
+                  for(var room in snapshot.data) {
+                    items.add(DropdownMenuItem(
+                        value: room,
+                        child: Text(room.name),
+                    ));
+                  }
+                  return DropdownButton(
+                    items: items,
+                    hint: Text(_currentRoom == null ? 'Choose a room': _currentRoom.name),
+                    onChanged: (room) {
+                      setState(() {
+                        _currentRoom = room;
+                        _players = _currentRoom.players;
+                      });
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
+                }
+
+                // By default, show a loading spinner.
+                return CircularProgressIndicator();
+              },
+            ),
+          ),
+          Expanded(
             flex: 3,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -189,7 +245,7 @@ class AddPlayerState extends State<AddPlayer> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Portico',
                     letterSpacing: 0.5,
                     color: _choiceGame == ChoiceGame.XX1 ? COLOR_MAIN_BLUE : Colors.black12,
                   )
@@ -214,7 +270,7 @@ class AddPlayerState extends State<AddPlayer> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Portico',
                     letterSpacing: 0.5,
                     color: _choiceGame == ChoiceGame.CRICKET ? COLOR_MAIN_BLUE : Colors.black12,
                   ),
@@ -237,7 +293,7 @@ class AddPlayerState extends State<AddPlayer> {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Roboto',
+                              fontFamily: 'Portico',
                               letterSpacing: 0.5,
                             ),
                           ),
@@ -252,7 +308,7 @@ class AddPlayerState extends State<AddPlayer> {
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
-                                    fontFamily: 'Roboto',
+                                    fontFamily: 'Portico',
                                     letterSpacing: 0.5,
                                   ),
                                 ),
@@ -268,7 +324,7 @@ class AddPlayerState extends State<AddPlayer> {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Roboto',
+                              fontFamily: 'Portico',
                               letterSpacing: 0.5,
                             ),
                           ),
@@ -298,7 +354,7 @@ class AddPlayerState extends State<AddPlayer> {
                     color: Colors.white,
                     fontSize: 30,
                     fontWeight: FontWeight.w600,
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Portico',
                     letterSpacing: 0.5,
                   ),
                 ),
@@ -308,7 +364,6 @@ class AddPlayerState extends State<AddPlayer> {
               ),
             ),
           ),
-
         ],
       ),
 

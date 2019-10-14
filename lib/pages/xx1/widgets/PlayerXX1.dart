@@ -1,4 +1,4 @@
-import 'package:dartagnan/widgets/common/Player.dart';
+import 'package:dartagnan/common/Player.dart';
 
 /* Object Player manipulate on all XX1 game widget */
 class PlayerXX1 extends Player{

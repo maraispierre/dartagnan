@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:dartagnan/widgets/common/MessagePlayer.dart';
-import 'package:dartagnan/widgets/xx1/ScoringXX1.dart';
-import 'package:dartagnan/widgets/xx1/PlayerXX1.dart';
-import 'package:dartagnan/pages/common/CommonColors.dart';
-import 'package:dartagnan/widgets/xx1/PlayerXX1Detail.dart';
-import 'package:dartagnan/pages/common/AppLocalizations.dart';
+import 'package:dartagnan/common/widgets/MessagePlayer.dart';
+import 'package:dartagnan/pages/xx1/widgets/ScoringXX1.dart';
+import 'package:dartagnan/pages/xx1/widgets/PlayerXX1.dart';
+import 'package:dartagnan/common/CommonColors.dart';
+import 'package:dartagnan/pages/xx1/widgets/PlayerXX1Detail.dart';
+import 'package:dartagnan/common/AppLocalizations.dart';
 
 /* Global Widget Page  which contains :
  * - PlayerList for XX1 (PlayerListXX1)
@@ -84,12 +84,13 @@ class _GameXX1State extends State<GameXX1> {
         return;
       }
       _generateMessage();
+      _multiply = 1;
     });
   }
 
   /* method call to verify and process end game if game is over */
   bool _endGame(PlayerXX1 player) {
-    if(_currentPlayer.score == 0) {
+    if((widget.endByDouble && _multiply == 2 && _currentPlayer.score == 0) || (!widget.endByDouble && _currentPlayer.score == 0)){
       _isEndGame = true;
       _helpMessage = '';
       for(PlayerXX1 player in widget.players){
@@ -174,6 +175,7 @@ class _GameXX1State extends State<GameXX1> {
     player.secondDart = null;
     player.thirdDart = null;
     _changePlayer = true;
+    _multiply = 1;
   }
 
   /* method calls to display message after each dart of a player */

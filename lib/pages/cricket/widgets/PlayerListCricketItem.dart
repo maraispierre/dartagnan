@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'PlayerCricket.dart';
-import 'package:dartagnan/widgets/cricket/TablePlayerListItemCricket.dart';
-import 'package:dartagnan/pages/common/CommonColors.dart';
+import 'package:dartagnan/pages/cricket/widgets/TablePlayerListItemCricket.dart';
+import 'package:dartagnan/common/CommonColors.dart';
 
 typedef void UpdateUserCallback(PlayerCricket player);
 
@@ -44,7 +44,7 @@ class PlayerListCricketItem extends StatelessWidget {
                 child: Text(player.name,
                   style: TextStyle(
                     color: Colors.white,
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Portico',
                     letterSpacing: 0.5,
                     fontSize: 20,
                   ),

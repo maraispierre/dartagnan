@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:dartagnan/pages/common/CommonColors.dart';
-import 'package:dartagnan/widgets/common/Player.dart';
-import 'package:dartagnan/pages/common/AppLocalizations.dart';
+import 'package:dartagnan/common/CommonColors.dart';
+import 'package:dartagnan/common/Player.dart';
+import 'package:dartagnan/common/AppLocalizations.dart';
 
 /* widget which contains message for player */
 class MessagePlayer extends StatelessWidget {
@@ -26,7 +26,7 @@ class MessagePlayer extends StatelessWidget {
                   fontSize: 23,
                   fontWeight: FontWeight.w800,
                   color: Colors.white,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Portico',
                   letterSpacing: 0.5,
                 ),
               ),
@@ -35,7 +35,7 @@ class MessagePlayer extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: Colors.white70,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Portico',
                   letterSpacing: 0.5,
                 ),
               ),

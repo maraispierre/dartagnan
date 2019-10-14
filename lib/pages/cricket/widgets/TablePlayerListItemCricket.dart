@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'PlayerCricket.dart';
-import 'package:dartagnan/pages/common/CommonColors.dart';
+import 'package:dartagnan/common/CommonColors.dart';
 
 class TablePlayerListItemCricket extends StatelessWidget {
 
@@ -66,7 +66,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
                 child: Text('15',
                   style: TextStyle(
                     color: Colors.white,
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Portico',
                     letterSpacing: 0.5,
                     fontSize: smallSize ? 15 : 20,
                   ),
@@ -79,7 +79,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
                   child: Text('16',
                     style: TextStyle(
                       color: Colors.white,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: smallSize ? 15 : 20,
                     ),
@@ -92,7 +92,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
                   child: Text('17',
                     style: TextStyle(
                       color: Colors.white,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: smallSize ? 15 : 20,
                     ),
@@ -105,7 +105,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
                   child: Text('18',
                     style: TextStyle(
                       color: Colors.white,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: smallSize ? 15 : 20,
                     ),
@@ -118,7 +118,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
                   child: Text('19',
                     style: TextStyle(
                       color: Colors.white,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: smallSize ? 15 : 20,
                     ),
@@ -131,7 +131,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
                   child: Text('20',
                     style: TextStyle(
                       color: Colors.white,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: smallSize ? 15 : 20,
                     ),
@@ -144,7 +144,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
                   child: Text('B',
                     style: TextStyle(
                       color: Colors.white,
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: smallSize ? 15 : 20,
                     ),
@@ -164,7 +164,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
                 child: Text(tableScore[15].toString(),
                   style: TextStyle(
                     color: _getColor(15),
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Portico',
                     letterSpacing: 0.5,
                     fontSize: smallSize ? 15 : 20,
                   ),
@@ -177,7 +177,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
                   child: Text(tableScore[16].toString(),
                     style: TextStyle(
                       color: _getColor(16),
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: smallSize ? 15 : 20,
                     ),
@@ -190,7 +190,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
                   child: Text(tableScore[17].toString(),
                     style: TextStyle(
                       color: _getColor(17),
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: smallSize ? 15 : 20,
                     ),
@@ -203,7 +203,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
                   child: Text(tableScore[18].toString(),
                     style: TextStyle(
                       color: _getColor(18),
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: smallSize ? 15 : 20,
                     ),
@@ -216,7 +216,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
                   child: Text(tableScore[19].toString(),
                     style: TextStyle(
                       color: _getColor(19),
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: smallSize ? 15 : 20,
                     ),
@@ -229,7 +229,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
                   child: Text(tableScore[20].toString(),
                     style: TextStyle(
                       color: _getColor(20),
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: smallSize ? 15 : 20,
                     ),
@@ -242,7 +242,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
                   child: Text(tableScore[25].toString(),
                     style: TextStyle(
                       color: _getColor(25),
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Portico',
                       letterSpacing: 0.5,
                       fontSize: smallSize ? 15 : 20,
                     ),
