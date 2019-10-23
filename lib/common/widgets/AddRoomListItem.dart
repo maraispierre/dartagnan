@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dartagnan/common/Room.dart';
 import 'package:dartagnan/common/CommonColors.dart';
 import 'package:dartagnan/pages/rooms/RoomDetailPage.dart';
+import 'package:dartagnan/common/Player.dart';
 
 typedef void RemoveRoomCallback(Room room);
 
@@ -51,6 +52,11 @@ class AddRoomListItem extends StatelessWidget {
                     backgroundColor: COLOR_SECONDARY_YELLOW,
                     child: Icon(Icons.edit),
                     onPressed: () {
+                      room.players.sort((Player a, Player b) {
+                      if(a.numberWonGame < b.numberWonGame) return 1;
+                      if(a.numberWonGame > b.numberWonGame) return -1;
+                      return 0;
+                      });
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => RoomDetailPage(room: room,)

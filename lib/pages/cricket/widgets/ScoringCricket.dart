@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'PlayerCricket.dart';
+import 'package:dartagnan/common/Player.dart';
 import 'StateHistorical.dart';
 import 'package:dartagnan/common/CommonColors.dart';
 import 'package:dartagnan/common/AppLocalizations.dart';
 
-typedef void UpdateUserCallback(PlayerCricket player);
+typedef void UpdateUserCallback(Player player);
 typedef void UpdateMultiplyCallback(int multiply);
 
 /* widget which contains buttons for give dart score for cricket game */
@@ -12,8 +12,8 @@ class ScoringCricket extends StatelessWidget {
 
   ScoringCricket({Key key, this.players, this.currentPlayer, this.multiply = 1, this.onUpdateMultiply, this.onUpdatePlayer}) : super(key: key);
 
-  final List<PlayerCricket> players;
-  final PlayerCricket currentPlayer;
+  final List<Player> players;
+  final Player currentPlayer;
   final UpdateUserCallback onUpdatePlayer;
   final int multiply;
   final UpdateMultiplyCallback onUpdateMultiply;
@@ -52,7 +52,7 @@ class ScoringCricket extends StatelessWidget {
   /* method calls to verify if the number is closed or not */
   bool _numberIsClose(int number) {
     bool isClose = true;
-    for(PlayerCricket player in players) {
+    for(Player player in players) {
       if(player.tableCricket[number] < 3) {
         return false;
       }

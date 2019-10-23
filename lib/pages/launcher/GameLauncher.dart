@@ -3,8 +3,6 @@ import 'package:dartagnan/common/widgets/AddPlayerListItem.dart';
 import 'package:dartagnan/pages/xx1/GameXX1.dart';
 import 'package:dartagnan/pages/cricket/GameCricket.dart';
 import 'package:dartagnan/common/Player.dart';
-import 'package:dartagnan/pages/xx1/widgets/PlayerXX1.dart';
-import 'package:dartagnan/pages/cricket/widgets/PlayerCricket.dart';
 import '../../common/AppLocalizations.dart';
 import '../../common/CommonColors.dart';
 import '../../services/RoomService.dart';
@@ -32,8 +30,6 @@ class GameLauncherState extends State<GameLauncher> {
 
   final _formKey = GlobalKey<FormState>();
   List<Player> _players = [];
-  List<PlayerCricket> _playersCricket = [];
-  List<PlayerXX1> _playersXX1 = [];
   int _score = 301;
   Room _currentRoom = null;
   ScrollController _scrollController = new ScrollController();
@@ -74,48 +70,30 @@ class GameLauncherState extends State<GameLauncher> {
     if(_players.length > 0 || (_currentRoom != null && _currentRoom.id != -1 && _currentRoom.players.length > 0)) {
       switch(_choiceGame){
         case ChoiceGame.XX1 :
-          _playersXX1 = [];
-          if(_currentRoom == null || _currentRoom.id == -1) {
-            for(Player player in _players) {
-              var playerX11 = new PlayerXX1(name: player.name, score: _score);
-              _playersXX1.add(playerX11);
-            }
-          }
-          else {
-            for(Player player in _currentRoom.players) {
-              var playerX11 = new PlayerXX1(name: player.name, score: _score);
-              _playersXX1.add(playerX11);
-            }
+          for(Player player in _currentRoom.players) {
+            player.score = _score;
           }
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => GameXX1(
-              players: _playersXX1,
+              players: _players,
               endByDouble: _endByDouble,
               score: _score,
+              room: _currentRoom,
             ),
             ),
           );
           break;
         case ChoiceGame.CRICKET :
-          _playersCricket = [];
-          if(_currentRoom == null || _currentRoom.id == -1) {
-            for(Player player in _players) {
-              var playerCricket = new PlayerCricket(name: player.name, score: 0);
-              _playersCricket.add(playerCricket);
-            }
-          }
-          else {
-            for(Player player in _currentRoom.players) {
-              var playerCricket = new PlayerCricket(name: player.name, score: 0);
-              _playersCricket.add(playerCricket);
-            }
+          for(Player player in _players) {
+            player.score = 0;
           }
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => GameCricket(
-              players: _playersCricket,
+              players: _players,
               score: 0,
+              room: _currentRoom,
             ),
             ),
           );
@@ -135,8 +113,14 @@ class GameLauncherState extends State<GameLauncher> {
 
   @override
   Widget build(BuildContext context) {
+    _players.sort((Player a, Player b) {
+      if(a.numberWonGame < b.numberWonGame) return 1;
+      if(a.numberWonGame > b.numberWonGame) return -1;
+      return 0;
+    });
     return Scaffold(
       drawer: widget.isOffline ? null : AppDrawer(),
+
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: COLOR_MAIN_BLUE,
@@ -151,7 +135,7 @@ class GameLauncherState extends State<GameLauncher> {
               shrinkWrap: true,
               controller: _scrollController,
               children: _players.map((Player player) {
-                return AddPlayerListItem(player: player, removePlayerCallback: _handleRemovePlayer,);
+                return AddPlayerListItem(player: player, players: _players, removePlayerCallback: _handleRemovePlayer,);
               }).toList(),
             ),
           ),

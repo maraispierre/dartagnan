@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'PlayerCricket.dart';
+import 'package:dartagnan/common/Player.dart';
 import 'package:dartagnan/common/CommonColors.dart';
 
 class TablePlayerListItemCricket extends StatelessWidget {
@@ -7,7 +7,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
   TablePlayerListItemCricket({this.tableScore, this.players, this.isCurrentPlayer, this.smallSize});
 
   final Map<int, int> tableScore;
-  final List<PlayerCricket> players;
+  final List<Player> players;
   final bool isCurrentPlayer;
   final bool smallSize;
 
@@ -28,7 +28,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
   /* method calls to verify if the number is closed or not */
   bool _numberIsClose(int number) {
     bool isClose = true;
-    for(PlayerCricket player in players) {
+    for(Player player in players) {
       if(player.tableCricket[number] < 3) {
         return false;
       }
@@ -39,7 +39,7 @@ class TablePlayerListItemCricket extends StatelessWidget {
   /* method calls to verify if at least one player close the number */
   bool _numberAtLeastOneClose(int number) {
     bool isClose = false;
-    for(PlayerCricket player in players) {
+    for(Player player in players) {
       if(player.tableCricket[number] == 3) {
         return true;
       }

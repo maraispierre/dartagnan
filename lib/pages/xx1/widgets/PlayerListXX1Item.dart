@@ -1,28 +1,19 @@
 import 'package:flutter/material.dart';
-import 'PlayerXX1.dart';
+import 'package:dartagnan/common/Player.dart';
 import 'package:dartagnan/common/CommonColors.dart';
 import 'package:dartagnan/common/CustomIcons.dart';
 
-typedef void UpdateUserCallback(PlayerXX1 player);
+typedef void UpdateUserCallback(Player player);
 
 /* Widget to display the detail of a player during the game */
 class PlayerListXX1Item extends StatelessWidget {
-  PlayerListXX1Item({PlayerXX1 player, this.currentPlayer, this.onUpdatePlayer})
+  PlayerListXX1Item({Player player, this.currentPlayer, this.onUpdatePlayer})
       : player = player,
         super(key: ObjectKey(player));
 
-  final PlayerXX1 player;
-  final PlayerXX1 currentPlayer;
+  final Player player;
+  final Player currentPlayer;
   final UpdateUserCallback onUpdatePlayer;
-
-  /* method call to change the color of the current player*/
-  Color _getColor(BuildContext context) {
-    if(currentPlayer.name == player.name){
-      return COLOR_SECONDARY_YELLOW;
-    }
-    return COLOR_MAIN_BLUE;
-  }
-
 
   @override
   Widget build(BuildContext context) {

@@ -74,7 +74,7 @@ class RoomDetailPageState extends State<RoomDetailPage> {
                 shrinkWrap: false,
                 controller: _scrollController,
                 children: room.players.map((Player player) {
-                  return AddPlayerListItem(player: player, removePlayerCallback: _handleRemovePlayer);
+                  return AddPlayerListItem(player: player, players: room.players, removePlayerCallback: _handleRemovePlayer);
                 }).toList(),
               ),
             ),

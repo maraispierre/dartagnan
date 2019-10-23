@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'PlayerXX1.dart';
+import 'package:dartagnan/common/Player.dart';
 import 'package:dartagnan/common/CommonColors.dart';
 import 'package:dartagnan/common/AppLocalizations.dart';
 
-typedef void UpdateUserCallback(PlayerXX1 player);
+typedef void UpdateUserCallback(Player player);
 typedef void UpdateMultiplyCallback(int multiply);
 
 /* widget which contains buttons for give dart score for XX1 game */
@@ -11,7 +11,7 @@ class ScoringXX1 extends StatelessWidget {
 
   ScoringXX1({Key key, this.currentPlayer, this.multiply = 1, this.onUpdateMultiply, this.onUpdatePlayer}) : super(key: key);
 
-  final PlayerXX1 currentPlayer;
+  final Player currentPlayer;
   final UpdateUserCallback onUpdatePlayer;
   final int multiply;
     final UpdateMultiplyCallback onUpdateMultiply;

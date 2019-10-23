@@ -3,9 +3,10 @@ import 'dart:convert';
 
 /* Object Room uses to list connected group of players*/
 class Room {
-  Room({this.id, this.name, this.players,});
+  Room({this.id, this.name, this.players, this.userId});
   int id;
   String name;
+  String userId;
   List<Player> players;
 
 
@@ -18,7 +19,16 @@ class Room {
     return Room(
       id: json['roomId'],
       name: json['name'],
+      userId: json['userId'],
       players: players,
     );
   }
+
+
+  Map<String, dynamic> toJson() => {
+    'roomId' : id,
+    'userId' : userId,
+    'name' : name,
+    'players' : players
+  };
 }
