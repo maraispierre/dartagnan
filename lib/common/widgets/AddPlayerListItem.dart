@@ -19,13 +19,13 @@ class AddPlayerListItem extends StatelessWidget {
   final RemovePlayerCallback onRemovePlayer;
 
   String giveMedal(Player player) {
-    if(player.id == players[0].id) {
+    if(player == players[0]) {
       return "assets/medal-first.png";
     }
-    if(player.id == players[1].id) {
+    if(player == players[1]) {
       return "assets/medal-second.png";
     }
-    if(player.id == players[2].id) {
+    if(player == players[2]) {
       return "assets/medal-third.png";
     }
     return null;

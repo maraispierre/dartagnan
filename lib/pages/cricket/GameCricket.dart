@@ -106,7 +106,9 @@ class _GameCricketState extends State<GameCricket> {
          player.updateStatsCricket();
          player.resetPlayer(widget.score);
         }
-        RoomService().updateRoom(widget.room);
+        if(widget.room.id != -1) {
+          RoomService().updateRoom(widget.room);
+        }
       }
       return endGame;
     }

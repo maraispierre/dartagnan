@@ -31,7 +31,7 @@ class GameLauncherState extends State<GameLauncher> {
   final _formKey = GlobalKey<FormState>();
   List<Player> _players = [];
   int _score = 301;
-  Room _currentRoom = null;
+  Room _currentRoom = Room(name: 'Choose a room', id: -1, players: []);
   ScrollController _scrollController = new ScrollController();
   bool _endByDouble = false;
   ChoiceGame _choiceGame = ChoiceGame.XX1;

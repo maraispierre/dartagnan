@@ -102,7 +102,9 @@ class _GameXX1State extends State<GameXX1> {
         player.updateStatsXx1();
         player.resetPlayer(widget.score);
       }
-      RoomService().updateRoom(widget.room);
+      if(widget.room.id != -1) {
+        RoomService().updateRoom(widget.room);
+      }
       return true;
     }
     return false;
