@@ -36,7 +36,10 @@ class AppLocalizations {
       'warning': 'Warning',
       'message_leave': 'Do you really want to quit the game ?',
       'yes': 'Yes',
-      'no': 'No'
+      'no': 'No',
+      'start_with': 'Start with',
+      'best_start': 'First to Last',
+      'random': 'Random'
     },
     'fr': {
       'play': 'JOUER',
@@ -64,7 +67,10 @@ class AppLocalizations {
       'warning': 'Attention',
       'message_leave': 'Voulez-vous vraiment quitter la partie ?',
       'yes': 'Oui',
-      'no': 'Non'
+      'no': 'Non',
+      'start_with': 'Démarrer par',
+      'best_start': 'Premier au dernier',
+      'random': 'Aléatoire'
     },
   };
 
@@ -170,5 +176,17 @@ class AppLocalizations {
 
   String get no {
     return _localizedValues[locale.languageCode]['no'];
+  }
+
+  String get startWith {
+    return _localizedValues[locale.languageCode]['start_with'];
+  }
+
+  String get bestStart {
+    return _localizedValues[locale.languageCode]['best_start'];
+  }
+
+  String get random {
+    return _localizedValues[locale.languageCode]['random'];
   }
 }

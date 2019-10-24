@@ -63,7 +63,7 @@ class AddPlayerListItem extends StatelessWidget {
               child: Text(player.numberWonGame.toString()),
             ),
             Expanded(
-              flex: 2,
+              flex: 4,
               child: Text('Θ : ' + (player.totalScore == 0 ? "0" : (player.totalScore / player.totalRounds).toStringAsFixed(2)))
             ),
             SizedBox(
