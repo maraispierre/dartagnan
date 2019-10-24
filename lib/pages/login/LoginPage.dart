@@ -4,6 +4,11 @@ import '../launcher/GameLauncher.dart';
 import 'package:dartagnan/common/CustomIcons.dart';
 import 'package:dartagnan/common/CommonColors.dart';
 import 'package:dartagnan/common/AppLocalizations.dart';
+import 'package:dartagnan/services/SignInService.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,8 +16,28 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  FirebaseUser user;
+
+  @protected
+  @mustCallSuper
+  void initState() {
+    super.initState();
+    _auth.currentUser().then((result) {
+      setState(() {
+        user = result;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    if(user != null) {
+      SignInService.name = user.displayName;
+      SignInService.email = user.email;
+      SignInService.imageUrl = user.photoUrl;
+      return GameLauncher();
+    }
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -27,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Text(AppLocalizations.of(context).det_or, style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 15,
                     color: COLOR_MAIN_BLUE,
                     fontFamily: 'Portico',
                   ),
@@ -70,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Text(
                 AppLocalizations.of(context).login,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 15,
                   color: Colors.grey,
                 ),
               ),
@@ -112,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text(
                   AppLocalizations.of(context).offline,
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 15,
                     color: Colors.white,
                   ),
                 ),

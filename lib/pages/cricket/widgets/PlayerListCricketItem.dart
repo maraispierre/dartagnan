@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'PlayerCricket.dart';
+import 'package:dartagnan/common/Player.dart';
 import 'package:dartagnan/pages/cricket/widgets/TablePlayerListItemCricket.dart';
 import 'package:dartagnan/common/CommonColors.dart';
 
-typedef void UpdateUserCallback(PlayerCricket player);
+typedef void UpdateUserCallback(Player player);
 
 /* Widget to display the detail of a player during the game */
 class PlayerListCricketItem extends StatelessWidget {
-  PlayerListCricketItem({PlayerCricket player, this.currentPlayer, this.players, this.onUpdatePlayer})
+  PlayerListCricketItem({Player player, this.currentPlayer, this.players, this.onUpdatePlayer})
       : player = player,
         super(key: ObjectKey(player));
 
-  final PlayerCricket player;
-  final PlayerCricket currentPlayer;
-  final List<PlayerCricket> players;
+  final Player player;
+  final Player currentPlayer;
+  final List<Player> players;
   final UpdateUserCallback onUpdatePlayer;
 
   /* method call to change the color of the current player*/

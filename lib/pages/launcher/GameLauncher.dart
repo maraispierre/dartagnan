@@ -3,16 +3,15 @@ import 'package:dartagnan/common/widgets/AddPlayerListItem.dart';
 import 'package:dartagnan/pages/xx1/GameXX1.dart';
 import 'package:dartagnan/pages/cricket/GameCricket.dart';
 import 'package:dartagnan/common/Player.dart';
-import 'package:dartagnan/pages/xx1/widgets/PlayerXX1.dart';
-import 'package:dartagnan/pages/cricket/widgets/PlayerCricket.dart';
 import '../../common/AppLocalizations.dart';
 import '../../common/CommonColors.dart';
 import '../../services/RoomService.dart';
-import 'package:dartagnan/common/Room.dart';
 import '../../common/widgets/AppDrawer.dart';
+import 'package:dartagnan/common/Room.dart';
+import 'dart:math';
 
 enum ChoiceGame { CRICKET, XX1 }
-
+enum ChoiceStartWidth { RANDOM, BEST_START }
 /* Widget page to add Player and start game XX1 */
 class GameLauncher extends StatefulWidget {
 
@@ -29,13 +28,13 @@ class GameLauncher extends StatefulWidget {
 class GameLauncherState extends State<GameLauncher> {
 
   static const List<String> scores = ['301', '401', '501', '601', '701', '801', '901', '1001'];
+  static const List<ChoiceStartWidth> startWidth = [ChoiceStartWidth.RANDOM, ChoiceStartWidth.BEST_START];
 
   final _formKey = GlobalKey<FormState>();
   List<Player> _players = [];
-  List<PlayerCricket> _playersCricket = [];
-  List<PlayerXX1> _playersXX1 = [];
   int _score = 301;
-  Room _currentRoom = null;
+  ChoiceStartWidth _startWidth = ChoiceStartWidth.BEST_START;
+  Room _currentRoom = Room(name: 'Choisir un salon', id: -1, players: []);
   ScrollController _scrollController = new ScrollController();
   bool _endByDouble = false;
   ChoiceGame _choiceGame = ChoiceGame.XX1;
@@ -57,6 +56,13 @@ class GameLauncherState extends State<GameLauncher> {
     });
   }
 
+  void _handleUpdateChangeStartWith(ChoiceStartWidth value) {
+    setState(() {
+      _startWidth = value;
+    });
+  }
+
+
   /* method call to remove player to the game after click on remove button */
   void _handleRemovePlayer(Player player) {
     setState(() {
@@ -72,50 +78,42 @@ class GameLauncherState extends State<GameLauncher> {
   /* method call to start the game */
   void _handleStartGame() {
     if(_players.length > 0 || (_currentRoom != null && _currentRoom.id != -1 && _currentRoom.players.length > 0)) {
+      if(_startWidth == ChoiceStartWidth.BEST_START) {
+        _players.sort((Player a, Player b) {
+          if(a.numberWonGame < b.numberWonGame) return 1;
+          if(a.numberWonGame > b.numberWonGame) return -1;
+          return 0;
+        });
+      }
+      else{
+        _players = shuffle(_players);
+      }
       switch(_choiceGame){
         case ChoiceGame.XX1 :
-          _playersXX1 = [];
-          if(_currentRoom == null || _currentRoom.id == -1) {
-            for(Player player in _players) {
-              var playerX11 = new PlayerXX1(name: player.name, score: _score);
-              _playersXX1.add(playerX11);
-            }
-          }
-          else {
-            for(Player player in _currentRoom.players) {
-              var playerX11 = new PlayerXX1(name: player.name, score: _score);
-              _playersXX1.add(playerX11);
-            }
+          for(Player player in _currentRoom.players) {
+            player.score = _score;
           }
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => GameXX1(
-              players: _playersXX1,
+              players: _players,
               endByDouble: _endByDouble,
               score: _score,
+              room: _currentRoom,
             ),
             ),
           );
           break;
         case ChoiceGame.CRICKET :
-          _playersCricket = [];
-          if(_currentRoom == null || _currentRoom.id == -1) {
-            for(Player player in _players) {
-              var playerCricket = new PlayerCricket(name: player.name, score: 0);
-              _playersCricket.add(playerCricket);
-            }
-          }
-          else {
-            for(Player player in _currentRoom.players) {
-              var playerCricket = new PlayerCricket(name: player.name, score: 0);
-              _playersCricket.add(playerCricket);
-            }
+          for(Player player in _players) {
+            player.score = 0;
           }
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => GameCricket(
-              players: _playersCricket,
+              players: _players,
               score: 0,
+              room: _currentRoom,
             ),
             ),
           );
@@ -133,10 +131,33 @@ class GameLauncherState extends State<GameLauncher> {
     }
   }
 
+  List shuffle(List items) {
+    var random = new Random();
+
+    // Go through all elements.
+    for (var i = items.length - 1; i > 0; i--) {
+
+      // Pick a pseudorandom number according to the list length
+      var n = random.nextInt(i + 1);
+
+      var temp = items[i];
+      items[i] = items[n];
+      items[n] = temp;
+    }
+
+    return items;
+  }
+
   @override
   Widget build(BuildContext context) {
+    _players.sort((Player a, Player b) {
+      if(a.numberWonGame < b.numberWonGame) return 1;
+      if(a.numberWonGame > b.numberWonGame) return -1;
+      return 0;
+    });
     return Scaffold(
       drawer: widget.isOffline ? null : AppDrawer(),
+
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: COLOR_MAIN_BLUE,
@@ -146,12 +167,12 @@ class GameLauncherState extends State<GameLauncher> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Expanded(
-            flex: 6,
+            flex: 8,
             child: ListView(
               shrinkWrap: true,
               controller: _scrollController,
               children: _players.map((Player player) {
-                return AddPlayerListItem(player: player, removePlayerCallback: _handleRemovePlayer,);
+                return AddPlayerListItem(player: player, players: _players, removePlayerCallback: _handleRemovePlayer,);
               }).toList(),
             ),
           ),
@@ -171,7 +192,10 @@ class GameLauncherState extends State<GameLauncher> {
                         icon: Icon(Icons.person, color: COLOR_MAIN_BLUE,),
                         hintText: AppLocalizations.of(context).addPlayerFieldName,
                         labelText: AppLocalizations.of(context).addPlayerField ,
-                        labelStyle: TextStyle(color: Colors.black,),
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12
+                        ),
                         focusColor: COLOR_MAIN_BLUE,
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
@@ -210,16 +234,20 @@ class GameLauncherState extends State<GameLauncher> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   List<DropdownMenuItem> items = [];
-                  items.add(DropdownMenuItem(child: Text('Choose a room'), value: Room(name: 'Choose a room', id: -1, players: []),));
+                  items.add(DropdownMenuItem(child: Text(AppLocalizations.of(context).chooseRoom), value: Room(name: AppLocalizations.of(context).chooseRoom , id: -1, players: []),));
                   for(var room in snapshot.data) {
                     items.add(DropdownMenuItem(
                         value: room,
-                        child: Text(room.name),
+                        child: Text(room.id == -1 ? AppLocalizations.of(context).chooseRoom : room.name),
                     ));
                   }
                   return DropdownButton(
                     items: items,
-                    hint: Text(_currentRoom == null ? 'Choose a room': _currentRoom.name),
+                    hint: Text(_currentRoom == null ? AppLocalizations.of(context).chooseRoom : _currentRoom.name,
+                      style: TextStyle(
+                        color: _currentRoom.name == AppLocalizations.of(context).chooseRoom  ? Colors.black26 : COLOR_MAIN_BLUE
+                      ),
+                    ),
                     onChanged: (room) {
                       setState(() {
                         _currentRoom = room;
@@ -278,8 +306,47 @@ class GameLauncherState extends State<GameLauncher> {
               ],
             ),
           ),
+          Container(
+            width: 400,
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Text(AppLocalizations.of(context).startWith,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Portico',
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                    DropdownButton<ChoiceStartWidth>(
+                      value: _startWidth,
+                      onChanged: (ChoiceStartWidth value) => _handleUpdateChangeStartWith(value),
+                      items: startWidth
+                          .map<DropdownMenuItem<ChoiceStartWidth>>((ChoiceStartWidth value) {
+                        return DropdownMenuItem<ChoiceStartWidth>(
+                          value: value,
+                          child: Text(value == ChoiceStartWidth.BEST_START ? AppLocalizations.of(context).bestStart : AppLocalizations.of(context).random,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: COLOR_MAIN_BLUE,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Portico',
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
           Expanded(
-            flex: 3,
+            flex: 4,
             child: Visibility(
               visible: _choiceGame == ChoiceGame.XX1,
                 child: Container(
@@ -291,7 +358,7 @@ class GameLauncherState extends State<GameLauncher> {
                         children: <Widget>[
                           Text('Score',
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Portico',
                               letterSpacing: 0.5,
@@ -306,7 +373,8 @@ class GameLauncherState extends State<GameLauncher> {
                                 value: value,
                                 child: Text(value,
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 18,
+                                    color: COLOR_MAIN_BLUE,
                                     fontWeight: FontWeight.w600,
                                     fontFamily: 'Portico',
                                     letterSpacing: 0.5,
@@ -322,7 +390,7 @@ class GameLauncherState extends State<GameLauncher> {
                         children: [
                           Text(AppLocalizations.of(context).endByDouble,
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Portico',
                               letterSpacing: 0.5,

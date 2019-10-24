@@ -8,8 +8,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:dartagnan/pages/xx1/GameXX1.dart';
-import 'package:dartagnan/pages/xx1/widgets/PlayerXX1.dart';
-import 'package:dartagnan/pages/cricket/widgets/PlayerCricket.dart';
+import 'package:dartagnan/common/Player.dart';
 import 'package:dartagnan/pages/cricket/GameCricket.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:dartagnan/common/AppLocalizationsDelegate.dart';
@@ -22,8 +21,8 @@ void main() {
   *
   */
   testWidgets('Init XX1 Game with 1 player', (WidgetTester tester) async {
-    List<PlayerXX1> players = [];
-    players.add(new PlayerXX1(score: 301, name: 'Léa',));
+    List<Player> players = [];
+    players.add(new Player(score: 301, name: 'Léa',));
     Widget testWidget = new MediaQuery(
         data: new MediaQueryData(),
         child: new MaterialApp(
@@ -49,8 +48,8 @@ void main() {
   });
 
   testWidgets('In XX1 Game a player throws a dart', (WidgetTester tester) async {
-    List<PlayerXX1> players = [];
-    players.add(new PlayerXX1(score: 301, name: 'Léa',));
+    List<Player> players = [];
+    players.add(new Player(score: 301, name: 'Léa',));
     Widget testWidget = new MediaQuery(
         data: new MediaQueryData(),
         child: new MaterialApp(
@@ -79,8 +78,8 @@ void main() {
   });
 
   testWidgets('In XX1 Game a player can end the game', (WidgetTester tester) async {
-    List<PlayerXX1> players = [];
-    players.add(new PlayerXX1(score: 301, name: 'Léa',));
+    List<Player> players = [];
+    players.add(new Player(score: 301, name: 'Léa',));
     Widget testWidget = new MediaQuery(
         data: new MediaQueryData(),
         child: new MaterialApp(
@@ -117,8 +116,8 @@ void main() {
   *
   */
   testWidgets('Init Cricket Game with 1 player', (WidgetTester tester) async {
-    List<PlayerCricket> players = [];
-    players.add(new PlayerCricket(score: 0, name: 'Léa',));
+    List<Player> players = [];
+    players.add(new Player(score: 0, name: 'Léa',));
     Widget testWidget = new MediaQuery(
         data: new MediaQueryData(),
         child: new MaterialApp(
@@ -138,15 +137,15 @@ void main() {
     );
     await tester.pumpWidget(testWidget);
 
-    expect(find.byKey(Key('detailPlayerCricket')), findsOneWidget);
-    expect(find.byKey(Key('messagePlayerCricket')), findsOneWidget);
+    expect(find.byKey(Key('detailPlayer')), findsOneWidget);
+    expect(find.byKey(Key('messagePlayer')), findsOneWidget);
     expect(find.byKey(Key('scoringCricket')), findsOneWidget);
   });
 
   testWidgets('In Cricket Game, a player can close a number and make points', (WidgetTester tester) async {
-    List<PlayerCricket> players = [];
-    players.add(new PlayerCricket(score: 0, name: 'Léa',));
-    players.add(new PlayerCricket(score: 0, name: 'Hugo',));
+    List<Player> players = [];
+    players.add(new Player(score: 0, name: 'Léa',));
+    players.add(new Player(score: 0, name: 'Hugo',));
 
     Widget testWidget = new MediaQuery(
         data: new MediaQueryData(),
@@ -179,9 +178,9 @@ void main() {
   });
 
   testWidgets('In Cricket Game, two players can close a number and nobody make points', (WidgetTester tester) async {
-    List<PlayerCricket> players = [];
-    players.add(new PlayerCricket(score: 0, name: 'Léa',));
-    players.add(new PlayerCricket(score: 0, name: 'Hugo',));
+    List<Player> players = [];
+    players.add(new Player(score: 0, name: 'Léa',));
+    players.add(new Player(score: 0, name: 'Hugo',));
 
     Widget testWidget = new MediaQuery(
         data: new MediaQueryData(),
@@ -227,8 +226,8 @@ void main() {
 
   
   testWidgets('In Cricket Game, a player win a game', (WidgetTester tester) async {
-    List<PlayerCricket> players = [];
-    players.add(new PlayerCricket(score: 0, name: 'Léa',));
+    List<Player> players = [];
+    players.add(new Player(score: 0, name: 'Léa',));
 
     Widget testWidget = new MediaQuery(
         data: new MediaQueryData(),

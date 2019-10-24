@@ -31,7 +31,15 @@ class AppLocalizations {
       'end_by_double': 'End by X2',
       'average': 'Average ',
       'login': 'Sign in with Google',
-      'offline': 'Play Offline'
+      'offline': 'Play Offline',
+      'choose_room': 'Choose a room',
+      'warning': 'Warning',
+      'message_leave': 'Do you really want to quit the game ?',
+      'yes': 'Yes',
+      'no': 'No',
+      'start_with': 'Start with',
+      'best_start': 'First to Last',
+      'random': 'Random'
     },
     'fr': {
       'play': 'JOUER',
@@ -54,7 +62,15 @@ class AppLocalizations {
       'end_by_double': 'Terminer avec un X2',
       'average': 'Moyenne ',
       'login': 'Se connecter avec Google',
-      'offline': 'Jouer hors-ligne'
+      'offline': 'Jouer hors-ligne',
+      'choose_room': 'Choisir un salon',
+      'warning': 'Attention',
+      'message_leave': 'Voulez-vous vraiment quitter la partie ?',
+      'yes': 'Oui',
+      'no': 'Non',
+      'start_with': 'Démarrer par',
+      'best_start': 'Premier au dernier',
+      'random': 'Aléatoire'
     },
   };
 
@@ -140,5 +156,37 @@ class AppLocalizations {
 
   String get offline {
     return _localizedValues[locale.languageCode]['offline'];
+  }
+
+  String get chooseRoom {
+    return _localizedValues[locale.languageCode]['choose_room'];
+  }
+
+  String get warning {
+    return _localizedValues[locale.languageCode]['warning'];
+  }
+
+  String get messageLeave {
+    return _localizedValues[locale.languageCode]['message_leave'];
+  }
+
+  String get yes {
+    return _localizedValues[locale.languageCode]['yes'];
+  }
+
+  String get no {
+    return _localizedValues[locale.languageCode]['no'];
+  }
+
+  String get startWith {
+    return _localizedValues[locale.languageCode]['start_with'];
+  }
+
+  String get bestStart {
+    return _localizedValues[locale.languageCode]['best_start'];
+  }
+
+  String get random {
+    return _localizedValues[locale.languageCode]['random'];
   }
 }

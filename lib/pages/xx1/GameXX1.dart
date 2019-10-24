@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:dartagnan/common/widgets/MessagePlayer.dart';
 import 'package:dartagnan/pages/xx1/widgets/ScoringXX1.dart';
-import 'package:dartagnan/pages/xx1/widgets/PlayerXX1.dart';
+import 'package:dartagnan/common/Player.dart';
 import 'package:dartagnan/common/CommonColors.dart';
 import 'package:dartagnan/pages/xx1/widgets/PlayerXX1Detail.dart';
 import 'package:dartagnan/common/AppLocalizations.dart';
+import 'package:dartagnan/services/RoomService.dart';
+import 'package:dartagnan/common/Room.dart';
+import 'package:dartagnan/pages/launcher/GameLauncher.dart';
+
 
 /* Global Widget Page  which contains :
  * - PlayerList for XX1 (PlayerListXX1)
@@ -14,11 +18,12 @@ import 'package:dartagnan/common/AppLocalizations.dart';
  */
 
 class GameXX1 extends StatefulWidget {
-  GameXX1({Key key, this.players, this.endByDouble, this.score,}) : super(key: key);
+  GameXX1({Key key, this.players, this.endByDouble, this.score, this.room}) : super(key: key);
 
-  final List<PlayerXX1> players;
+  final List<Player> players;
   final bool endByDouble;
   final int score;
+  final Room room;
 
   @override
   _GameXX1State createState() => _GameXX1State();
@@ -27,7 +32,7 @@ class GameXX1 extends StatefulWidget {
 /* State form StatefulWidget GameXX1*/
 class _GameXX1State extends State<GameXX1> {
 
-  PlayerXX1 _currentPlayer;
+  Player _currentPlayer;
   String _helpMessage;
   int _counterPlayer;
   int _multiply;
@@ -45,7 +50,7 @@ class _GameXX1State extends State<GameXX1> {
     _changePlayer = true;
     _isEndGame = false;
 
-    for(PlayerXX1 player in widget.players){
+    for(Player player in widget.players){
       player.resetPlayer(widget.score);
     }
   }
@@ -59,7 +64,7 @@ class _GameXX1State extends State<GameXX1> {
   }
 
   /* Methods call for update player information after an action. It is the global strategy of XX1 game */
-  void _handleUpdatePlayer(PlayerXX1 player) {
+  void _handleUpdatePlayer(Player player) {
     setState(() {
       _currentPlayer = player;
       _changePlayer = false;
@@ -89,12 +94,18 @@ class _GameXX1State extends State<GameXX1> {
   }
 
   /* method call to verify and process end game if game is over */
-  bool _endGame(PlayerXX1 player) {
+  bool _endGame(Player player) {
     if((widget.endByDouble && _multiply == 2 && _currentPlayer.score == 0) || (!widget.endByDouble && _currentPlayer.score == 0)){
       _isEndGame = true;
       _helpMessage = '';
-      for(PlayerXX1 player in widget.players){
+
+      player.numberWonGame++;
+      for(Player player in widget.players){
+        player.updateStatsXx1();
         player.resetPlayer(widget.score);
+      }
+      if(widget.room.id != -1) {
+        RoomService().updateRoom(widget.room);
       }
       return true;
     }
@@ -102,7 +113,7 @@ class _GameXX1State extends State<GameXX1> {
   }
 
   /* method call to verify that current player score is less than that zero */
-  bool _badScore(PlayerXX1 player) {
+  bool _badScore(Player player) {
     if(player.score < 0) {
       player.score = player.score + (player.firstDart != null ? player.firstDart : 0) + (player.secondDart != null ? player.secondDart : 0) + (player.thirdDart != null ? player.thirdDart : 0);
       if(widget.players.length - 1 == _counterPlayer) {
@@ -139,7 +150,7 @@ class _GameXX1State extends State<GameXX1> {
         _counterPlayer--;
         _currentPlayer = widget.players[_counterPlayer];
       }
-      _currentPlayer.totalScore = _currentPlayer.totalScore - _currentPlayer.firstDart - _currentPlayer.secondDart - _currentPlayer.thirdDart;
+      _currentPlayer.totalScoreGame = _currentPlayer.totalScoreGame - _currentPlayer.firstDart - _currentPlayer.secondDart - _currentPlayer.thirdDart;
       _currentPlayer.round--;
       _changePlayer = true;
       return true;
@@ -149,11 +160,11 @@ class _GameXX1State extends State<GameXX1> {
   }
 
   /* method call to go to next player when the current player shooted this 3 darts */
-  bool _nextPlayer(PlayerXX1 player) {
+  bool _nextPlayer(Player player) {
    if(player.thirdDart != null) {
       player.round++;
-      player.totalScore = player.totalScore + player.firstDart + player.secondDart + player.thirdDart;
-      player.average = player.totalScore / player.round;
+      player.totalScoreGame = player.totalScoreGame + player.firstDart + player.secondDart + player.thirdDart;
+      player.average = player.totalScoreGame / player.round;
       if(widget.players.length - 1 == _counterPlayer) {
         _counterPlayer = 0;
         _currentPlayer = widget.players[_counterPlayer];
@@ -170,7 +181,7 @@ class _GameXX1State extends State<GameXX1> {
   }
 
   /* method call to init round before each next round */
-  void _initRound(PlayerXX1 player) {
+  void _initRound(Player player) {
     player.firstDart = null;
     player.secondDart = null;
     player.thirdDart = null;
@@ -264,6 +275,9 @@ class _GameXX1State extends State<GameXX1> {
           return '2X' + j.toString();
         }
       }
+      if(remaining - 2 * 25 == 0) {
+        return '2X25';
+      }
       return null;
     }
     else {
@@ -272,6 +286,9 @@ class _GameXX1State extends State<GameXX1> {
           if(remaining - i * j == 0) {
             return i.toString() + 'X' + j.toString();
           }
+        }
+        if(remaining - i * 25 == 0) {
+          return  i.toString() + 'X25';
         }
       }
       return null;
@@ -307,10 +324,61 @@ class _GameXX1State extends State<GameXX1> {
     return 4;
   }
 
+  // method calls o alert user when it quit the game
+  void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: Text(AppLocalizations.of(context).warning,
+            style: TextStyle(
+                color: COLOR_SECONDARY_YELLOW
+            ),
+          ),
+          content: new Text(AppLocalizations.of(context).messageLeave,
+            style: TextStyle(
+              fontSize: 12
+            )
+          ),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            FlatButton(
+              child: new Text(AppLocalizations.of(context).yes),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return GameLauncher();
+                    },
+                  ),
+                );
+              },
+            ),
+            FlatButton(
+              child: new Text(AppLocalizations.of(context).no),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: new IconButton(
+            icon: new Icon(Icons.arrow_back),
+            onPressed: () {
+              _showDialog();
+            }
+        ),
         title: Text(widget.score.toString() + ' - ' + AppLocalizations.of(context).game),
         backgroundColor: COLOR_MAIN_BLUE,
       ),

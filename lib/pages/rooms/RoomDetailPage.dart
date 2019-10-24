@@ -74,7 +74,7 @@ class RoomDetailPageState extends State<RoomDetailPage> {
                 shrinkWrap: false,
                 controller: _scrollController,
                 children: room.players.map((Player player) {
-                  return AddPlayerListItem(player: player, removePlayerCallback: _handleRemovePlayer);
+                  return AddPlayerListItem(player: player, players: room.players, removePlayerCallback: _handleRemovePlayer);
                 }).toList(),
               ),
             ),
@@ -93,7 +93,10 @@ class RoomDetailPageState extends State<RoomDetailPage> {
                           icon: Icon(Icons.person, color: COLOR_MAIN_BLUE,),
                           hintText: AppLocalizations.of(context).addPlayerFieldName,
                           labelText: AppLocalizations.of(context).addPlayerField,
-                          labelStyle: TextStyle(color: Colors.black,),
+                          labelStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12
+                          ),
                           focusColor: COLOR_MAIN_BLUE,
                           focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(

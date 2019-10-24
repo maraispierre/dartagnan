@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'PlayerXX1.dart';
+import 'package:dartagnan/common/Player.dart';
 import 'package:dartagnan/common/CommonColors.dart';
 import 'package:dartagnan/pages/xx1/widgets/PlayerListXX1.dart';
 import 'package:dartagnan/common/AppLocalizations.dart';
 import 'package:dartagnan/common/CustomIcons.dart';
 
-typedef void UpdateUserCallback(PlayerXX1 player);
+typedef void UpdateUserCallback(Player player);
 
 /* Widget to display the detail of a player during the game */
 class PlayerXX1Detail extends StatefulWidget {
   PlayerXX1Detail({Key key, this.currentPlayer, this.players, this.onUpdatePlayer, this.changePlayer}) : super(key: key);
 
-  final PlayerXX1 currentPlayer;
-  final List<PlayerXX1> players;
+  final Player currentPlayer;
+  final List<Player> players;
   final UpdateUserCallback onUpdatePlayer;
   final bool changePlayer;
 

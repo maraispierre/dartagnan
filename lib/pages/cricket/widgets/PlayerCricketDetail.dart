@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'PlayerCricket.dart';
+import 'package:dartagnan/common/Player.dart';
 import 'package:dartagnan/common/CommonColors.dart';
 import 'package:dartagnan/pages/cricket/widgets/PlayerListCricket.dart';
 import 'package:dartagnan/pages/cricket/widgets/TablePlayerListItemCricket.dart';
 import 'package:dartagnan/common/AppLocalizations.dart';
 import 'package:dartagnan/common/CustomIcons.dart';
 
-typedef void UpdateUserCallback(PlayerCricket player);
+typedef void UpdateUserCallback(Player player);
 
 /* Widget to display the detail of a player during the game */
 class PlayerCricketDetail extends StatefulWidget {
   PlayerCricketDetail({Key key, this.currentPlayer, this.players, this.onUpdatePlayer, this.changePlayer}) : super(key: key);
 
-  final PlayerCricket currentPlayer;
-  final List<PlayerCricket> players;
+  final Player currentPlayer;
+  final List<Player> players;
   final UpdateUserCallback onUpdatePlayer;
   final bool changePlayer;
 

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:dartagnan/common/widgets/MessagePlayer.dart';
 import 'package:dartagnan/pages/cricket/widgets/PlayerCricketDetail.dart';
-import 'package:dartagnan/pages/cricket/widgets/PlayerCricket.dart';
+import 'package:dartagnan/common/Player.dart';
 import 'package:dartagnan/pages/cricket/widgets/StateHistorical.dart';
 import 'package:dartagnan/pages/cricket/widgets/ScoringCricket.dart';
 import 'package:dartagnan/common/CommonColors.dart';
 import 'package:dartagnan/common/AppLocalizations.dart';
+import 'package:dartagnan/services/RoomService.dart';
+import 'package:dartagnan/common/Room.dart';
+import 'package:dartagnan/pages/launcher/GameLauncher.dart';
 
 /* Global Widget Page  which contains :
  * - PlayerList for Cricket (PlayerListCricket)
@@ -14,10 +17,11 @@ import 'package:dartagnan/common/AppLocalizations.dart';
  * - Strategy to manage Cricket game
  */
 class GameCricket extends StatefulWidget {
-  GameCricket({Key key, this.players, this.score}) : super(key: key);
+  GameCricket({Key key, this.players, this.score, this.room}) : super(key: key);
 
-  final List<PlayerCricket> players;
+  final List<Player> players;
   final int score;
+  final Room room;
 
   @override
   _GameCricketState createState() => _GameCricketState();
@@ -26,7 +30,7 @@ class GameCricket extends StatefulWidget {
 /* State form StatefulWidget GameXX1 */
 class _GameCricketState extends State<GameCricket> {
 
-  PlayerCricket _currentPlayer;
+  Player _currentPlayer;
   String _helpMessage;
   int _counterPlayer;
   int _multiply;
@@ -43,7 +47,7 @@ class _GameCricketState extends State<GameCricket> {
     _counterPlayer = 0;
     _multiply = 1;
     _changePlayer = true;
-    for(PlayerCricket player in widget.players){
+    for(Player player in widget.players){
       player.resetPlayer(widget.score);
     }
   }
@@ -57,7 +61,7 @@ class _GameCricketState extends State<GameCricket> {
   }
 
   /* Methods call for update player information after an action. It is the global strategy of XX1 game */
-  void _handleUpdatePlayer(PlayerCricket player) {
+  void _handleUpdatePlayer(Player player) {
     setState(() {
       _changePlayer = false;
       _isEndGame = false;
@@ -78,7 +82,7 @@ class _GameCricketState extends State<GameCricket> {
   }
 
   /* method call to verify and process end game if game is over */
-  bool _endGame(PlayerCricket player) {
+  bool _endGame(Player player) {
     bool endGame = true;
     player.tableCricket.forEach((key, value) {
       if(value<3) {
@@ -89,7 +93,7 @@ class _GameCricketState extends State<GameCricket> {
       return false;
     }
     else {
-      for(PlayerCricket player in widget.players) {
+      for(Player player in widget.players) {
         if(player.score > _currentPlayer.score) {
           endGame = false;
         }
@@ -97,8 +101,14 @@ class _GameCricketState extends State<GameCricket> {
       if(endGame) {
         _isEndGame = true;
         _helpMessage = '';
-        for(PlayerCricket player in widget.players){
+        player.numberWonGame++;
+
+        for(Player player in widget.players){
+         player.updateStatsCricket();
          player.resetPlayer(widget.score);
+        }
+        if(widget.room.id != -1) {
+          RoomService().updateRoom(widget.room);
         }
       }
       return endGame;
@@ -140,7 +150,7 @@ class _GameCricketState extends State<GameCricket> {
   }
 
   /* method call to go to next player when the current player shooted this 3 darts */
-  bool _nextPlayer(PlayerCricket player) {
+  bool _nextPlayer(Player player) {
     if(player.thirdDart != null) {
       player.round++;
       if(widget.players.length - 1 == _counterPlayer) {
@@ -158,11 +168,56 @@ class _GameCricketState extends State<GameCricket> {
   }
 
   /* method call to init round before each next round */
-  void _initRound(PlayerCricket player) {
+  void _initRound(Player player) {
     player.firstDart = null;
     player.secondDart = null;
     player.thirdDart = null;
     _changePlayer = true;
+  }
+
+  // method calls o alert user when it quit the game
+  void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: Text(AppLocalizations.of(context).warning,
+            style: TextStyle(
+              color: COLOR_SECONDARY_YELLOW
+            ),
+          ),
+          content: new Text(AppLocalizations.of(context).messageLeave,
+              style: TextStyle(
+                  fontSize: 12
+              )
+          ),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            FlatButton(
+              child: new Text(AppLocalizations.of(context).yes),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return GameLauncher();
+                    },
+                  ),
+                );
+              },
+            ),
+            FlatButton(
+              child: new Text(AppLocalizations.of(context).no),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -170,6 +225,12 @@ class _GameCricketState extends State<GameCricket> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Cricket - ' + AppLocalizations.of(context).game),
+        leading: new IconButton(
+            icon: new Icon(Icons.arrow_back),
+            onPressed: () {
+              _showDialog();
+            }
+        ),
         backgroundColor: COLOR_MAIN_BLUE,
       ),
       body: Column(
@@ -177,11 +238,11 @@ class _GameCricketState extends State<GameCricket> {
         children: [
           Expanded(
             flex: 10,
-            child: PlayerCricketDetail(key: Key('detailPlayerCricket'), players: widget.players, currentPlayer: _currentPlayer, onUpdatePlayer: _handleUpdatePlayer, changePlayer: _changePlayer,),
+            child: PlayerCricketDetail(key: Key('detailPlayer'), players: widget.players, currentPlayer: _currentPlayer, onUpdatePlayer: _handleUpdatePlayer, changePlayer: _changePlayer,),
           ),
           Expanded(
             flex: 2,
-            child: MessagePlayer(key: new Key('messagePlayerCricket'), currentPlayer: _currentPlayer, helpMessage: _helpMessage, isEndGame: _isEndGame,),
+            child: MessagePlayer(key: new Key('messagePlayer'), currentPlayer: _currentPlayer, helpMessage: _helpMessage, isEndGame: _isEndGame,),
           ),
           Expanded(
             flex: 10,
