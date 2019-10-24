@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Text(AppLocalizations.of(context).det_or, style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 15,
                     color: COLOR_MAIN_BLUE,
                     fontFamily: 'Portico',
                   ),
@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Text(
                 AppLocalizations.of(context).login,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 15,
                   color: Colors.grey,
                 ),
               ),
@@ -112,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text(
                   AppLocalizations.of(context).offline,
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 15,
                     color: Colors.white,
                   ),
                 ),
