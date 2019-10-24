@@ -34,7 +34,7 @@ class GameLauncherState extends State<GameLauncher> {
   List<Player> _players = [];
   int _score = 301;
   ChoiceStartWidth _startWidth = ChoiceStartWidth.BEST_START;
-  Room _currentRoom = Room(name: 'Choose a room', id: -1, players: []);
+  Room _currentRoom = Room(name: 'Choisir un salon', id: -1, players: []);
   ScrollController _scrollController = new ScrollController();
   bool _endByDouble = false;
   ChoiceGame _choiceGame = ChoiceGame.XX1;
@@ -234,11 +234,11 @@ class GameLauncherState extends State<GameLauncher> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   List<DropdownMenuItem> items = [];
-                  items.add(DropdownMenuItem(child: Text(AppLocalizations.of(context).chooseRoom), value: Room(name: 'Choose a room', id: -1, players: []),));
+                  items.add(DropdownMenuItem(child: Text(AppLocalizations.of(context).chooseRoom), value: Room(name: AppLocalizations.of(context).chooseRoom , id: -1, players: []),));
                   for(var room in snapshot.data) {
                     items.add(DropdownMenuItem(
                         value: room,
-                        child: Text(room.name),
+                        child: Text(room.id == -1 ? AppLocalizations.of(context).chooseRoom : room.name),
                     ));
                   }
                   return DropdownButton(
