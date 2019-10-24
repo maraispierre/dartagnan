@@ -155,7 +155,10 @@ class GameLauncherState extends State<GameLauncher> {
                         icon: Icon(Icons.person, color: COLOR_MAIN_BLUE,),
                         hintText: AppLocalizations.of(context).addPlayerFieldName,
                         labelText: AppLocalizations.of(context).addPlayerField ,
-                        labelStyle: TextStyle(color: Colors.black,),
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12
+                        ),
                         focusColor: COLOR_MAIN_BLUE,
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
