@@ -273,6 +273,9 @@ class _GameXX1State extends State<GameXX1> {
           return '2X' + j.toString();
         }
       }
+      if(remaining - 2 * 25 == 0) {
+        return '2X25';
+      }
       return null;
     }
     else {
@@ -281,6 +284,9 @@ class _GameXX1State extends State<GameXX1> {
           if(remaining - i * j == 0) {
             return i.toString() + 'X' + j.toString();
           }
+        }
+        if(remaining - i * 25 == 0) {
+          return  i.toString() + 'X25';
         }
       }
       return null;
