@@ -8,6 +8,7 @@ import 'package:dartagnan/common/CommonColors.dart';
 import 'package:dartagnan/common/AppLocalizations.dart';
 import 'package:dartagnan/services/RoomService.dart';
 import 'package:dartagnan/common/Room.dart';
+import 'package:dartagnan/pages/launcher/GameLauncher.dart';
 
 /* Global Widget Page  which contains :
  * - PlayerList for Cricket (PlayerListCricket)
@@ -174,11 +175,62 @@ class _GameCricketState extends State<GameCricket> {
     _changePlayer = true;
   }
 
+  // method calls o alert user when it quit the game
+  void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: Text(AppLocalizations.of(context).warning,
+            style: TextStyle(
+              color: COLOR_SECONDARY_YELLOW
+            ),
+          ),
+          content: new Text(AppLocalizations.of(context).messageLeave,
+              style: TextStyle(
+                  fontSize: 12
+              )
+          ),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            FlatButton(
+              child: new Text(AppLocalizations.of(context).yes),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return GameLauncher();
+                    },
+                  ),
+                );
+              },
+            ),
+            FlatButton(
+              child: new Text(AppLocalizations.of(context).no),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Cricket - ' + AppLocalizations.of(context).game),
+        leading: new IconButton(
+            icon: new Icon(Icons.arrow_back),
+            onPressed: () {
+              _showDialog();
+            }
+        ),
         backgroundColor: COLOR_MAIN_BLUE,
       ),
       body: Column(

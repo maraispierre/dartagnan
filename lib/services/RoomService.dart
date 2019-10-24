@@ -6,8 +6,8 @@ import 'package:crypt/crypt.dart';
 
 class RoomService {
 
-  //static final url = 'http://marais.tk:8080';
-  static final url = 'http://localhost:8080';
+  static final url = 'http://marais.tk:8080';
+  //static final url = 'http://localhost:8080';
 
   Future<List<Room>> fetchRooms() async {
     Map<String, String> headers = {"Content-type": "application/json"};

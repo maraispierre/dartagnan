@@ -32,7 +32,11 @@ class AppLocalizations {
       'average': 'Average ',
       'login': 'Sign in with Google',
       'offline': 'Play Offline',
-      'choose_room': 'Choose a room'
+      'choose_room': 'Choose a room',
+      'warning': 'Warning',
+      'message_leave': 'Do you really want to quit the game ?',
+      'yes': 'Yes',
+      'no': 'No'
     },
     'fr': {
       'play': 'JOUER',
@@ -56,7 +60,11 @@ class AppLocalizations {
       'average': 'Moyenne ',
       'login': 'Se connecter avec Google',
       'offline': 'Jouer hors-ligne',
-      'choose_room': 'Choisir un salon'
+      'choose_room': 'Choisir un salon',
+      'warning': 'Attention',
+      'message_leave': 'Voulez-vous vraiment quitter la partie ?',
+      'yes': 'Oui',
+      'no': 'Non'
     },
   };
 
@@ -146,5 +154,21 @@ class AppLocalizations {
 
   String get chooseRoom {
     return _localizedValues[locale.languageCode]['choose_room'];
+  }
+
+  String get warning {
+    return _localizedValues[locale.languageCode]['warning'];
+  }
+
+  String get messageLeave {
+    return _localizedValues[locale.languageCode]['message_leave'];
+  }
+
+  String get yes {
+    return _localizedValues[locale.languageCode]['yes'];
+  }
+
+  String get no {
+    return _localizedValues[locale.languageCode]['no'];
   }
 }

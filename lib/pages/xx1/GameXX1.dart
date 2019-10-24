@@ -7,6 +7,7 @@ import 'package:dartagnan/pages/xx1/widgets/PlayerXX1Detail.dart';
 import 'package:dartagnan/common/AppLocalizations.dart';
 import 'package:dartagnan/services/RoomService.dart';
 import 'package:dartagnan/common/Room.dart';
+import 'package:dartagnan/pages/launcher/GameLauncher.dart';
 
 /* Global Widget Page  which contains :
  * - PlayerList for XX1 (PlayerListXX1)
@@ -322,10 +323,61 @@ class _GameXX1State extends State<GameXX1> {
     return 4;
   }
 
+  // method calls o alert user when it quit the game
+  void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: Text(AppLocalizations.of(context).warning,
+            style: TextStyle(
+                color: COLOR_SECONDARY_YELLOW
+            ),
+          ),
+          content: new Text(AppLocalizations.of(context).messageLeave,
+            style: TextStyle(
+              fontSize: 12
+            )
+          ),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            FlatButton(
+              child: new Text(AppLocalizations.of(context).yes),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return GameLauncher();
+                    },
+                  ),
+                );
+              },
+            ),
+            FlatButton(
+              child: new Text(AppLocalizations.of(context).no),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: new IconButton(
+            icon: new Icon(Icons.arrow_back),
+            onPressed: () {
+              _showDialog();
+            }
+        ),
         title: Text(widget.score.toString() + ' - ' + AppLocalizations.of(context).game),
         backgroundColor: COLOR_MAIN_BLUE,
       ),
