@@ -194,7 +194,7 @@ class GameLauncherState extends State<GameLauncher> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   List<DropdownMenuItem> items = [];
-                  items.add(DropdownMenuItem(child: Text('Choose a room'), value: Room(name: 'Choose a room', id: -1, players: []),));
+                  items.add(DropdownMenuItem(child: Text(AppLocalizations.of(context).chooseRoom), value: Room(name: 'Choose a room', id: -1, players: []),));
                   for(var room in snapshot.data) {
                     items.add(DropdownMenuItem(
                         value: room,
@@ -203,7 +203,7 @@ class GameLauncherState extends State<GameLauncher> {
                   }
                   return DropdownButton(
                     items: items,
-                    hint: Text(_currentRoom == null ? 'Choose a room': _currentRoom.name),
+                    hint: Text(_currentRoom == null ? AppLocalizations.of(context).chooseRoom : _currentRoom.name),
                     onChanged: (room) {
                       setState(() {
                         _currentRoom = room;

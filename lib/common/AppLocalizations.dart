@@ -31,7 +31,8 @@ class AppLocalizations {
       'end_by_double': 'End by X2',
       'average': 'Average ',
       'login': 'Sign in with Google',
-      'offline': 'Play Offline'
+      'offline': 'Play Offline',
+      'choose_room': 'Choose a room'
     },
     'fr': {
       'play': 'JOUER',
@@ -54,7 +55,8 @@ class AppLocalizations {
       'end_by_double': 'Terminer avec un X2',
       'average': 'Moyenne ',
       'login': 'Se connecter avec Google',
-      'offline': 'Jouer hors-ligne'
+      'offline': 'Jouer hors-ligne',
+      'choose_room': 'Choisir un salon'
     },
   };
 
@@ -140,5 +142,9 @@ class AppLocalizations {
 
   String get offline {
     return _localizedValues[locale.languageCode]['offline'];
+  }
+
+  String get chooseRoom {
+    return _localizedValues[locale.languageCode]['choose_room'];
   }
 }
