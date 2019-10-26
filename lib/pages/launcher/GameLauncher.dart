@@ -160,6 +160,12 @@ class GameLauncherState extends State<GameLauncher> {
 
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: widget.isOffline ? new IconButton(
+            icon: new Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pushNamed(context, '/');
+            }
+        ) : null,
         backgroundColor: COLOR_MAIN_BLUE,
         title: Text(AppLocalizations.of(context).titleAddPlayer),
       ),

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../pages/launcher/GameLauncher.dart';
-import '../../pages/rooms/RoomsManagerPage.dart';
 import '../CommonColors.dart';
 import 'package:dartagnan/services/SignInService.dart';
 import 'package:dartagnan/pages/login/LoginPage.dart';
@@ -82,11 +80,7 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => GameLauncher(),
-                ),
-              );
+              Navigator.pushNamed(context, '/launcher');
             },
           ),
           ListTile(
@@ -99,11 +93,7 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => RoomsManagerPage(),
-                ),
-              );
+              Navigator.pushNamed(context, '/rooms');
             },
           ),
         ],
