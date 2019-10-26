@@ -36,5 +36,8 @@ class SignInService {
   static void signOutGoogle() async{
     await _auth.signOut();
     await googleSignIn.signOut();
+    name = null;
+    email = null;
+    imageUrl = null;
   }
 }

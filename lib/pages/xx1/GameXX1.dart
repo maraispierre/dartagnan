@@ -7,7 +7,7 @@ import 'package:dartagnan/pages/xx1/widgets/PlayerXX1Detail.dart';
 import 'package:dartagnan/common/AppLocalizations.dart';
 import 'package:dartagnan/services/RoomService.dart';
 import 'package:dartagnan/common/Room.dart';
-import 'package:dartagnan/pages/launcher/GameLauncher.dart';
+import 'package:dartagnan/services/SignInService.dart';
 
 
 /* Global Widget Page  which contains :
@@ -348,13 +348,12 @@ class _GameXX1State extends State<GameXX1> {
               child: new Text(AppLocalizations.of(context).yes),
               onPressed: () {
                 Navigator.of(context).pop();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return GameLauncher();
-                    },
-                  ),
-                );
+                if(SignInService.email != null) {
+                  Navigator.pushNamed(context, '/launcher');
+                }
+                else {
+                  Navigator.pushNamed(context, '/launcherOffline');
+                }
               },
             ),
             FlatButton(

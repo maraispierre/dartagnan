@@ -8,7 +8,7 @@ import 'package:dartagnan/common/CommonColors.dart';
 import 'package:dartagnan/common/AppLocalizations.dart';
 import 'package:dartagnan/services/RoomService.dart';
 import 'package:dartagnan/common/Room.dart';
-import 'package:dartagnan/pages/launcher/GameLauncher.dart';
+import 'package:dartagnan/services/SignInService.dart';
 
 /* Global Widget Page  which contains :
  * - PlayerList for Cricket (PlayerListCricket)
@@ -199,13 +199,12 @@ class _GameCricketState extends State<GameCricket> {
               child: new Text(AppLocalizations.of(context).yes),
               onPressed: () {
                 Navigator.of(context).pop();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return GameLauncher();
-                    },
-                  ),
-                );
+                if(SignInService.email != null) {
+                  Navigator.pushNamed(context, '/launcher');
+                }
+                else {
+                  Navigator.pushNamed(context, '/launcherOffline');
+                }
               },
             ),
             FlatButton(
